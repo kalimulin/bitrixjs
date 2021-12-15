@@ -2,7 +2,7 @@
 title: Сторонние библиотеки
 description: 
 published: true
-date: 2021-12-15T19:01:25.202Z
+date: 2021-12-15T19:10:30.085Z
 tags: 
 editor: ckeditor
 dateCreated: 2021-12-15T16:13:57.441Z
@@ -39,3 +39,95 @@ amcharts_xy – График XY</code></pre>
     });
 &lt;/script&gt;</code></pre>
 <p>&nbsp;</p>
+<h2>PhoneNumber</h2>
+<p>Используете только маски для номеров телефонов? Есть специальное решение для них:&nbsp;</p>
+<pre><code class="language-html">&lt;span id="flag"&gt;&lt;/span&gt;
+&lt;input type="text" id="number" placeholder="Укажите ваш номер телефона"&gt;
+
+&lt;script&gt;
+    BX.ready(function() {
+        new BX.PhoneNumber.Input({
+            node: BX('number'),
+            forceLeadingPlus: false, // поставить + перед номером телефона
+            flagNode: BX('flag'), //
+            flagSize: 16, // Размер иконки флага [16, 24, 32]
+            defaultCountry: 'ru', // Страна по-умолчанию
+            onChange: function(e) {
+              // вызывается при изменении значения
+            }
+        });
+    });
+&lt;/script&gt;</code></pre>
+<p>&nbsp;</p>
+<figure class="image"><img src="/665025260459757254b9f07b834f9957.png">
+  <figcaption>пример работы</figcaption>
+</figure>
+<p>&nbsp;</p>
+<h2>PopupWindowManager</h2>
+<p>С помощью данной библиотеки можно сделать вывод не только диалоговые окна, но и полноценные всплывающие страницы:&nbsp;</p>
+<pre><code class="language-html">&lt;script&gt;
+    // BX.element - элемент, к которому будет привязано окно, если null – окно появится по центру экрана
+
+    BX.ready(function () {
+        var popup = BX.PopupWindowManager.create("popup-message", BX('element'), {
+            content: 'Контент, отображаемый в теле окна',
+            width: 400, // ширина окна
+            height: 100, // высота окна
+            zIndex: 100, // z-index
+            closeIcon: {
+                // объект со стилями для иконки закрытия, при null - иконки не будет
+                opacity: 1
+            },
+            titleBar: 'Заголовок окна',
+            closeByEsc: true, // закрытие окна по esc
+            darkMode: false, // окно будет светлым или темным
+            autoHide: false, // закрытие при клике вне окна
+            draggable: true, // можно двигать или нет
+            resizable: true, // можно изменять размер
+            min_height: 100, // минимальная высота окна
+            min_width: 100, // минимальная ширина окна
+            lightShadow: true, // использовать светлую тень у окна
+            angle: true, // появится уголок
+            overlay: {
+                // объект со стилями фона
+                backgroundColor: 'black',
+                opacity: 500
+            }, 
+            buttons: [
+                new BX.PopupWindowButton({
+                    text: 'Сохранить', // текст кнопки
+                    id: 'save-btn', // идентификатор
+                    className: 'ui-btn ui-btn-success', // доп. классы для кнопок
+                    events: {
+                      click: function() {
+                          // Событие при клике на кнопку
+                      }
+                    }
+                }),
+                new BX.PopupWindowButton({
+                    text: 'Копировать',
+                    id: 'copy-btn',
+                    className: 'ui-btn ui-btn-primary',
+                    events: {
+                      click: function() {
+
+                      }
+                    }
+                })
+            ],
+            events: {
+               onPopupShow: function() {
+                  // Событие при показе окна
+               },
+               onPopupClose: function() {
+                  // Событие при закрытии окна                
+               }
+            }
+        });
+
+        popup.show();
+    });
+&lt;/script&gt;</code></pre>
+<figure class="image"><img src="/c4b5d31f1201e7ee2c922442536a8c55.png">
+  <figcaption>пример работы</figcaption>
+</figure>
