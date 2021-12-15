@@ -1,0 +1,85 @@
+<!--
+title: Позиционирование
+description: 
+published: true
+date: 2021-12-15T20:17:47.446Z
+tags: 
+editor: ckeditor
+dateCreated: 2021-12-15T20:17:47.446Z
+-->
+
+<figure class="table">
+  <table>
+    <tbody>
+      <tr>
+        <th>Функция</th>
+        <th>Описание</th>
+      </tr>
+      <tr>
+        <th>BX.GetWindowInnerSize</th>
+        <th>Получение текущего просматриваемого размера окна.</th>
+      </tr>
+      <tr>
+        <th>BX.GetWindowScrollPos</th>
+        <th>Получение текущей позиции прокрутки страницы.</th>
+      </tr>
+      <tr>
+        <th>BX.GetWindowScrollSize</th>
+        <th>Получение текущего размера страницы.</th>
+      </tr>
+      <tr>
+        <th>BX.GetWindowSize</th>
+        <th>Объединение всех трех вышеперечисленных в один вызов.</th>
+      </tr>
+      <tr>
+        <th>Object
+          <strong>BX.pos(</strong>
+          &nbsp;DOMNode node,
+          &nbsp;bool bRelative
+          <strong>);</strong>&nbsp;
+        </th>
+        <th>
+          <p>Получение абсолютной позиции элемента на экране.</p>
+          <p>Возвращает объект с ключами <strong>top</strong>, <strong>left</strong>, <strong>width</strong>, <strong>bottom</strong>, <strong>right</strong>, <strong>height</strong>.</p>
+          <p>Если указать bRelative=true, то будут считаться относительно ближайшего родителя с абсолютным или относительным позиционированием.</p>
+          <p><strong>Примечание</strong>: Может некорректно работать для элементов с фиксированной позицией (<strong>position: fixed</strong>) или для их дочерних элементов.</p>
+        </th>
+      </tr>
+    </tbody>
+  </table>
+</figure>
+<p>&nbsp;</p>
+<h2>BX.GetWindowInnerSize</h2>
+<p>Получение текущего просматриваемого размера окна.</p>
+<pre><code class="language-plaintext">&lt;script&gt;
+BX.ready(function() {
+	BX.bind(BX('buttonfalse'), 'click', function() {
+		//задает) ширину
+		BX.width(this, 400); //BX.width(BX('buttonDivId'), 300);
+		var objpos = BX.GetWindowInnerSize();
+		this.innerHTML = "innerHeight " + objpos.innerHeight + "&lt;br /&gt; innerWidth " + objpos.innerWidth;
+	});
+});
+&lt;/script&gt;
+
+&lt;div id="buttonfalse" class="buttonDiv"&gt;set GetWindowInnerSize&lt;/div&gt;
+
+&lt;style&gt;
+.buttonDiv {
+	cursor: pointer;
+	margin: 12px auto;
+	vertical-align: middle;
+	text-align: center;
+	width: 250px;
+	/* padding:5px; */
+	background-color: #c5c5c5;
+	border-radius: 5px;
+	box-shadow: 0px 0px 10px #333;
+	color: #000;
+	font-size: 17px;
+}
+&lt;/style&gt;</code></pre>
+<p><a href="https://bxas.ru/classbx/GetWindowInnerSize/">Пример работы</a></p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
