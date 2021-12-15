@@ -1,0 +1,31 @@
+<!--
+title: BX.message
+description: 
+published: true
+date: 2021-12-15T20:01:56.941Z
+tags: 
+editor: ckeditor
+dateCreated: 2021-12-15T20:01:56.941Z
+-->
+
+<pre><code class="language-plaintext">string 
+BX.message(
+&nbsp;string param
+); 
+
+void 
+BX.message(
+&nbsp;object param
+);</code></pre>
+<p>Функция обеспечивает доступ к языковым сообщениям. Если параметр <strong>param</strong> – строка, то будет возвращено языковое сообщение с идентификатором <strong>param</strong>. В противном случае параметр интерпретируется как объект вида <i>{идентификатор: языковое сообщение, идентификатор: языковое сообщение}</i>; языковые сообщения добавляются к текущим (перезаписывая существующие).</p>
+<blockquote>
+  <p><strong>Примечание</strong>: помимо языковых сообщений доступно несколько серверных констант типа текущего языка или текущего пользователя.</p>
+</blockquote>
+<p>&nbsp;</p>
+<h2>Передача сообщений из языковых файлов Bitrix в скрипты js</h2>
+<p>В шаблоне компонента (template.php) добавляем скрипт:</p>
+<pre><code class="language-plaintext">&lt;script&gt;
+BX.message({MESS_ID:'&lt;?=Bitrix\Main\Localization\Loc::getMessage("MESS_ID")?&gt;'}); 
+&lt;/script&gt;</code></pre>
+<p>в скрипте (script.js) получаем значение:</p>
+<pre><code class="language-plaintext">BX.message('MESS_ID');</code></pre>
