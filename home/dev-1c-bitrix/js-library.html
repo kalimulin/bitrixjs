@@ -2,16 +2,16 @@
 title: Сторонние библиотеки
 description: 
 published: true
-date: 2021-12-15T19:10:30.085Z
+date: 2021-12-15T19:27:20.290Z
 tags: 
 editor: ckeditor
 dateCreated: 2021-12-15T16:13:57.441Z
 -->
 
-<p>&nbsp;</p>
-<p>Кроме собственной JS-библиотеки в Bitrix Framework используются включённые в продукт сторонние библиотеки:</p>
+<p>Кроме собственной JS-библиотеки в Bitrix Framework используются включённые в продукт сторонние библиотеки</p>
 <h2>amCharts</h2>
 <p>Проприетарная библиотека для построения различных графиков, лицензия на которую включена 1С-Битрикс любой редакции.&nbsp;</p>
+<p>Подключение библиотеки на бэкенде осуществляется стандартным способом: <code>CJSCore::Init(['amcharts']);</code></p>
 <p>Подключать библиотеку необходимо в зависимости от типа графика:</p>
 <pre><code class="language-plaintext">amcharts - Базовая библиотека
 amcharts_funnel – Воронка, пирамида Маслоу
@@ -21,11 +21,14 @@ amcharts_radar – Радарная диаграмма
 amcharts_serial – Обычные графики
 amcharts_xy – График XY</code></pre>
 <p>Примеры всех типов графиков можно увидеть на сайте <a href="https://www.amcharts.com/demos/">amCharts</a>.</p>
-<figure class="image image_resized" style="width:64.67%;"><img src="/amcharts.png"></figure>
+<figure class="image"><img src="/js-library/amcharts.png"></figure>
 <p>&nbsp;</p>
 <h2>MaskedInput</h2>
 <p>Для указания масок ввода в Битрикс есть встроенная библиотека <code>masked_input</code></p>
-<pre><code class="language-html">&lt;input type="text" id="phone" placeholder="Укажите ваш телефон" /&gt;
+<pre><code class="language-html">&lt;? 
+CJSCore::Init(['masked_input']); ?&gt;
+
+&lt;input type="text" id="phone" placeholder="Укажите ваш телефон" /&gt;
 
 &lt;script&gt;
     BX.ready(function() {
@@ -41,7 +44,9 @@ amcharts_xy – График XY</code></pre>
 <p>&nbsp;</p>
 <h2>PhoneNumber</h2>
 <p>Используете только маски для номеров телефонов? Есть специальное решение для них:&nbsp;</p>
-<pre><code class="language-html">&lt;span id="flag"&gt;&lt;/span&gt;
+<pre><code class="language-html">&lt;? CJSCore::Init(['phone_number']); ?&gt;
+
+&lt;span id="flag"&gt;&lt;/span&gt;
 &lt;input type="text" id="number" placeholder="Укажите ваш номер телефона"&gt;
 
 &lt;script&gt;
@@ -58,14 +63,13 @@ amcharts_xy – График XY</code></pre>
         });
     });
 &lt;/script&gt;</code></pre>
-<p>&nbsp;</p>
-<figure class="image"><img src="/665025260459757254b9f07b834f9957.png">
-  <figcaption>пример работы</figcaption>
-</figure>
+<figure class="image"><img src="/js-library/665025260459757254b9f07b834f9957.png"></figure>
 <p>&nbsp;</p>
 <h2>PopupWindowManager</h2>
 <p>С помощью данной библиотеки можно сделать вывод не только диалоговые окна, но и полноценные всплывающие страницы:&nbsp;</p>
-<pre><code class="language-html">&lt;script&gt;
+<pre><code class="language-html">&lt;? CJSCore::Init(['popup']); ?&gt;
+
+&lt;script&gt;
     // BX.element - элемент, к которому будет привязано окно, если null – окно появится по центру экрана
 
     BX.ready(function () {
@@ -128,6 +132,178 @@ amcharts_xy – График XY</code></pre>
         popup.show();
     });
 &lt;/script&gt;</code></pre>
-<figure class="image"><img src="/c4b5d31f1201e7ee2c922442536a8c55.png">
-  <figcaption>пример работы</figcaption>
-</figure>
+<figure class="image"><img src="/js-library/c4b5d31f1201e7ee2c922442536a8c55.png"></figure>
+<p>&nbsp;</p>
+<h2>PopupMenu</h2>
+<p>Выпадающие меню и списки в стиле Битрикс24 можно сделать&nbsp;с помощью <code>PopupMenu</code>.&nbsp;</p>
+<pre><code class="language-html">&lt;? CJSCore::Init(['popup']); ?&gt;
+
+&lt;div style="background: red; width: 100px; height: 40px; margin-left: 500px" id="element"&gt;&lt;/div&gt;
+
+&lt;script&gt;
+    BX.ready(function () {
+        BX.bind(BX('element'), 'click', function () {
+            BX.PopupMenu.show('demo-popup-menu', BX('element'), [
+                {
+                    text: 'Обычный пункт', // Название пункта
+                    href: '#', // Ссылка
+                    className: 'menu-popup-item menu-popup-no-icon', // Дополнительные классы
+                    onclick: function(e, item){
+                       BX.PreventDefault(e);
+                       // Событие при клике на пункт
+                    }
+                },
+                {
+                    text: 'Выбранный пункт',
+                    href: '#',
+                    className: 'menu-popup-item menu-popup-item-accept'
+                }
+            ], {
+              autoHide : true, // Закрытие меню при клике вне меню
+              offsetTop: 0, // смещение от элемента по Y
+              zIndex: 10000, // z-index
+              offsetLeft: 100,  // смещение от элемента по X
+              angle: { offset: 45 }, // Описание уголка, при null – уголка не будет
+              events: {
+                 onPopupShow: function() {
+                    // Событие при показе меню          
+                 },
+                 onPopupClose : function(){
+                    // Событие при закрытии меню
+                 },
+                 onPopupClose : function(){
+                    // Событие при уничтожении объекта меню
+                 }
+              }
+            });
+        });
+    });
+&lt;/script&gt;</code></pre>
+<figure class="image"><img src="/js-library/d1ad78a78ad637e843ce79d7266eb02f.png"></figure>
+<p>&nbsp;</p>
+<h2>SpotLight</h2>
+<p>Если необходимо привлечь внимание пользователя к элементу (например, инструкция по оформлению брони для новых менеджеров, или нужно уведомить о новом функционале) – с этим справится <code>SpotLight</code></p>
+<pre><code class="language-html">&lt;? CJSCore::Init(['spotlight']); ?&gt;
+
+&lt;div style="background: red; width: 100px; height: 40px; margin-left: 500px" id="element"&gt;&lt;/div&gt;
+
+&lt;script&gt;
+    BX.ready(function () {
+        var obj = new BX.SpotLight({
+            renderTo: BX('element'), // Привязать к элементу
+            top: 0, // позиционирование относительно элемента
+            left: 0, // позиционирование относительно элемента
+            content: '1. Сначала нажмите на эту кнопку',
+            lightMode: false, // Темный режим или светлый
+            observerTimeout: 10000, // Таймаут автопоказа
+            events: {
+                onPopupShow: function() {
+                  // Событие при показе подсказки
+                }
+            }
+
+        });
+
+        obj.show();
+    });
+&lt;/script&gt;</code></pre>
+<figure class="image"><img src="/js-library/99e2ff64acdad64b3d7741453d8cc6e0.png"></figure>
+<p>&nbsp;</p>
+<h2>ColorPicker</h2>
+<p>Если необходимо выбрать цвет на сайте&nbsp; – для этого есть <code>ColorPicker</code></p>
+<pre><code class="language-html">&lt;? CJSCore::Init(['color_picker']); ?&gt;
+
+&lt;input type="text" id="example" /&gt;
+
+&lt;script&gt;
+  BX.ready(function() {
+    var element = BX('example');
+
+    BX.bind(element, 'focus', function () {
+        new BX.ColorPicker({
+            bindElement: element, // Элемент, к которому будет прикреплена область с выбором цвета
+            defaultColor: '#FF6600', // Цвет по-умолчанию
+            allowCustomColor: true, // Разрешить указывать произвольный цвет
+            onColorSelected: function (item) {
+                element.value = item // Вызывается при выборе цвета
+            },
+            popupOptions: {
+                angle: true, // треугольник
+                autoHide: true, // Закрытие по клику вне области
+                closeByEsc: true, // Закрытие по esc
+                events: {
+                    onPopupClose: function () {
+                        // Вызывается при закрытии окна
+                    }
+                }
+            }
+        }).open();
+    })
+  }
+&lt;/script&gt;</code></pre>
+<figure class="image"><img src="/js-library/23c99203c3914ddd863b797923a0d193.png"></figure>
+<p>&nbsp;</p>
+<h2>Списки</h2>
+<p>Чтобы сделать красивые выпадающие списки в стиле Битрикс24, необходимо правильно разметить html-верстку:&nbsp;</p>
+<pre><code class="language-html">&lt;? CJSCore::Init(['ui']);
+
+$items = [
+    ['NAME' =&gt; 'Первый вариант', 'VALUE' =&gt; '1'],
+    ['NAME' =&gt; 'Второй вариант', 'VALUE' =&gt; '2'],
+];
+
+?&gt;
+    &lt;div style="padding: 100px" id="filter"&gt;
+        &lt;div data-name="SELECT_SINGLE" class="main-ui-filter-wield-with-label main-ui-filter-date-group main-ui-control-field-group"&gt;
+            &lt;span class="main-ui-control-field-label"&gt;Одиночный выбор&lt;/span&gt;
+            &lt;div data-name="SELECT_SINGLE"
+                 data-items='&lt;?= \Bitrix\Main\Web\Json::encode($items); ?&gt;'
+                 data-params='&lt;?= \Bitrix\Main\Web\Json::encode(['isMulti' =&gt; false]); ?&gt;'
+                 id="select" class="main-ui-control main-ui-select"&gt;
+
+                &lt;span class="main-ui-select-name"&gt;Выберите&lt;/span&gt;
+                &lt;span class="main-ui-square-search"&gt;
+                &lt;input type="text" tabindex="2" class="main-ui-square-search-item"&gt;
+            &lt;/span&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+
+        &lt;div data-name="SELECT_MULTIPLE" class="main-ui-filter-wield-with-label main-ui-filter-date-group main-ui-control-field-group"&gt;
+            &lt;span class="main-ui-control-field-label"&gt;Множественный выбор&lt;/span&gt;
+            &lt;div data-name="SELECT_MULTIPLE"
+                 data-items='&lt;?= \Bitrix\Main\Web\Json::encode($items); ?&gt;'
+                 data-params='&lt;?= \Bitrix\Main\Web\Json::encode(['isMulti' =&gt; true]); ?&gt;'
+                 id="select2" class="main-ui-control main-ui-multi-select"&gt;
+
+                &lt;span class="main-ui-square-container"&gt;&lt;/span&gt;
+                &lt;span class="main-ui-square-search"&gt;&lt;input type="text" tabindex="2" class="main-ui-square-search-item"&gt;&lt;/span&gt;
+                &lt;span class="main-ui-hide main-ui-control-value-delete"&gt;&lt;span class="main-ui-control-value-delete-item"&gt;&lt;/span&gt;&lt;/span&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+
+        &lt;span class="ui-btn-primary ui-btn" id="update_filter"&gt;Найти&lt;/span&gt;
+    &lt;/div&gt;</code></pre>
+<p>Минусы этого подхода – результаты селектов придется получать с помощью <code>JavaScript</code>.&nbsp;</p>
+<pre><code class="language-html">&lt;script&gt;
+    BX.ready(function() {
+        var filter = BX('filter'),
+            submit = BX('update_filter');
+
+        BX.bind(submit, 'click', function() {
+            var fields = BX.findChildren(filter, {
+                attribute: 'data-name',
+                className: 'main-ui-control'
+            }, true);
+
+            fields.forEach(function(element){
+                console.log(element.getAttribute('data-name'));
+                console.log(JSON.parse(element.getAttribute('data-value')));
+            });
+        })
+    })
+&lt;/script&gt;</code></pre>
+<figure class="image"><img src="/js-library/aa7362e94cac56e11ca758f86d9cdca1.png"></figure>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
