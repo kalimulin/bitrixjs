@@ -2,7 +2,7 @@
 title: Полезные библиотеки и приёмы
 description: 
 published: true
-date: 2021-12-15T19:33:04.974Z
+date: 2021-12-15T19:36:47.559Z
 tags: 
 editor: ckeditor
 dateCreated: 2021-12-15T16:13:57.441Z
@@ -63,6 +63,7 @@ CJSCore::Init(['masked_input']); ?&gt;
         });
     });
 &lt;/script&gt;</code></pre>
+<p>&nbsp;</p>
 <figure class="image"><img src="/js-library/665025260459757254b9f07b834f9957.png"></figure>
 <p>&nbsp;</p>
 <h2>PopupWindowManager</h2>
@@ -132,6 +133,7 @@ CJSCore::Init(['masked_input']); ?&gt;
         popup.show();
     });
 &lt;/script&gt;</code></pre>
+<p>&nbsp;</p>
 <figure class="image"><img src="/js-library/c4b5d31f1201e7ee2c922442536a8c55.png"></figure>
 <p>&nbsp;</p>
 <h2>PopupMenu</h2>
@@ -179,6 +181,7 @@ CJSCore::Init(['masked_input']); ?&gt;
         });
     });
 &lt;/script&gt;</code></pre>
+<p>&nbsp;</p>
 <figure class="image"><img src="/js-library/d1ad78a78ad637e843ce79d7266eb02f.png"></figure>
 <p>&nbsp;</p>
 <h2>SpotLight</h2>
@@ -207,6 +210,7 @@ CJSCore::Init(['masked_input']); ?&gt;
         obj.show();
     });
 &lt;/script&gt;</code></pre>
+<p>&nbsp;</p>
 <figure class="image"><img src="/js-library/99e2ff64acdad64b3d7741453d8cc6e0.png"></figure>
 <p>&nbsp;</p>
 <h2>ColorPicker</h2>
@@ -241,6 +245,7 @@ CJSCore::Init(['masked_input']); ?&gt;
     })
   }
 &lt;/script&gt;</code></pre>
+<p>&nbsp;</p>
 <figure class="image"><img src="/js-library/23c99203c3914ddd863b797923a0d193.png"></figure>
 <p>&nbsp;</p>
 <h2>Списки</h2>
@@ -302,8 +307,70 @@ $items = [
         })
     })
 &lt;/script&gt;</code></pre>
+<p>&nbsp;</p>
 <figure class="image"><img src="/js-library/aa7362e94cac56e11ca758f86d9cdca1.png"></figure>
 <p>&nbsp;</p>
+<h2>Перенос скриптов</h2>
+<p>В 1С-Битрикс есть возможность указать в настройках объединение и перенос скриптов вниз страницы. Но, если у вам необходимо задавать цели для счетчиков Яндекса или Гугла, то они должны подключаться в шапке. Следующий код запрещает перенос скриптов вниз страницы</p>
+<pre><code class="language-html">&lt;script type="text/javascript" data-skip-moving="true"&gt;&lt;/script&gt;
+</code></pre>
 <p>&nbsp;</p>
+<h2>AJAX для компонентов</h2>
+<p>Если пишите свой компонент и нужно сделать запрос для получения информации на сервере, можно использовать следующий код:</p>
+<pre><code class="language-html">var query = {
+	c: 'reimax:maps',
+	action: 'search',
+	mode: 'class',
+};
+
+var data = {
+	search_cat_1: search_cat_1 ? search_cat_1 : 0,
+	search_cat_2: search_cat_2 ? search_cat_2 : 0,
+	sessid: BX.message('bitrix_sessid')
+};
+
+$.ajax({
+	url: '/bitrix/services/main/ajax.php?' + $.param(query, true),
+	method: 'POST',
+	data: data,
+	success: function (data) {
+		// обработка результатов запроса
+	}
+});
+</code></pre>
+<p>И на сервере</p>
+<pre><code class="language-plaintext">public function searchAction($search_cat_1, $search_cat_2)
+	{
+
+        $this-&gt;_checkModules();
+        
+        // обрабатываем данные запроса и возвращаем результат
+
+        return $arParams;
+}
+</code></pre>
+<p>Не забываем про настройки</p>
+<pre><code class="language-plaintext">public function configureActions()
+	{
+        return [
+            'search' =&gt; [
+                'prefilters' =&gt; [
+                    //new ActionFilter\Authentication(),
+                    new ActionFilter\HttpMethod(
+                        array(ActionFilter\HttpMethod::METHOD_GET, ActionFilter\HttpMethod::METHOD_POST)
+                    ),
+                    new ActionFilter\Csrf(),
+                ],
+                'postfilters' =&gt; []
+            ]
+        ];
+    }
+</code></pre>
+<p>Для получения значений настроек компонентов, при ajax запросе, можно использовать следующий метод</p>
+<pre><code class="language-plaintext">$signer = new \Bitrix\Main\Component\ParameterSigner;
+   return [
+       'params' =&gt; $signer-&gt;unsignParameters($this-&gt;__name, $signedParameters),
+   ];
+</code></pre>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
