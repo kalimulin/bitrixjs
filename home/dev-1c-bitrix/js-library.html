@@ -2,7 +2,7 @@
 title: Сторонние библиотеки
 description: 
 published: true
-date: 2021-12-15T16:14:01.008Z
+date: 2021-12-15T19:01:25.202Z
 tags: 
 editor: ckeditor
 dateCreated: 2021-12-15T16:13:57.441Z
@@ -24,4 +24,18 @@ amcharts_xy – График XY</code></pre>
 <figure class="image image_resized" style="width:64.67%;"><img src="/amcharts.png"></figure>
 <p>&nbsp;</p>
 <h2>MaskedInput</h2>
+<p>Для указания масок ввода в Битрикс есть встроенная библиотека <code>masked_input</code></p>
+<pre><code class="language-html">&lt;input type="text" id="phone" placeholder="Укажите ваш телефон" /&gt;
+
+&lt;script&gt;
+    BX.ready(function() {
+        var result = new BX.MaskedInput({
+            mask: '+7 999 999 99 99', // устанавливаем маску
+            input: BX('phone'),
+            placeholder: '_' // символ замены +7 ___ ___ __ __
+        });
+
+        result.setValue('9000000000'); // устанавливаем значение
+    });
+&lt;/script&gt;</code></pre>
 <p>&nbsp;</p>
