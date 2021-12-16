@@ -1,0 +1,23 @@
+<!--
+title: Скрытие и отображение элемента
+description: 
+published: true
+date: 2021-12-16T14:02:02.579Z
+tags: 
+editor: ckeditor
+dateCreated: 2021-12-16T14:02:02.579Z
+-->
+
+<h2>Скрытие элемента DOM:</h2>
+<pre><code class="language-plaintext">BX.hide(element);</code></pre>
+<h3>Пример</h3>
+<pre><code class="language-javascript">for (let element of document.querySelectorAll('.price_type')) {//обход каждого элемента с классом
+  BX.hide(element);//Скрытие всего по умолчанию при выборе option
+}</code></pre>
+<p>&nbsp;</p>
+<h2>Отображение скрытого элемента DOM</h2>
+<pre><code class="language-plaintext">BX.show(element);</code></pre>
+<h3>Пример</h3>
+<pre><code class="language-javascript">for (let element of document.querySelectorAll('.price_type')) {
+  BX.show(element);
+}</code></pre>
