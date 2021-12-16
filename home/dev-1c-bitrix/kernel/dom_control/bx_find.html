@@ -1,0 +1,120 @@
+<!--
+title: Поиск элементов DOM
+description: 
+published: true
+date: 2021-12-16T12:11:09.483Z
+tags: 
+editor: ckeditor
+dateCreated: 2021-12-16T12:11:09.483Z
+-->
+
+<blockquote>
+  <p>Данный &nbsp;функционал &nbsp;устарел. Используйте стандартные javascript методы <a href="https://developer.mozilla.org/ru/docs/Web/API/Document/querySelectorAll"><strong>querySelectorAll</strong></a> и <a href="https://developer.mozilla.org/ru/docs/Web/API/Document/querySelector"><strong>querySelector</strong></a>.</p>
+</blockquote>
+<h2>Описание</h2>
+<pre><code class="language-plaintext">Array|DOMNode 
+BX.findChild(
+&nbsp;DOMNode obj,
+&nbsp;Object params, 
+&nbsp;bool recursive
+&nbsp;get_all
+); 
+
+array|DOMNode 
+BX.findChildren(
+&nbsp;DOMNode obj,
+&nbsp;Object params, 
+&nbsp;bool recursive
+); 
+
+array|DOMNode 
+BX.findChildrenByClassName(
+&nbsp;DOMNode obj,
+&nbsp;Object params, 
+&nbsp;bool recursive
+); 
+
+array|DOMNode 
+BX.findChildByClassName(
+&nbsp;DOMNode obj,
+&nbsp;Object params, 
+&nbsp;bool recursive
+); 
+
+DOMNode 
+BX.findParent(
+&nbsp;DOMNode obj,
+&nbsp;Object params, 
+); 
+
+DOMNode 
+BX.findNextSibling(
+&nbsp;DOMNode obj,
+&nbsp;Object params, 
+); 
+
+DOMNode 
+BX.findPreviousSibling(
+&nbsp;DOMNode obj,
+&nbsp;Object params, 
+);</code></pre>
+<p>Функции поиска узлов DOM-структуры по набору параметров.</p>
+<blockquote>
+  <p><strong>Примечание</strong>: <code>BX.findChildren(obj, params, recursive)</code> - синоним <code>BX.findChild(obj, params, recursive, true)</code>.</p>
+</blockquote>
+<h2>Параметры функции</h2>
+<figure class="table">
+  <table>
+    <thead>
+      <tr>
+        <th>Параметр</th>
+        <th>Описание</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <th>DOMNode obj</th>
+        <th>Объект поиска</th>
+      </tr>
+      <tr>
+        <th>params</th>
+        <th>
+          <p>Формат объекта, описывающего параметры поиска:&nbsp;</p>
+          <ul>
+            <li><strong>tagName|tag</strong>: имя тэга требуемого узла,</li>
+            <li><strong>className|class</strong>: CSS-класс, который должен содержать требуемый узел,</li>
+            <li><strong>attribute</strong>: {attribute: value, attribute: value} | attribute | [attribute, attribute....], - либо объект со списком и конкретными значениями атрибутов, либо атрибут или массив атрибутов, которые должны присутствовать в требуемом узле</li>
+            <li><strong>property</strong>: {prop: value, prop: value} | prop | [prop, prop] - либо объект со свойств и конкретными значениями свойств, либо свойство или массив свойств, которые должны присутствовать в требуемом узле</li>
+          </ul>
+          <p><strong>Примечание:</strong> Вместо набора параметров можно указать фильтрующую функцию, которая будет вызываться для каждого проверяемого узла DOM-структуры. Функция должна вернуть true или false.</p>
+        </th>
+      </tr>
+      <tr>
+        <th>recursive</th>
+        <th>показывает, что нужно искать не только непосредственно в дочерних элементах узла, а во всем поддереве. По умолчанию – <i>false</i> (только в дочерних).</th>
+      </tr>
+      <tr>
+        <th>get_all</th>
+        <th>вернуть все найденные элементы в виде массива.</th>
+      </tr>
+    </tbody>
+  </table>
+</figure>
+<p>&nbsp;</p>
+<p>Примеры использования:</p>
+<pre><code class="language-javascript">var fields = BX.findChild(BX(elemId), {class: 'className'}, true, true);
+fields.forEach(function(element){
+   console.log(element);
+});</code></pre>
+<pre><code class="language-javascript">obSelect = BX.findChild(BX("menu"), {
+    "tag" : "li",
+    "class" : "select"
+  }, 
+  true
+);</code></pre>
+<pre><code class="language-javascript">var fields = BX.findChildrenByClassName(BX(elemId), 'className');
+fields.forEach(function(element){
+   console.log(element);
+});</code></pre>
+<pre><code class="language-javascript">var body = BX.findParent(BX("bx-panel"), {"tag" : "body"});
+console.log(body);</code></pre>
