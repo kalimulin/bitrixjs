@@ -1,0 +1,83 @@
+<!--
+title: Типы данных
+description: 
+published: true
+date: 2021-12-16T07:50:20.527Z
+tags: 
+editor: ckeditor
+dateCreated: 2021-12-16T07:50:20.527Z
+-->
+
+<p>Несколько функций для определения типа данных переменной собраны в объекте <strong>BX.type</strong>:</p>
+<figure class="table">
+  <table>
+    <tbody>
+      <tr>
+        <th>Функция</th>
+        <th>Определяет</th>
+      </tr>
+      <tr>
+        <th><strong>BX.type.isString</strong></th>
+        <th>является ли аргумент строкой.</th>
+      </tr>
+      <tr>
+        <th><strong>BX.type.isNotEmptyString</strong></th>
+        <th>является ли аргумент непустой строкой</th>
+      </tr>
+      <tr>
+        <th><strong>BX.type.isBoolean</strong></th>
+        <th>является ли аргумент булевой переменной</th>
+      </tr>
+      <tr>
+        <th><strong>BX.type.isNumber</strong></th>
+        <th>является ли аргумент числом</th>
+      </tr>
+      <tr>
+        <th><strong>BX.type.isFunction</strong></th>
+        <th>является ли аргумент функцией</th>
+      </tr>
+      <tr>
+        <th><strong>BX.type.isDomNode</strong></th>
+        <th>является ли аргумент узлом DOM-структуры</th>
+      </tr>
+      <tr>
+        <th><strong>BX.type.isElementNode</strong></th>
+        <th>является ли аргумент элементом DOM-структуры (например, не document)</th>
+      </tr>
+      <tr>
+        <th><strong>BX.type.isArray</strong></th>
+        <th>является ли аргумент массивом</th>
+      </tr>
+      <tr>
+        <th><strong>BX.type.isDate</strong></th>
+        <th>является ли аргумент экземпляром класса Date.</th>
+      </tr>
+    </tbody>
+  </table>
+</figure>
+<p>&nbsp;</p>
+<pre><code class="language-html">&lt;script&gt;
+BX.ready(function() {
+	BX.bind(BX('buttonfalse'), 'click', function() {
+		BX.width(this, 400);
+		if(BX.type.isString("Moscow")) this.innerHTML = "Moscow is string ";
+	});
+});
+&lt;/script&gt;
+
+&lt;div id="buttonfalse" class="buttonDiv"&gt;BX.type.isString&lt;/div&gt;
+
+.buttonDiv {
+	cursor: pointer;
+	margin: 12px auto;
+	vertical-align: middle;
+	text-align: center;
+	width: 250px;
+	background-color: #c5c5c5;
+	border-radius: 5px;
+	box-shadow: 0px 0px 10px #333;
+	color: #000;
+	font-size: 17px;
+}
+&lt;/style&gt;</code></pre>
+<p><a href="https://bxas.ru/classbx/type/">Пример работы</a></p>
