@@ -1,0 +1,144 @@
+<!--
+title: BX.adjust
+description: 
+published: true
+date: 2021-12-16T10:54:33.361Z
+tags: 
+editor: ckeditor
+dateCreated: 2021-12-16T10:54:33.361Z
+-->
+
+<p>Формат описания тот же, что и в <a href="/home/dev-1c-bitrix/kernel/dom_control/bx_create">BX.create</a>. Но без <strong>tag</strong>.&nbsp;</p>
+<pre><code class="language-plaintext">DOMNode 
+BX.adjust(
+&nbsp;DOMNode node, 
+&nbsp;object data
+);</code></pre>
+<p>Функция позволяет изменить свойства узла node.</p>
+<h2>Параметры функции</h2>
+<figure class="table">
+  <table>
+    <thead>
+      <tr>
+        <th>Параметр</th>
+        <th>Описание</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <th><i>data</i></th>
+        <th>
+          <p>Описательный объект, может иметь следующие поля:&nbsp;</p>
+          <ul>
+            <li><strong>node</strong>: ссылка на изменяемый узел,</li>
+            <li><strong>props</strong>: дополнительные свойства, например, <strong>className</strong>,</li>
+            <li><strong>style</strong>: стили узла,</li>
+            <li><strong>events</strong>: обработчики событий узла,</li>
+            <li><strong>attrs</strong>: для основных полей (это единственный способ задать data-* атрибуты),</li>
+            <li><strong>children</strong>: массив дочерних узлов, необязательный</li>
+            <li><strong>text</strong>: текстовое содержимое узла,</li>
+            <li><strong>html</strong>: HTML-содержимое узла</li>
+          </ul>
+          <p><code><strong>Примечание</strong>: Последние 3 параметра не совместимы между собой.</code></p>
+        </th>
+      </tr>
+    </tbody>
+  </table>
+</figure>
+<h2>Примеры:</h2>
+<p>Установить и убрать атрибут disabled:</p>
+<pre><code class="language-plaintext">BX.adjust(BX('id'), {props: {disabled: true}});
+
+BX.adjust(BX('id'), {props: {disabled: false}});</code></pre>
+<p>Манипуляция цветом фона</p>
+<pre><code class="language-html">&lt;div id="togglediv" class="arrowGreen" alt="CLICK ME"&gt; &lt;span id="id_img"&gt;CLICK ME&lt;/span&gt; &lt;/div&gt;
+&lt;div id="result" class="arrowGreen"&gt;&lt;/div&gt;
+
+&lt;script&gt;
+BX.ready(function() {
+	BX.bind(BX('togglediv'), 'click', function() {
+		BX.toggleClass(this, Array("arrowUp", "arrowDown", "arrowGreen"));
+		BX.remove(BX('id_img'))
+		textclass = this.getAttribute('class');
+		this.appendChild(BX.create("img", {
+			props: {
+				id: "id_img",
+				src: "/razrabs/JS/dom/img/" + textclass + ".gif",
+				alt: 'togglediv'
+			}
+		}));
+		BX.adjust(BX('id_img'), {
+			props: {
+				alt: textclass
+			}
+		});
+		BX.adjust(BX('togglediv'), {
+			style: {
+				backgroundColor: "#f00"
+			}
+		});
+		BX.adjust(BX('result'), {
+			text: "Сменить цвет на зеленый",
+			//events:  {click: BX.proxy(resultClick, this)},
+			events: {
+				click: resultClick
+			},
+			attrs: {
+				className: 'arrowDown'
+			},
+			style: {
+				display: "block"
+			}
+		});
+	});
+});
+var resultClick = function() {
+	BX.adjust(BX('togglediv'), {
+		style: {
+			backgroundColor: "green"
+		}
+	});
+	BX.adjust(BX('result'), {
+		style: {
+			cursor: "default"
+		}
+	});
+};
+&lt;/script&gt;
+
+&lt;style&gt;
+#togglediv,
+#result {
+	margin: 12px auto;
+	vertical-align: middle;
+	text-align: center;
+	width: 77px;
+	padding: 5px;
+	background-color: #c5c5c5;
+	border-radius: 5px;
+	box-shadow: 0px 0px 10px #333;
+}
+
+.arrowUp {
+	color: #fff;
+	cursor: pointer;
+	background-color: black;
+}
+
+.arrowDown {
+	color: grey;
+	cursor: pointer;
+	background-color: #333;
+}
+
+.arrowGreen {
+	color: green;
+	cursor: pointer;
+	background-color: #aaa;
+}
+
+#result {
+	display: none;
+}
+&lt;/style&gt;</code></pre>
+<p><a href="https://bxas.ru/classbx/adjust/">Посмотреть в действии</a></p>
