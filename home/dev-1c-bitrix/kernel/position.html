@@ -2,7 +2,7 @@
 title: Позиционирование
 description: 
 published: true
-date: 2021-12-16T06:05:29.902Z
+date: 2021-12-16T06:06:53.291Z
 tags: 
 editor: ckeditor
 dateCreated: 2021-12-15T20:17:47.446Z
@@ -138,13 +138,11 @@ BX.ready(function() {
 <p>Возвращает объект с ключами <strong>top</strong>, <strong>left</strong>, <strong>width</strong>, <strong>bottom</strong>, <strong>right</strong>, <strong>height</strong>.</p>
 <p>Если указать bRelative=true, то будут считаться относительно ближайшего родителя с абсолютным или относительным позиционированием.</p>
 <p><code><strong>Примечание</strong>: Может некорректно работать для элементов с фиксированной позицией (<strong>position: fixed</strong>) или для их дочерних элементов.</code></p>
-<p>&nbsp;</p>
 <pre><code class="language-javascript">Object
 BX.pos(
  DOMNode node,
  bool bRelative
 );</code></pre>
-<p>&nbsp;</p>
 <pre><code class="language-html">&lt;script&gt;
 BX.ready(function() {
 	BX.bind(BX('buttonDivId'), 'click', function() {
