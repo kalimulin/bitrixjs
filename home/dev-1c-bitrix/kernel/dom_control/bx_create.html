@@ -2,7 +2,7 @@
 title: BX.create
 description: 
 published: true
-date: 2021-12-16T09:22:22.996Z
+date: 2021-12-16T09:26:20.839Z
 tags: 
 editor: ckeditor
 dateCreated: 2021-12-16T09:20:43.765Z
@@ -87,3 +87,19 @@ BX.ready(function(){
       text: 'Завершить'
    }), completeButton);
 });</code></pre>
+<p><a href="https://bxas.ru/classbx/create/">Пример работы</a></p>
+<pre><code class="language-javascript">BX.ready(function() {
+	BX.bind(BX('togglediv'), 'click', function() {
+		BX.toggleClass(this, Array("arrowUp", "arrowDown", "arrowGreen"));
+		BX.remove(BX('id_img'))
+		textclass = this.getAttribute('class');
+		this.appendChild(BX.create("img", {
+			props: {
+				id: "id_img",
+				src: "/razrabs/JS/dom/img/" + textclass + ".gif",
+				alt: 'togglediv'
+			}
+		}));
+	});
+});</code></pre>
+<p>&nbsp;</p>
