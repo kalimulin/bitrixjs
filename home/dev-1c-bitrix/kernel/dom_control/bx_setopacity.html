@@ -1,0 +1,65 @@
+<!--
+title: Установка прозрачности
+description: 
+published: true
+date: 2021-12-16T18:42:28.587Z
+tags: 
+editor: ckeditor
+dateCreated: 2021-12-16T18:42:28.587Z
+-->
+
+<h2>BX.setOpacity</h2>
+<pre><code class="language-plaintext">BX.setOpacity(
+&nbsp;DOMNode node,
+&nbsp;integer percentage
+);</code></pre>
+<p>Метод устанавливает уровень прозрачности элемента веб-страницы.</p>
+<p>&nbsp;</p>
+<h2>Параметры функции</h2>
+<figure class="table">
+  <table>
+    <tbody>
+      <tr>
+        <th>Параметр</th>
+        <th>Описание</th>
+      </tr>
+      <tr>
+        <th>DOMNode node</th>
+        <th>Нода</th>
+      </tr>
+      <tr>
+        <th>integer percentage</th>
+        <th>Процент прозрачности</th>
+      </tr>
+    </tbody>
+  </table>
+</figure>
+<p>&nbsp;</p>
+<h2>Пример</h2>
+<pre><code class="language-html">&lt;script&gt;
+BX.ready(function(){
+ BX.bind(BX('buttonDivId'), 'click', function() {
+ //Метод устанавливает уровень прозрачности элемента веб-страницы
+  BX.setOpacity(this, 55); //BX.setOpacity(BX('buttonDivId'), 55);
+ }); 
+});
+&lt;/script&gt;
+
+&lt;div id="buttonDivId" class="buttonDiv"&gt;setOpacity 55%&lt;/div&gt;
+
+&lt;style&gt;
+ .buttonDiv{
+  cursor: pointer;
+  margin: 12px auto;
+  vertical-align: middle; 
+  text-align: center;
+  width:277px;
+  padding:5px;
+  background-color: #c5c5c5;
+  border-radius:5px;
+  box-shadow: 0px 0px 10px #333;
+  color:#000;
+  font-size: 17px; 
+ }
+&lt;/style&gt;</code></pre>
+<p><a href="https://bxas.ru/classbx/setOpacity/">Пример в действии</a></p>
