@@ -1,0 +1,61 @@
+<!--
+title: Работа с локальным хранилищем
+description: 
+published: true
+date: 2021-12-16T08:21:45.595Z
+tags: 
+editor: ckeditor
+dateCreated: 2021-12-16T08:21:45.595Z
+-->
+
+<h3>Описание и функции</h3>
+<p>Для работы с локальным хранилищем используется расширение <strong>ls</strong> (<strong>core_ls.js</strong>)</p>
+<p><strong>localStorage</strong> работает во всех современных браузерах. IE поддерживает его начиная с версии 8. Для IE7 существует методика эмуляции поведения, аналогичного localStorage. Все эти методы объединены в единый интерфейс <strong>BX.localStorage</strong>.</p>
+<p>Примечание:, подключение расширения дает возможность использовать дополнительные параметры <strong>lsId</strong>, <strong>lsTimeout</strong> и <strong>lsForce</strong> в <a href="https://dev.1c-bitrix.ru/api_help/js_lib/ajax/bx_ajax.php">BX.ajax</a>.</p>
+<figure class="table">
+  <table>
+    <tbody>
+      <tr>
+        <th>Функция</th>
+        <th>Описание</th>
+      </tr>
+      <tr>
+        <th><a href="https://dev.1c-bitrix.ru/api_help/js_lib/ls/localstorage_set.php">BX.localStorage.set</a></th>
+        <th>Установка значения элемента хранилища.</th>
+      </tr>
+      <tr>
+        <th><a href="https://dev.1c-bitrix.ru/api_help/js_lib/ls/localStorage_get.php">BX.localStorage.get</a></th>
+        <th>Получение значения элемента хранилища.</th>
+      </tr>
+      <tr>
+        <th><a href="https://dev.1c-bitrix.ru/api_help/js_lib/ls/onglobalcustomevent.php">BX.onGlobalCustomEvent</a></th>
+        <th>Функция выполняет <a href="https://dev.1c-bitrix.ru/api_help/js_lib/kernel/castom_events/index.php">обработчики кастомного события</a> <strong>eventName</strong> во всех открытых вкладках сайта.</th>
+      </tr>
+    </tbody>
+  </table>
+</figure>
+<p><br>&nbsp;</p>
+<h3>События</h3>
+<figure class="table">
+  <table>
+    <tbody>
+      <tr>
+        <th>Событие</th>
+        <th>Описание</th>
+      </tr>
+      <tr>
+        <th>BX.onLocalStorageSet</th>
+        <th>При установке элемента хранилища.</th>
+      </tr>
+      <tr>
+        <th>BX.onLocalStorageRemove</th>
+        <th>При удалении элемента хранилища.</th>
+      </tr>
+      <tr>
+        <th>BX.onLocalStorageChange</th>
+        <th>При изменении элемента хранилища (включая добавление и удаление)</th>
+      </tr>
+    </tbody>
+  </table>
+</figure>
+<p>&nbsp;</p>
