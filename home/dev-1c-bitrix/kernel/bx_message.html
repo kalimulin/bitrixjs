@@ -2,7 +2,7 @@
 title: BX.message
 description: 
 published: true
-date: 2021-12-15T20:01:56.941Z
+date: 2021-12-16T06:22:49.392Z
 tags: 
 editor: ckeditor
 dateCreated: 2021-12-15T20:01:56.941Z
@@ -29,3 +29,39 @@ BX.message({MESS_ID:'&lt;?=Bitrix\Main\Localization\Loc::getMessage("MESS_ID")?&
 &lt;/script&gt;</code></pre>
 <p>в скрипте (script.js) получаем значение:</p>
 <pre><code class="language-plaintext">BX.message('MESS_ID');</code></pre>
+<p><a href="https://bxas.ru/classbx/message/">Пример работы</a></p>
+<pre><code class="language-html">&lt;?
+$godn = date("Y");
+?&gt;
+
+&lt;script&gt;
+BX.ready(function() {
+	BX.message({
+		TIMESEK: '&lt;?= time() ?&gt;',
+		YEARN: '&lt;?= $godn ?&gt;'
+	});
+	BX.bind(BX('buttonDivId'), 'click', function() {
+		//задает) ширину
+		BX.width(this, 300); //BX.width(BX('buttonDivId'), 300);
+		this.innerHTML = BX.message('TIMESEK') + "   " + BX.message('YEARN');
+	});
+});
+&lt;/script&gt;
+
+&lt;div id="buttonDivId" class="buttonDiv"&gt;set message&lt;/div&gt;
+
+&lt;style&gt;
+.buttonDiv {
+	cursor: pointer;
+	margin: 12px auto;
+	vertical-align: middle;
+	text-align: center;
+	width: 150px;
+	/* padding:5px; */
+	background-color: #c5c5c5;
+	border-radius: 5px;
+	box-shadow: 0px 0px 10px #333;
+	color: #000;
+	font-size: 17px;
+}
+&lt;/style&gt;</code></pre>
