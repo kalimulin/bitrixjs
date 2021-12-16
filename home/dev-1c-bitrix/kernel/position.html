@@ -2,7 +2,7 @@
 title: Позиционирование
 description: 
 published: true
-date: 2021-12-15T20:17:47.446Z
+date: 2021-12-16T06:04:05.388Z
 tags: 
 editor: ckeditor
 dateCreated: 2021-12-15T20:17:47.446Z
@@ -16,28 +16,7 @@ dateCreated: 2021-12-15T20:17:47.446Z
         <th>Описание</th>
       </tr>
       <tr>
-        <th>BX.GetWindowInnerSize</th>
-        <th>Получение текущего просматриваемого размера окна.</th>
-      </tr>
-      <tr>
-        <th>BX.GetWindowScrollPos</th>
-        <th>Получение текущей позиции прокрутки страницы.</th>
-      </tr>
-      <tr>
-        <th>BX.GetWindowScrollSize</th>
-        <th>Получение текущего размера страницы.</th>
-      </tr>
-      <tr>
-        <th>BX.GetWindowSize</th>
-        <th>Объединение всех трех вышеперечисленных в один вызов.</th>
-      </tr>
-      <tr>
-        <th>Object
-          <strong>BX.pos(</strong>
-          &nbsp;DOMNode node,
-          &nbsp;bool bRelative
-          <strong>);</strong>&nbsp;
-        </th>
+        <th>Object <strong>BX.pos(</strong> &nbsp;DOMNode node, &nbsp;bool bRelative <strong>);</strong>&nbsp;&nbsp;</th>
         <th>
           <p>Получение абсолютной позиции элемента на экране.</p>
           <p>Возвращает объект с ключами <strong>top</strong>, <strong>left</strong>, <strong>width</strong>, <strong>bottom</strong>, <strong>right</strong>, <strong>height</strong>.</p>
@@ -71,7 +50,6 @@ BX.ready(function() {
 	vertical-align: middle;
 	text-align: center;
 	width: 250px;
-	/* padding:5px; */
 	background-color: #c5c5c5;
 	border-radius: 5px;
 	box-shadow: 0px 0px 10px #333;
@@ -81,5 +59,154 @@ BX.ready(function() {
 &lt;/style&gt;</code></pre>
 <p><a href="https://bxas.ru/classbx/GetWindowInnerSize/">Пример работы</a></p>
 <p>&nbsp;</p>
+<h2>BX.GetWindowScrollPos</h2>
+<p>Получение текущей позиции прокрутки страницы.</p>
+<pre><code class="language-html">&lt;script&gt;
+BX.ready(function() {
+	BX.bind(BX('buttonfalse'), 'click', function() {
+		//задает) ширину
+		BX.width(this, 400); //BX.width(BX('buttonDivId'), 300);
+		var objpos = BX.GetWindowScrollPos();
+		this.innerHTML = "scrollLeft " + objpos.scrollLeft + "&lt;br /&gt; scrollTop " + objpos.scrollTop;
+	});
+});
+&lt;/script&gt;
+&lt;br /&gt;
+&lt;div id="buttonfalse" class="buttonDiv"&gt;set GetWindowScrollPos&lt;/div&gt;
+&lt;br /&gt;
+&lt;style&gt;
+.buttonDiv {
+	cursor: pointer;
+	margin: 12px auto;
+	vertical-align: middle;
+	text-align: center;
+	width: 250px;
+	background-color: #c5c5c5;
+	border-radius: 5px;
+	box-shadow: 0px 0px 10px #333;
+	color: #000;
+	font-size: 17px;
+}
+&lt;/style&gt;</code></pre>
+<p><a href="https://bxas.ru/classbx/GetWindowScrollPos/">Пример работы</a></p>
+<p>&nbsp;</p>
+<h2>BX.GetWindowScrollSize</h2>
+<p>Получение текущего размера страницы.</p>
+<pre><code class="language-plaintext">&lt;script&gt;
+BX.ready(function() {
+	BX.bind(BX('buttonfalse'), 'click', function() {
+		//задает) ширину
+		BX.width(this, 400); //BX.width(BX('buttonDivId'), 300);
+		var objpos = BX.GetWindowScrollSize();
+		this.innerHTML = "scrollWidth " + objpos.scrollWidth + "&lt;br /&gt; scrollHeight " + objpos.scrollHeight;
+	});
+});
+&lt;/script&gt;
+
+&lt;div id="buttonfalse" class="buttonDiv"&gt;set GetWindowScrollSize&lt;/div&gt;
+
+&lt;style&gt;
+.buttonDiv {
+	cursor: pointer;
+	margin: 12px auto;
+	vertical-align: middle;
+	text-align: center;
+	width: 250px;
+	background-color: #c5c5c5;
+	border-radius: 5px;
+	box-shadow: 0px 0px 10px #333;
+	color: #000;
+	font-size: 17px;
+}
+&lt;/style&gt;</code></pre>
+<p><a href="https://bxas.ru/classbx/GetWindowScrollSize/">Пример работы</a></p>
+<p>&nbsp;</p>
+<h2>BX.GetWindowSize</h2>
+<p>Объединение всех трех вышеперечисленных в один вызов.</p>
+<pre><code class="language-html">&lt;script&gt;
+BX.ready(function() {
+	BX.bind(BX('buttonfalse'), 'click', function() {
+		//задает) ширину
+		BX.width(this, 400); //BX.width(BX('buttonfalse'), 300);
+		var objpos = BX.GetWindowSize();
+		this.innerHTML = "scrollWidth " + objpos.scrollWidth + "&lt;br /&gt; scrollHeight " + objpos.scrollHeight + " &lt;br /&gt; innerHeight " + objpos.innerHeight + "&lt;br /&gt; innerWidth " + objpos.innerWidth + "&lt;br /&gt;scrollLeft " + objpos.scrollLeft + "&lt;br /&gt; scrollTop " + objpos.scrollTop;;
+	});
+});
+&lt;/script&gt;
+
+&lt;div id="buttonfalse" class="buttonDiv"&gt;set GetWindowSize&lt;/div&gt;
+
+&lt;style&gt;
+.buttonDiv {
+	cursor: pointer;
+	margin: 12px auto;
+	vertical-align: middle;
+	text-align: center;
+	width: 250px;
+	/* padding:5px; */
+	background-color: #c5c5c5;
+	border-radius: 5px;
+	box-shadow: 0px 0px 10px #333;
+	color: #000;
+	font-size: 17px;
+}
+&lt;/style&gt;</code></pre>
+<p><a href="https://bxas.ru/classbx/GetWindowSize/">Пример работы</a></p>
+<p>&nbsp;</p>
+<p><strong>BX.pos</strong></p>
+<p>Получение абсолютной позиции элемента на экране.</p>
+<p>Возвращает объект с ключами <strong>top</strong>, <strong>left</strong>, <strong>width</strong>, <strong>bottom</strong>, <strong>right</strong>, <strong>height</strong>.</p>
+<p>Если указать bRelative=true, то будут считаться относительно ближайшего родителя с абсолютным или относительным позиционированием.</p>
+<p><code><strong>Примечание</strong>: Может некорректно работать для элементов с фиксированной позицией (<strong>position: fixed</strong>) или для их дочерних элементов.</code></p>
+<p>&nbsp;</p>
+<pre><code class="language-javascript">Object
+BX.pos(
+ DOMNode node,
+ bool bRelative
+);</code></pre>
+<p>&nbsp;</p>
+<pre><code class="language-html">&lt;script&gt;
+BX.ready(function() {
+	BX.bind(BX('buttonDivId'), 'click', function() {
+		//задает) ширину
+		BX.width(this, 100); //BX.width(BX('buttonDivId'), 300);
+		var objpos = BX.pos(this, bRelative = true);
+		this.innerHTML = "top  " + objpos.top + "&lt;br /&gt;left  " + objpos.left + "&lt;br /&gt;width  " + objpos.width + "&lt;br /&gt;bottom  " + objpos.bottom + "&lt;br /&gt;right  " + objpos.right + "&lt;br /&gt;height  " + objpos.height;
+	});
+	BX.bind(BX('buttonfalse'), 'click', function() {
+		//задает) ширину
+		BX.width(this, 100); //BX.width(BX('buttonDivId'), 300);
+		var objpos = BX.pos(this, bRelative = false);
+		this.innerHTML = "top  " + objpos.top + "&lt;br /&gt;left  " + objpos.left + "&lt;br /&gt;width  " + objpos.width + "&lt;br /&gt;bottom  " + objpos.bottom + "&lt;br /&gt;right  " + objpos.right + "&lt;br /&gt;height  " + objpos.height;
+	});
+});
+&lt;/script&gt;
+
+&lt;div id="buttonDivId" class="buttonDiv"&gt;set pos&lt;/div&gt;
+
+&lt;div id="buttonfalse" class="buttonDiv"&gt;bRelative=false&lt;/div&gt;
+
+&lt;style&gt;
+.buttonDiv {
+	cursor: pointer;
+	margin: 12px auto;
+	vertical-align: middle;
+	text-align: center;
+	width: 150px;
+	/* padding:5px; */
+	background-color: #c5c5c5;
+	border-radius: 5px;
+	box-shadow: 0px 0px 10px #333;
+	color: #000;
+	font-size: 17px;
+	position: absolute;
+	left: 30px;
+}
+
+#buttonfalse {
+	left: 230px;
+}
+&lt;/style&gt;</code></pre>
+<p><a href="https://bxas.ru/classbx/pos/">Пример работы</a></p>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
