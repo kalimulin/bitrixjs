@@ -1,0 +1,176 @@
+<!--
+title: Работа с классами
+description: 
+published: true
+date: 2021-12-16T11:25:14.828Z
+tags: 
+editor: ckeditor
+dateCreated: 2021-12-16T11:25:14.828Z
+-->
+
+<h2>BX.addClass</h2>
+<pre><code class="language-plaintext">DOMNode 
+BX.addClass(
+&nbsp;DOMNode node,
+&nbsp;string className
+);</code></pre>
+<p>Функция добавляет узлу <strong>node</strong> CSS-класс <strong>className</strong>, если он такового не имеет.</p>
+<p>&nbsp;</p>
+<h2>BX.removeClass</h2>
+<pre><code class="language-plaintext">DOMNode 
+
+BX.removeClass(
+
+&nbsp;DOMNode node,
+&nbsp;string className
+
+);</code></pre>
+<p>Функция удаляет у узла <strong>node</strong> CSS-класс <strong>className</strong>.</p>
+<p>&nbsp;</p>
+<h2>BX.toggleClass</h2>
+<pre><code class="language-plaintext">DOMNode 
+BX.toggleClass(
+&nbsp;DOMNode node, 
+&nbsp;string|array className
+);</code></pre>
+<p>Функция переключает наличие/отсутствие CSS-класса <strong>className</strong> у узла <strong>node</strong> или производит ротацию CSS-классов, если <strong>className</strong> – массив.</p>
+<p>&nbsp;</p>
+<h2>BX.hasClass</h2>
+<pre><code class="language-plaintext">boolean
+BX.hasClass(
+&nbsp;DOMNode node,
+&nbsp;string className
+);</code></pre>
+<p>Функция проверяет, есть ли уже у узла <strong>node</strong> CSS-класс <strong>className</strong>.</p>
+<p>&nbsp;</p>
+<h2>Примеры</h2>
+<pre><code class="language-javascript">BX.ready(function(){
+  BX.addClass(BX("elemId"), 'className');
+
+  BX.removeClass(BX("elemId"), 'className');
+
+  BX.bind(BX("test"), "click", function() {
+      BX.toggleClass(BX("test"), ["arrowUp", "arrowDown"]);
+  });
+  
+  BX.hasClass(BX("elemId"), 'className');
+}) </code></pre>
+<h3>BX.addClass</h3>
+<pre><code class="language-html">&lt;div id="togglediv"&gt;addClass arrowUp&lt;/div&gt;
+
+&lt;script&gt;
+BX.ready(function() {
+	BX.bind(BX('togglediv'), 'click', function() {
+		BX.addClass(this, "arrowUp"); //  BX.addClass(BX('togglediv'), "arrowUp");
+	});
+});
+&lt;/script&gt;
+
+&lt;style&gt;
+#togglediv {
+	cursor: pointer;
+	margin: 12px auto;
+	vertical-align: middle;
+	text-align: center;
+	width: 177px;
+	padding: 5px;
+	background-color: #c5c5c5;
+	border-radius: 5px;
+	box-shadow: 0px 0px 10px #333;
+}
+
+.arrowUp {
+	color: #fff;
+	font-size: 27px;
+}
+&lt;/style&gt;</code></pre>
+<p><a href="https://bxas.ru/classbx/addClass/">Посмотреть в действии</a></p>
+<h3>BX.removeClass</h3>
+<pre><code class="language-html">&lt;div id="togglediv" class="arrowUp"&gt;removeClass arrowUp&lt;/div&gt;
+
+&lt;script&gt;
+BX.ready(function() {
+	BX.bind(BX('togglediv'), 'click', function() {
+		BX.removeClass(this, "arrowUp"); //  BX.removeClass(BX('togglediv'), "arrowUp");
+	});
+});
+&lt;/script&gt;
+
+&lt;style&gt;
+#togglediv {
+	cursor: pointer;
+	margin: 12px auto;
+	vertical-align: middle;
+	text-align: center;
+	width: 177px;
+	padding: 5px;
+	background-color: #c5c5c5;
+	border-radius: 5px;
+	box-shadow: 0px 0px 10px #333;
+}
+
+.arrowUp {
+	color: #fff;
+	font-size: 27px;
+}
+&lt;/style&gt;</code></pre>
+<p><a href="https://bxas.ru/classbx/removeClass/">Посмотреть в действии</a></p>
+<h3>BX.toggleClass</h3>
+<pre><code class="language-html">&lt;div id="togglediv" class="arrowUp"&gt;removeClass arrowUp&lt;/div&gt;
+
+&lt;script&gt;
+BX.ready(function() {
+	BX.bind(BX('togglediv'), 'click', function() {
+		BX.removeClass(this, "arrowUp"); //  BX.removeClass(BX('togglediv'), "arrowUp");
+	});
+});
+&lt;/script&gt;
+
+&lt;style&gt;
+#togglediv {
+	cursor: pointer;
+	margin: 12px auto;
+	vertical-align: middle;
+	text-align: center;
+	width: 177px;
+	padding: 5px;
+	background-color: #c5c5c5;
+	border-radius: 5px;
+	box-shadow: 0px 0px 10px #333;
+}
+
+.arrowUp {
+	color: #fff;
+	font-size: 27px;
+}
+&lt;/style&gt;</code></pre>
+<p><a href="https://bxas.ru/classbx/toggleClass/">Посмотреть в действии</a></p>
+<h3>BX.hasClass</h3>
+<pre><code class="language-html">&lt;script&gt;
+BX.ready(function() {
+	BX.bind(BX('buttonDivId'), 'click', function() {
+		//Функция проверяет, есть ли уже у узла node CSS-класс
+		this.innerHTML = BX.hasClass(this, "buttonDiv");
+	});
+});
+&lt;/script&gt;
+
+&lt;div id="buttonDivId" class="buttonDiv"&gt;hasClass&lt;/div&gt;
+
+&lt;style&gt;
+.buttonDiv {
+	cursor: pointer;
+	margin: 12px auto;
+	vertical-align: middle;
+	text-align: center;
+	width: 150px;
+	/* padding:5px; */
+	background-color: #c5c5c5;
+	border-radius: 5px;
+	box-shadow: 0px 0px 10px #333;
+	color: #000;
+	font-size: 17px;
+}
+&lt;/style&gt;</code></pre>
+<p><a href="https://bxas.ru/classbx/hasClass/">Посмотреть в действии</a></p>
+<p>&nbsp;</p>
