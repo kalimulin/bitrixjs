@@ -1,0 +1,70 @@
+<!--
+title: Удаление элемента (BX.remove)
+description: 
+published: true
+date: 2021-12-16T13:22:43.011Z
+tags: 
+editor: ckeditor
+dateCreated: 2021-12-16T13:22:43.011Z
+-->
+
+<h2>BX.remove</h2>
+<pre><code class="language-plaintext">null 
+BX.remove(
+&nbsp;DOMNode node
+);</code></pre>
+<p>Функция удаляет узел DOM-структуры.</p>
+<p>&nbsp;</p>
+<h2>Примеры</h2>
+<pre><code class="language-html">&lt;div id="togglediv" class="arrowGreen"&gt; &lt;span id="id_img"&gt;toggleClass&lt;/span&gt;&lt;/div&gt;
+
+&lt;script&gt;
+BX.ready(function() {
+	BX.bind(BX('togglediv'), 'click', function() {
+		//Функция переключает наличие/отсутствие CSS-класса className у узла node
+		BX.toggleClass(this, Array("arrowUp", "arrowDown", "arrowGreen"));
+		BX.remove(BX('id_img'))
+		textclass = this.getAttribute('class');
+		this.appendChild(BX.create("img", {
+			props: {
+				id: "id_img",
+				src: "/razrabs/JS/dom/img/" + textclass + ".gif",
+				alt: 'togglediv'
+			}
+		}));
+	});
+});
+&lt;/script&gt;
+
+&lt;style&gt;
+#togglediv {
+	margin: 12px auto;
+	vertical-align: middle;
+	text-align: center;
+	width: 77px;
+	padding: 5px;
+	background-color: #c5c5c5;
+	border-radius: 5px;
+	box-shadow: 0px 0px 10px #333;
+}
+
+.arrowUp {
+	color: #fff;
+	cursor: pointer;
+	background-color: black;
+}
+
+.arrowDown {
+	color: grey;
+	cursor: pointer;
+	background-color: #333;
+}
+
+.arrowGreen {
+	color: green;
+	cursor: pointer;
+	background-color: #aaa;
+}
+&lt;/style&gt;</code></pre>
+<p><a href="https://bxas.ru/classbx/remove/">Пример в действии</a></p>
+<p>&nbsp;</p>
