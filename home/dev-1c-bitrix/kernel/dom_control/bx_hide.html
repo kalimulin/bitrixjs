@@ -2,7 +2,7 @@
 title: Скрытие и отображение элемента
 description: 
 published: true
-date: 2021-12-16T14:08:36.751Z
+date: 2021-12-16T14:59:12.858Z
 tags: 
 editor: ckeditor
 dateCreated: 2021-12-16T14:02:02.579Z
@@ -25,3 +25,43 @@ dateCreated: 2021-12-16T14:02:02.579Z
 <h2>Переключение режима отображения/скрытия элемента</h2>
 <p>Скрывает отображаемый или отображает скрытый элемент</p>
 <pre><code class="language-javascript">BX.toggle(DOMNode node)</code></pre>
+<p>&nbsp;</p>
+<h2>Определить, скрыт ли указанный элемент</h2>
+<pre><code class="language-plaintext">BX.isNodeHidden(
+ DOMNode node
+);</code></pre>
+<h3>Пример</h3>
+<pre><code class="language-html">&lt;script&gt;
+ BX.ready(function(){
+    BX.bind(BX('togglediv'), 'click', function() {
+     BX.adjust(BX('result'), {
+      style: {display: "block"},
+      text: " t1  "+BX.isNodeHidden(BX('t1'))+" t2  "+BX.isNodeHidden(BX('t2'))
+      });
+    });    
+ });
+&lt;/script&gt;
+
+&lt;div id="togglediv" class="arrowUp"&gt;Whether the node is hidden&lt;/div&gt;
+&lt;input id="t1" type="text" maxlength="20" value="t1"&gt;
+&lt;input id="t2" type="hidden" maxlength="20" value="t2"&gt;
+&lt;div id="result" style="display:none" &gt;&lt;/div&gt;
+
+&lt;style&gt;
+#togglediv, #result{
+  cursor: pointer;
+  margin: 12px auto;
+  vertical-align: middle; 
+  text-align: center;
+  width:277px;
+  padding:5px;
+  background-color: #c5c5c5;
+  border-radius:5px;
+  box-shadow: 0px 0px 10px #333;
+}
+
+.arrowUp{
+  color:#fff;
+  font-size: 17px; 
+}
+&lt;/style&gt;</code></pre>
