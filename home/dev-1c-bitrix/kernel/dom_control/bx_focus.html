@@ -1,0 +1,65 @@
+<!--
+title: Установка фокуса на поле ввода
+description: 
+published: true
+date: 2021-12-16T14:37:39.923Z
+tags: 
+editor: ckeditor
+dateCreated: 2021-12-16T14:37:39.922Z
+-->
+
+<h2>BX.focus</h2>
+<pre><code class="language-plaintext">BX.focus(
+&nbsp;DOMNode node
+);</code></pre>
+<p>Устанавливает фокус на поле ввода.</p>
+<p>&nbsp;</p>
+<h2>Параметры функции</h2>
+<figure class="table">
+  <table>
+    <tbody>
+      <tr>
+        <th>Параметр</th>
+        <th>Описание</th>
+      </tr>
+      <tr>
+        <th>DOMNode node</th>
+        <th>элемент DOM</th>
+      </tr>
+    </tbody>
+  </table>
+</figure>
+<p>&nbsp;</p>
+<h2>Примеры</h2>
+<pre><code class="language-html">&lt;script&gt;
+ BX.ready(function(){
+    BX.bind(BX('togglediv'), 'click', function() {
+        BX.focus(BX('t3'));    
+    });    
+ });
+&lt;/script&gt;
+
+&lt;div id="togglediv" class="arrowUp"&gt;focus on t3&lt;/div&gt;
+&lt;input id="t1" type="text" maxlength="20" value="t1" autofocus&gt;
+&lt;input id="t2" type="text" maxlength="20" value="t2"&gt;
+&lt;input id="t3" type="text" maxlength="20" value="t3"&gt;
+
+&lt;style&gt;
+#togglediv{
+ cursor: pointer;
+ margin: 12px auto;
+ vertical-align: middle; 
+ text-align: center;
+ width:177px;
+    padding:5px;
+    background-color: #c5c5c5;
+    border-radius:5px;
+    box-shadow: 0px 0px 10px #333;
+}
+.arrowUp{
+ color:#fff;
+ font-size: 27px;
+ 
+}
+&lt;/style&gt;</code></pre>
+<p><a href="https://bxas.ru/classbx/focus/">Пример в действии</a></p>
