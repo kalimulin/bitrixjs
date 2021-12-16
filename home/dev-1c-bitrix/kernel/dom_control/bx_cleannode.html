@@ -1,0 +1,50 @@
+<!--
+title: Очистка элемента (BX.cleanNode)
+description: 
+published: true
+date: 2021-12-16T13:48:31.387Z
+tags: 
+editor: ckeditor
+dateCreated: 2021-12-16T13:48:31.387Z
+-->
+
+<h2>BX.cleanNode</h2>
+<pre><code class="language-plaintext">DOMNode|null 
+BX.cleanNode(
+&nbsp;DOMNode node[,
+&nbsp;bool bSuicide]
+);</code></pre>
+<p>Функция очищает узел DOM-структуры от всех дочерних элементов. Если вторым параметром передать <strong>true</strong>, сам узел также будет удален.</p>
+<h2><br>Пример</h2>
+<pre><code class="language-html">&lt;script&gt;
+BX.ready(function() {
+	BX.bind(BX('buttonDivId'), 'click', function() {
+		//Очищает узел DOM-структуры от всех дочерних элементов
+		BX.cleanNode(BX("spanid"));
+	});
+	BX.bind(BX('buttonDivId_2'), 'click', function() {
+		//Очищает узел DOM-структуры от всех дочерних элементов и сам узел также будет удален
+		BX.cleanNode(this, true);
+	});
+});
+&lt;/script&gt;
+
+&lt;div id="buttonDivId" class="buttonDiv"&gt; cleanNode &lt;span id="spanid"&gt;clean&lt;/span&gt; &lt;/div&gt;
+&lt;div id="buttonDivId_2" class="buttonDiv"&gt; cleanNode &lt;span id="spanid_2"&gt;remove&lt;/span&gt; &lt;/div&gt;
+
+&lt;style&gt;
+.buttonDiv {
+	cursor: pointer;
+	margin: 12px auto;
+	vertical-align: middle;
+	text-align: center;
+	width: 150px;
+	/* padding:5px; */
+	background-color: #c5c5c5;
+	border-radius: 5px;
+	box-shadow: 0px 0px 10px #333;
+	color: #000;
+	font-size: 17px;
+}
+&lt;/style&gt;</code></pre>
+<p><a href="https://bxas.ru/classbx/cleanNode/">Пример в действии</a></p>
