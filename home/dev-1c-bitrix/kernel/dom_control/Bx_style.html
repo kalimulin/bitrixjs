@@ -1,0 +1,49 @@
+<!--
+title: Работа со стилями
+description: 
+published: true
+date: 2021-12-16T12:24:32.505Z
+tags: 
+editor: ckeditor
+dateCreated: 2021-12-16T12:24:32.505Z
+-->
+
+<h2>BX.style</h2>
+<pre><code class="language-plaintext">string|DOMNode 
+BX.style(
+&nbsp;DOMNode node,
+&nbsp;string property[,
+&nbsp;string value]
+);</code></pre>
+<p>Функция позволяет получить текущее значение стиля <strong>property</strong> узла <strong>node</strong> или установить его в значение <strong>value</strong>. Свойство <strong>property</strong> указывается в CSS-нотации (например, <strong>'margin-right'</strong>)</p>
+<h2>Примеры</h2>
+<pre><code class="language-plaintext">BX.style(document.body, 'margin', '100px 200px');
+alert(BX.style(document.body, 'margin-top')); //100px</code></pre>
+<h3>Установка прозрачности</h3>
+<pre><code class="language-html">&lt;script&gt;
+BX.ready(function() {
+	BX.bind(BX('buttonDivId'), 'click', function() {
+		//Метод устанавливает уровень прозрачности элемента веб-страницы
+		BX.style(this, "opacity", "0.3"); //BX.setOpacity(BX('buttonDivId'), "opacity", "0.3");
+	});
+});
+&lt;/script&gt;
+
+&lt;div id="buttonDivId" class="buttonDiv"&gt;style opacity to 30%&lt;/div&gt;
+
+&lt;style&gt;
+.buttonDiv {
+	cursor: pointer;
+	margin: 12px auto;
+	vertical-align: middle;
+	text-align: center;
+	width: 277px;
+	padding: 5px;
+	background-color: #c5c5c5;
+	border-radius: 5px;
+	box-shadow: 0px 0px 10px #333;
+	color: #000;
+	font-size: 17px;
+}
+&lt;/style&gt;</code></pre>
+<p><a href="https://bxas.ru/classbx/style/">Посмотреть пример в действии</a></p>
