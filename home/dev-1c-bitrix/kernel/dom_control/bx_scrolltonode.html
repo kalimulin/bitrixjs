@@ -1,0 +1,46 @@
+<!--
+title: Скролл к элементу
+description: 
+published: true
+date: 2021-12-16T18:37:08.115Z
+tags: 
+editor: ckeditor
+dateCreated: 2021-12-16T18:37:08.115Z
+-->
+
+<h2>BX.scrollToNode</h2>
+<pre><code class="language-plaintext">BX.scrollToNode(
+&nbsp;DOMNode node
+);</code></pre>
+<p>Прокручивает окно к позиции указанного элемента в DOM-структуре.</p>
+<p>&nbsp;</p>
+<h2>Пример</h2>
+<pre><code class="language-html">&lt;script&gt;
+ BX.ready(function(){
+ &nbsp;&nbsp; BX.bind(BX('togglediv'), 'click', function() {
+        BX.scrollToNode(BX('footer'));
+ &nbsp;&nbsp; });&nbsp;&nbsp;&nbsp; 
+ });
+&lt;/script&gt;
+
+&lt;div id="togglediv" class="arrowUp"&gt;scrollToNode footer&lt;/div&gt;
+
+&lt;style&gt;
+#togglediv{
+ cursor: pointer;
+ margin: 12px auto;
+ vertical-align: middle;&nbsp;
+ text-align: center;
+ width:277px;
+ &nbsp;&nbsp; padding:5px;
+ &nbsp;&nbsp; background-color: #c5c5c5;
+ &nbsp;&nbsp; border-radius:5px;
+ &nbsp;&nbsp; box-shadow: 0px 0px 10px #333;
+}
+.arrowUp{
+ color:#000;
+ font-size: 17px;&nbsp;
+}
+ 
+&lt;/style&gt;</code></pre>
+<p><a href="https://bxas.ru/classbx/scrollToNode/">Пример в действии</a></p>
