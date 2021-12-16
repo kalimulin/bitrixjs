@@ -2,7 +2,7 @@
 title: Поиск элементов DOM
 description: 
 published: true
-date: 2021-12-16T12:11:09.483Z
+date: 2021-12-16T14:27:49.696Z
 tags: 
 editor: ckeditor
 dateCreated: 2021-12-16T12:11:09.483Z
@@ -11,7 +11,9 @@ dateCreated: 2021-12-16T12:11:09.483Z
 <blockquote>
   <p>Данный &nbsp;функционал &nbsp;устарел. Используйте стандартные javascript методы <a href="https://developer.mozilla.org/ru/docs/Web/API/Document/querySelectorAll"><strong>querySelectorAll</strong></a> и <a href="https://developer.mozilla.org/ru/docs/Web/API/Document/querySelector"><strong>querySelector</strong></a>.</p>
 </blockquote>
-<h2>Описание</h2>
+<h2>Поиск по идентификатору&nbsp;</h2>
+<pre><code class="language-javascript">var object = BX('my_id'); </code></pre>
+<h2>Функции поиска</h2>
 <pre><code class="language-plaintext">Array|DOMNode 
 BX.findChild(
 &nbsp;DOMNode obj,
@@ -101,20 +103,23 @@ BX.findPreviousSibling(
   </table>
 </figure>
 <p>&nbsp;</p>
-<p>Примеры использования:</p>
+<h2>Примеры использования:</h2>
 <pre><code class="language-javascript">var fields = BX.findChild(BX(elemId), {class: 'className'}, true, true);
 fields.forEach(function(element){
    console.log(element);
 });</code></pre>
+<p>&nbsp;</p>
 <pre><code class="language-javascript">obSelect = BX.findChild(BX("menu"), {
     "tag" : "li",
     "class" : "select"
   }, 
   true
 );</code></pre>
+<p>&nbsp;</p>
 <pre><code class="language-javascript">var fields = BX.findChildrenByClassName(BX(elemId), 'className');
 fields.forEach(function(element){
    console.log(element);
 });</code></pre>
+<p>&nbsp;</p>
 <pre><code class="language-javascript">var body = BX.findParent(BX("bx-panel"), {"tag" : "body"});
 console.log(body);</code></pre>
