@@ -1,0 +1,127 @@
+<!--
+title: Управление DOM-структурой
+description: 
+published: true
+date: 2021-12-16T08:24:44.132Z
+tags: 
+editor: ckeditor
+dateCreated: 2021-12-16T08:24:44.132Z
+-->
+
+<figure class="table">
+  <table>
+    <tbody>
+      <tr>
+        <th>Метод</th>
+        <th>Описание</th>
+      </tr>
+      <tr>
+        <th><a href="https://dev.1c-bitrix.ru/api_help/js_lib/kernel/dom_control/bx_create.php">BX.create</a></th>
+        <th>Создание узла DOM-структуры.&nbsp;</th>
+      </tr>
+      <tr>
+        <th><a href="https://dev.1c-bitrix.ru/api_help/js_lib/kernel/dom_control/bx_adjust.php">BX.adjust</a></th>
+        <th>Изменяет свойства узла DOM-структуры.</th>
+      </tr>
+      <tr>
+        <th><a href="https://dev.1c-bitrix.ru/api_help/js_lib/kernel/dom_control/bx_addclass.php">BX.addClass/BX.removeClass</a></th>
+        <th>Добавляет/удаляет узлу CSS-класс</th>
+      </tr>
+      <tr>
+        <th><a href="https://dev.1c-bitrix.ru/api_help/js_lib/kernel/dom_control/bx_find.php">BX.findChild, BX.findChildren, BX.findParent, BX.findNextSibling, BX.findPreviousSibling&nbsp;</a></th>
+        <th>Пакет функций поиска узлов в DOM-структуре, подходящих по заданным параметрам.</th>
+      </tr>
+      <tr>
+        <th><a href="https://dev.1c-bitrix.ru/api_help/js_lib/kernel/dom_control/bx_toggleclass.php">BX.toggleClass</a></th>
+        <th>Переключает наличие/отсутствие CSS-класса у узла DOM или осуществляет ротацию CSS-классов по списку.</th>
+      </tr>
+      <tr>
+        <th><a href="https://dev.1c-bitrix.ru/api_help/js_lib/kernel/dom_control/bx.hasclass.php">BX.hasClass</a></th>
+        <th>Проверяет наличие CSS-класса у узла DOM.</th>
+      </tr>
+      <tr>
+        <th><a href="https://dev.1c-bitrix.ru/api_help/js_lib/kernel/dom_control/Bx_style.php">BX.style</a></th>
+        <th>Получает или устанавливает текущее значение CSS-стиля узла DOM</th>
+      </tr>
+      <tr>
+        <th><a href="https://dev.1c-bitrix.ru/api_help/js_lib/kernel/dom_control/bx_remove.php">BX.remove</a></th>
+        <th>Удаляет узел DOM-структуры.</th>
+      </tr>
+      <tr>
+        <th><a href="https://dev.1c-bitrix.ru/api_help/js_lib/kernel/dom_control/bx_cleannode.php">BX.cleanNode</a></th>
+        <th>Очищает узла DOM-структуры от всех дочерних элементов.</th>
+      </tr>
+      <tr>
+        <th>BX.show(DOMNode node)/BX.hide(DOMNode node)</th>
+        <th>Показать/скрыть узел.</th>
+      </tr>
+      <tr>
+        <th><a href="https://dev.1c-bitrix.ru/api_help/js_lib/kernel/dom_control/bx_focus.php">BX.focus</a></th>
+        <th>Устанавливает фокус на элементе.</th>
+      </tr>
+      <tr>
+        <th><a href="https://dev.1c-bitrix.ru/api_help/js_lib/kernel/dom_control/bx_isnodehidden.php">BX.isNodeHidden</a></th>
+        <th>Определяет, скрыт ли указанный элемент DOM.</th>
+      </tr>
+      <tr>
+        <th><a href="https://dev.1c-bitrix.ru/api_help/js_lib/kernel/dom_control/bx_scrolltonode.php">BX.scrollToNode</a></th>
+        <th>Прокручивает окно к позиции указанного элемента в DOM-структуре.</th>
+      </tr>
+      <tr>
+        <th><a href="https://dev.1c-bitrix.ru/api_help/js_lib/kernel/dom_control/bx_setopacity.php">BX.setOpacity</a></th>
+        <th>Устанавливает уровень прозрачности элемента веб-страницы.</th>
+      </tr>
+      <tr>
+        <th><a href="https://dev.1c-bitrix.ru/api_help/js_lib/kernel/dom_control/bx_setselectable.php">BX.setUnselectable/BX.setSelectable</a></th>
+        <th>Функции выключают / включают возможность пользовательского выделения внутри передаваемого элемента.</th>
+      </tr>
+      <tr>
+        <th><a href="https://dev.1c-bitrix.ru/api_help/js_lib/kernel/dom_control/bx_height.php">BX.width/BX.height</a></th>
+        <th>Возвращает (или задает) ширину, высоту элемента DOM.</th>
+      </tr>
+      <tr>
+        <th><a href="https://dev.1c-bitrix.ru/api_help/js_lib/kernel/dom_control/bx_selectutils.php">BX.selectUtils.*</a></th>
+        <th>Работа со списками (select).</th>
+      </tr>
+      <tr>
+        <th>BX.toggle(DOMNode node)</th>
+        <th>Показывает, скрывает элемент DOM.</th>
+      </tr>
+      <tr>
+        <th>BX.insertAfter(node, dstNode)&nbsp;</th>
+        <th>
+          <p>Вставляет ноду сразу после целевой.&nbsp;<br>Параметры:&nbsp;</p>
+          <ul>
+            <li><strong>node</strong> - новая нода</li>
+            <li><strong>dstNode</strong> - целевая нода</li>
+          </ul>
+        </th>
+      </tr>
+      <tr>
+        <th>BX.prepend(node, dstNode)&nbsp;</th>
+        <th>
+          <p>Помещает ноду в начало содержимого целевой.<br>Параметры:&nbsp;</p>
+          <ul>
+            <li><strong>node</strong> - новая нода</li>
+            <li><strong>dstNode</strong> - целевая нода</li>
+          </ul>
+        </th>
+      </tr>
+      <tr>
+        <th>BX.append(node, dstNode)</th>
+        <th>
+          <p>Помещает ноду в конец содержимого целевой.<br>Параметры:&nbsp;</p>
+          <ul>
+            <li><strong>node</strong> - новая нода</li>
+            <li><strong>dstNode</strong> - целевая нода</li>
+          </ul>
+        </th>
+      </tr>
+      <tr>
+        <th>BX.insertBefore(node, dstNode)</th>
+        <th>Для вставки до соответствующей ноды.</th>
+      </tr>
+    </tbody>
+  </table>
+</figure>
+<h4>&nbsp;</h4>
