@@ -2,7 +2,7 @@
 title: Создание элемента (BX.create)
 description: 
 published: true
-date: 2021-12-16T13:24:28.172Z
+date: 2021-12-16T13:30:29.466Z
 tags: 
 editor: ckeditor
 dateCreated: 2021-12-16T09:20:43.765Z
@@ -69,7 +69,7 @@ BX.create(
 <h2>Примеры использования</h2>
 <pre><code class="language-plaintext">BX.create('input', {'attrs':{'readonly':'readonly'}, props{...}});</code></pre>
 <p>Метод незаменим, когда при создании новой DOM-структуры надо на элементы сразу добавлять события:</p>
-<pre><code class="language-plaintext">var completeAction = function(){
+<pre><code class="language-javascript">var completeAction = function(){
    console.log(BX.proxy_context);
 };
 
