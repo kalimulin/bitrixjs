@@ -1,0 +1,89 @@
+<!--
+title: BX.create
+description: 
+published: true
+date: 2021-12-16T09:20:43.765Z
+tags: 
+editor: ckeditor
+dateCreated: 2021-12-16T09:20:43.765Z
+-->
+
+<h3>Описание и параметры</h3>
+<pre><code class="language-plaintext">DOMNode 
+BX.create(
+&nbsp;tag[,
+&nbsp;data[,
+&nbsp;context]]
+);</code></pre>
+<p>или</p>
+<pre><code class="language-plaintext">DOMNode 
+BX.create(
+&nbsp;data[,
+&nbsp;context]
+);</code></pre>
+<p>Создание узла DOM-структуры. Допускает при создании узла "подвеску" на него каких-то событий.</p>
+<p>&nbsp;</p>
+<h2>Параметры функции</h2>
+<figure class="table">
+  <table>
+    <thead>
+      <tr>
+        <th>Параметр</th>
+        <th>Описание</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <th>tag&nbsp;</th>
+        <th>Строка с <strong>tagName</strong> узла. Если он не указан (первый параметр - объект), то имя тэга должно содержаться в свойстве <strong>tag</strong> описательного объекта <strong>data</strong>.</th>
+      </tr>
+      <tr>
+        <th><i>data</i></th>
+        <th>
+          <p>Описательный объект, может иметь следующие поля:&nbsp;</p>
+          <ul>
+            <li><strong>tag</strong>: имя_тэга_узла,</li>
+            <li><strong>props</strong>: дополнительные свойства, например, <strong>className</strong>,</li>
+            <li><strong>style</strong>: стили узла,</li>
+            <li><strong>events</strong>: обработчики событий узла,</li>
+            <li><strong>attrs</strong>: для основных полей,</li>
+            <li><strong>dataset</strong>: перечень data-атрибутов,</li>
+            <li><strong>children</strong>: массив дочерних узлов, необязательный</li>
+            <li><strong>text</strong>: текстовое содержимое узла,</li>
+            <li><strong>html</strong>: HTML-содержимое узла</li>
+          </ul>
+          <p><strong>Примечание</strong>: Параметры <strong>text</strong>, <strong>html</strong> и <strong>children </strong>не совместимы между собой.</p>
+        </th>
+      </tr>
+      <tr>
+        <th><i>context</i></th>
+        <th>Ссылка на контекст, в котором должен быть создан узел, необязательный.</th>
+      </tr>
+    </tbody>
+  </table>
+</figure>
+<p>&nbsp;</p>
+<h2>Возвращаемое значение</h2>
+<p>Функция вернет ссылку на созданный узел.</p>
+<p>&nbsp;</p>
+<h2>Примеры использования</h2>
+<pre><code class="language-plaintext">BX.create('input', {'attrs':{'readonly':'readonly'}, props{...}});</code></pre>
+<p>Метод незаменим, когда при создании новой DOM-структуры надо на элементы сразу добавлять события:</p>
+<pre><code class="language-plaintext">var completeAction = function(){
+   console.log(BX.proxy_context);
+};
+
+BX.ready(function(){
+   BX.insertAfter(BX.create('span', {
+      attrs: {
+         className: 'task-view-button'
+      },
+      dataset: {
+         aaa: 123
+      },
+      events: {
+         click: BX.proxy(completeAction, this)
+      },
+      text: 'Завершить'
+   }), completeButton);
+});</code></pre>
