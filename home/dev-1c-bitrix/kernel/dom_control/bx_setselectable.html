@@ -1,0 +1,22 @@
+<!--
+title: Отключение возможности выделения
+description: 
+published: true
+date: 2021-12-16T18:50:27.074Z
+tags: 
+editor: ckeditor
+dateCreated: 2021-12-16T18:50:27.074Z
+-->
+
+<h2>BX.setUnselectable / BX.setSelectable</h2>
+<p>Функции выключают / включают возможность пользовательского выделения внутри передаваемого элемента.</p>
+<p>&nbsp;</p>
+<h2>Примеры использования</h2>
+<p>Запретить выделить мышкой элемент с id='adm-title'.</p>
+<pre><code class="language-javascript">BX.ready(function(){
+ BX.bind(BX('buttonDivId'), 'click', function() {
+ // Функции выключают / включают возможность пользовательского выделения внутри передаваемого элемента.
+  BX.setUnselectable(this); //BX.setUnselectable(BX('buttonDivId'));
+ }); 
+});</code></pre>
+<p><a href="https://bxas.ru/classbx/setUnselectable/">Пример в действии</a></p>
