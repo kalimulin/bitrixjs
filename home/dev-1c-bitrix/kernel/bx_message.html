@@ -2,7 +2,7 @@
 title: BX.message
 description: 
 published: true
-date: 2021-12-16T06:22:49.392Z
+date: 2021-12-16T06:24:49.068Z
 tags: 
 editor: ckeditor
 dateCreated: 2021-12-15T20:01:56.941Z
@@ -21,15 +21,6 @@ BX.message(
 <blockquote>
   <p><strong>Примечание</strong>: помимо языковых сообщений доступно несколько серверных констант типа текущего языка или текущего пользователя.</p>
 </blockquote>
-<p>&nbsp;</p>
-<h2>Передача сообщений из языковых файлов Bitrix в скрипты js</h2>
-<p>В шаблоне компонента (template.php) добавляем скрипт:</p>
-<pre><code class="language-plaintext">&lt;script&gt;
-BX.message({MESS_ID:'&lt;?=Bitrix\Main\Localization\Loc::getMessage("MESS_ID")?&gt;'}); 
-&lt;/script&gt;</code></pre>
-<p>в скрипте (script.js) получаем значение:</p>
-<pre><code class="language-plaintext">BX.message('MESS_ID');</code></pre>
-<p><a href="https://bxas.ru/classbx/message/">Пример работы</a></p>
 <pre><code class="language-html">&lt;?
 $godn = date("Y");
 ?&gt;
@@ -65,3 +56,4 @@ BX.ready(function() {
 	font-size: 17px;
 }
 &lt;/style&gt;</code></pre>
+<p><a href="https://bxas.ru/classbx/message/">Пример работы</a></p>
