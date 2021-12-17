@@ -2,7 +2,7 @@
 title: BX.addCustomEvent
 description: 
 published: true
-date: 2021-12-17T10:27:36.430Z
+date: 2021-12-17T10:31:14.415Z
 tags: 
 editor: ckeditor
 dateCreated: 2021-12-17T10:27:36.430Z
@@ -117,3 +117,10 @@ BX.addCustomEvent(
     <li>Лучше использовать обработчики событий для конкретных модулей, вместо обработчика на все события. Такой формат будет более производителен.</li>
   </ul>
 </blockquote>
+<p>&nbsp;</p>
+<h3>Пример события для шаблона drag_n_drop компонента bitrix:main.file.input - событие успешной загрузки файла:</h3>
+<pre><code class="language-plaintext">BX.addCustomEvent("OnFileUploadSuccess",function (res) {
+    if(res.success !== undefined &amp;&amp; res.success){
+        ...
+    }
+})</code></pre>
