@@ -1,0 +1,119 @@
+<!--
+title: BX.addCustomEvent
+description: 
+published: true
+date: 2021-12-17T10:27:36.430Z
+tags: 
+editor: ckeditor
+dateCreated: 2021-12-17T10:27:36.430Z
+-->
+
+<h2>Описание</h2>
+<p>Функция BX.addCustomEvent&nbsp;назначает обработчик кастомному событию.</p>
+<p>Функция подразумевает два варианта входных параметров.</p>
+<pre><code class="language-plaintext">void 
+BX.addCustomEvent(
+&nbsp;Object eventObject,
+&nbsp;string eventName,
+&nbsp;Function eventHandler
+); 
+
+void 
+BX.addCustomEvent(
+&nbsp;string eventName,
+&nbsp;Function eventHandler
+);</code></pre>
+<p>Функция назначает обработчик <strong>eventHandler</strong> кастомному событию с именем <strong>eventName</strong>, возникающем в объекте <strong>eventObject</strong>. Если <strong>eventObject</strong> не указан (короткий вызов), то обработчик будет вызываться при каждом вызове события с таким именем в любом объекте.</p>
+<p>&nbsp;</p>
+<h2>Получение списка всех событий в системе</h2>
+<p>При работе с кастомными событиями возникает резонный вопрос - как получить полный список событий, который присутствует в системе (актуально для готовых шаблонов, административной части, и Битрикс24-коробки) ?</p>
+<p>Данную задачу можно решить следующим образом - в файле <code>/bitrix/js/main/core/core.js</code> находим:</p>
+<pre><code class="language-javascript">BX.onCustomEvent(eventObject, eventName, arEventParams, secureParams);
+</code></pre>
+<p>Вставим в его исполнение логирование:</p>
+<pre><code class="language-javascript">console.log(eventName, arEventParams);
+</code></pre>
+<p>После этого при совершении различных действий на клиенте (клики, push-информации, открытии popup) в лог будут писаться коды событий. Вам останется подобрать нужное.</p>
+<blockquote>
+  <p><strong>Примечание</strong>: не забудьте удалить в ядре строчку логирования после сбора необходимой информации.</p>
+</blockquote>
+<p>&nbsp;</p>
+<h2>Примеры использования</h2>
+<h3><strong>Как добавить свои шрифты в визуальный редактор</strong></h3>
+<p>На событии GetFontFamilyList добавить нужные шрифты в массив. Тогда они начнут выводиться в списке шрифтов в редакторе.</p>
+<pre><code class="language-javascript">BX.addCustomEvent('GetFontFamilyList', BX.delegate(function (fontlist) {
+  fontlist.push({value: 'RobotoThin', name: 'RobotoThin'});
+  fontlist.push({value: 'RobotoLight', name: 'RobotoLight'});
+  fontlist.push({value: 'RobotoRegular', name: 'RobotoRegular'});
+  fontlist.push({value: 'RobotoBlack', name: 'RobotoBlack'});
+  
+  for(var key in userFonts) {
+    fontList.push({value: userFonts[key], name: userFonts[key]})
+  }
+}));</code></pre>
+<p>&nbsp;</p>
+<h3><strong>Как зафиксировать обновление счетчика</strong></h3>
+<p>Для этого нужно добавить обработчик события:</p>
+<pre><code class="language-javascript">BX.addCustomEvent("onPullEvent-main", BX.delegate(function(command,params){
+   if (command == 'user_counter' &amp;&amp; params[BX.message('SITE_ID')] &amp;&amp; params[BX.message('SITE_ID')]['__НАЗВАНИЕ_ВАШЕГО_СЧЕТЧИКА__'])
+   {
+      // вызвать код для обновления счетчика
+      // в params[BX.message('SITE_ID')]['__НАЗВАНИЕ_ВАШЕГО_СЧЕТЧИКА__'] будет новое значение счетчика
+   }
+}, this));</code></pre>
+<p>Для мобильной версии:</p>
+<pre><code class="language-javascript">BX.addCustomEvent("onPull-main", BX.delegate(function(data){
+   if (data.command == 'user_counter' &amp;&amp; data.params[BX.message('SITE_ID')] &amp;&amp; data.params[BX.message('SITE_ID')]['__НАЗВАНИЕ_ВАШЕГО_СЧЕТЧИКА__'])
+      {
+      // вызвать код для обновления счетчика
+      // в data.params[BX.message('SITE_ID')]['__НАЗВАНИЕ_ВАШЕГО_СЧЕТЧИКА__'] будет новое значение счетчика
+   }
+}, this));</code></pre>
+<p>&nbsp;</p>
+<h3><strong>Работа с модулем Push and Pull</strong></h3>
+<p>Ловушка для страниц десктопной версии (все события кроме событий online):</p>
+<pre><code class="language-javascript">BX.addCustomEvent("onPullEvent-moduleName", BX.delegate(function(command,params){
+   console.log('Events of moduleName', command, params);
+}, this));</code></pre>
+<p>Ловушка для страниц мобильной версии (все события кроме событий online):</p>
+<pre><code class="language-javascript">BX.addCustomEvent("onPull-moduleName", BX.delegate(function(data){
+    console.log('Events of moduleName', data.command, data.params);
+}, this));</code></pre>
+<p>&nbsp;</p>
+<blockquote>
+  <p><strong>Примечание</strong>: не забывайте сменить в примере "moduleName" на имя вашего модуля.</p>
+</blockquote>
+<p>&nbsp;</p>
+<p>Пример кода для работы с <a href="https://dev.1c-bitrix.ru/api_help/push_pull/classes/index.php">PHP классами</a> модуля (Pull, Pull Shared, Pull Watch):</p>
+<pre><code class="language-javascript">BX.addCustomEvent("onPullEvent-main", function(module_id,command,params) {
+    if (command == 'check')
+    {
+        console.log('Command from module MAIN - its work!');
+    }
+});</code></pre>
+<p>В примере мы подписываемся на событие получение команд (<strong>onPullEvent-moduleName</strong>), moduleName это название вашего модуля, например <strong>main</strong>, в функции получаем command, params которые мы указали при отправке команды из PHP, обрабатываем свои команды с учетом вашей логики.</p>
+<p>Если ваша логика требует сбора всех событий, то формат немного отличается: (доступно на любой версии <strong>pull</strong>)</p>
+<p>Ловушка для страниц десктопной версии (все события кроме событий online):</p>
+<pre><code class="language-javascript">BX.addCustomEvent("onPullEvent", BX.delegate(function(module_id,command,params){
+   console.log(module_id, command, params);
+}, this));</code></pre>
+<p>Ловушка для страниц мобильной версии (все события кроме событий online):</p>
+<pre><code class="language-plaintext">BX.addCustomEvent("onPull", BX.delegate(function(data){
+    console.log(data.module_id, data.command, data.params);
+}, this));</code></pre>
+<p>Пример кода для работы с <a href="https://dev.1c-bitrix.ru/api_help/push_pull/classes/index.php">PHP классами</a> модуля (Pull, Pull Shared, Pull Watch):</p>
+<pre><code class="language-plaintext">BX.addCustomEvent("onPullEvent", function(module_id,command,params) {
+    if (module_id == "test" &amp;&amp; command == 'check')
+    {
+        console.log('Work!');
+    }
+});</code></pre>
+<p>В примере мы подписываемся на событие получение команд (<strong>onPullEvent</strong>), в функции получаем <strong>module_id</strong>, <strong>command</strong>, <strong>params</strong> которые мы указали при отправке команды из PHP, обрабатываем свои команды с учетом вашей логики.</p>
+<p>&nbsp;</p>
+<blockquote>
+  <p><strong>Примечания</strong>:&nbsp;</p>
+  <ul>
+    <li>Для получения данных об онлайне используйте событие [link=888232]onPullOnlineEvent[/link]</li>
+    <li>Лучше использовать обработчики событий для конкретных модулей, вместо обработчика на все события. Такой формат будет более производителен.</li>
+  </ul>
+</blockquote>
