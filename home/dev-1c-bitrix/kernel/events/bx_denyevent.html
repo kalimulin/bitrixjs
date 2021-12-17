@@ -1,0 +1,22 @@
+<!--
+title: BX.denyEvent/BX.allowEvent
+description: 
+published: true
+date: 2021-12-17T08:57:13.746Z
+tags: 
+editor: ckeditor
+dateCreated: 2021-12-17T08:57:13.746Z
+-->
+
+<pre><code class="language-plaintext">void 
+BX.denyEvent(
+&nbsp;DOMNode element,
+&nbsp;string event
+); 
+
+void 
+BX.allowEvent(
+&nbsp;DOMNode element,
+&nbsp;string event
+);</code></pre>
+<p>Два метода, позволяющих временно отключить и включить обработку конкретного события в конкретном элементе. Пока что отключаются только обработчики, назначенные через <code>element['on' + event]</code>.</p>
