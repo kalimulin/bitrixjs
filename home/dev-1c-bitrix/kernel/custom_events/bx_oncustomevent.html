@@ -1,0 +1,27 @@
+<!--
+title: BX.onCustomEvent
+description: 
+published: true
+date: 2021-12-17T13:50:34.408Z
+tags: 
+editor: ckeditor
+dateCreated: 2021-12-17T13:50:34.408Z
+-->
+
+<p>Функция позволяет два варианта входных параметров.</p>
+<pre><code class="language-plaintext">void 
+BX.onCustomEvent(
+&nbsp;Object eventObject,
+&nbsp;string eventName[,
+&nbsp;Array arEventParams]
+);
+
+void 
+BX.onCustomEvent(
+&nbsp;string eventName[,
+&nbsp;Array arEventParams]
+);</code></pre>
+<p>Функция вызывает все обработчики события <strong>eventName</strong> для объекта <strong>eventObject</strong>, а также, все глобальные обработчики (назначенные без указания объекта). Если не указан объект, в котором возникает событие, то будут вызваны только глобальные обработчики. Обработчик будет выполнен в контексте объекта, в котором возникло событие. Значения из массива <strong>arEventParams</strong> будут переданы в качестве входных параметров обработчика.</p>
+<p>&nbsp;</p>
+<p><a href="https://dev.1c-bitrix.ru/api_help/js_lib/kernel/castom_events/bx_oncustomevent.php">Документация Битрикс</a></p>
+<p>&nbsp;</p>
