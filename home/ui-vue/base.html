@@ -1,0 +1,20 @@
+<!--
+title:  Начало работы 
+description: 
+published: true
+date: 2021-12-17T11:43:17.470Z
+tags: 
+editor: ckeditor
+dateCreated: 2021-12-17T11:43:17.470Z
+-->
+
+<h2>Подключение и запуск</h2>
+<p>Для начала работы подключите Bitrix CoreJS расширение ui.vue в вашем компоненте или на php-странице с помощью <code>\Bitrix\Main\UI\Extension::load("ui.vue");</code></p>
+<p>Для работы с Vue после подключения библиотеки в глобальной области видимости будет доступен объект <strong>BX.Vue</strong>.</p>
+<p>По умолчанию, Vue запускается в режиме <strong>production</strong> без подсказок. Чтобы на вашей установке работали все подсказки, необходимо в <code>/bitrix/php_interface/init.php</code> добавить следующую константу:</p>
+<pre><code class="language-plaintext">define('VUEJS_DEBUG', true);
+</code></pre>
+<blockquote>
+  <p><strong>Примечание</strong>: В коде ES6 (при использовании Bitrix JS CLI ) <strong>Vue</strong> подключается через конструкцию <code>import {Vue} from 'ui.vue'</code>. После этого можно обращаться к <strong>Vue</strong> без префикса <strong>BX.</strong></p>
+</blockquote>
+<p>&nbsp;</p>
