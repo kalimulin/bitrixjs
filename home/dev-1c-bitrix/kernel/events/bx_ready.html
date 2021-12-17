@@ -1,0 +1,43 @@
+<!--
+title: BX.ready
+description: 
+published: true
+date: 2021-12-17T06:30:15.169Z
+tags: 
+editor: ckeditor
+dateCreated: 2021-12-17T06:30:15.169Z
+-->
+
+<pre><code class="language-plaintext">void 
+BX.ready(
+&nbsp;Function handler
+);</code></pre>
+<p>Функция добавляет обработчик события <strong>DOM-структура доступна для записи</strong>. Более короткий вариант – <code>BX(Function handler)</code>.</p>
+<h2>Пример</h2>
+<pre><code class="language-html">&lt;?
+require($_SERVER["DOCUMENT_ROOT"]."/bitrix/header.php");
+$APPLICATION-&gt;SetTitle("События");
+   CJSCore::Init();
+?&gt;
+
+&lt;a href="http://1c-bitrix.ru" class="css_bind" data-param="HELLO" &gt;click Me&lt;/a&gt;
+&lt;div class="css_bind" data-param="HELLO2"&gt;click Me2&lt;/div&gt;
+
+&lt;script&gt;
+BX.ready(function(){
+   var param1 = ' global Hello';
+   BX.bindDelegate(
+      document.body, 'click', {className: 'css_bind' },
+      function(e){
+         if(!e)
+            e = window.event;
+         
+         alert(this.getAttribute('data-param')+param1);
+         return BX.PreventDefault(e);
+      }
+   );
+});
+&lt;/script&gt;
+
+&lt;?require($_SERVER["DOCUMENT_ROOT"]."/bitrix/footer.php");?&gt; </code></pre>
+<p><a href="https://dev.1c-bitrix.ru/api_help/js_lib/kernel/events/bx_ready.php">Документация Битрикс</a></p>
