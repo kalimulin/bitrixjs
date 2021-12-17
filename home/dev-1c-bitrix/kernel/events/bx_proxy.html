@@ -2,7 +2,7 @@
 title: BX.proxy / BX.delegate
 description: 
 published: true
-date: 2021-12-17T07:21:31.181Z
+date: 2021-12-17T07:21:48.961Z
 tags: 
 editor: ckeditor
 dateCreated: 2021-12-17T07:21:31.181Z
@@ -13,7 +13,9 @@ dateCreated: 2021-12-17T07:21:31.181Z
 BX.proxy(
 &nbsp;Function func,
 &nbsp;Object context
-); Function 
+); 
+
+Function 
 BX.delegate(
 &nbsp;Function func,
 &nbsp;Object context
@@ -32,6 +34,7 @@ BX.delegate(
 }
 
 BX.bind(BX('test'), 'click', BX.delegate(this._hadleMoreButtonClickHandler, this));</code></pre>
+<p>&nbsp;</p>
 <pre><code class="language-html"> &lt;script type="text/javascript"&gt;
 function MyClass()
 {
