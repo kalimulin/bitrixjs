@@ -2,17 +2,24 @@
 title: Введение
 description: 
 published: true
-date: 2021-12-15T16:30:07.059Z
+date: 2021-12-17T06:43:29.010Z
 tags: 
 editor: ckeditor
 dateCreated: 2021-12-15T16:21:32.610Z
 -->
 
-<p>На данной странице представлено описание JS-библиотеки <strong>Bitrix Framework.&nbsp;</strong></p>
-<blockquote>
-  <p>Актуальная версия документации находится по адресу <a href="https://dev.1c-bitrix.ru/api_help/js_lib/introduction.php">https://dev.1c-bitrix.ru/api_help/js_lib/introduction.php</a></p>
-</blockquote>
+<h2>Описание JS-библиотеки <strong>Bitrix Framework.&nbsp;</strong></h2>
 <p>Основным классом JS-библиотеки Битрикс является класс BX. Также к услугам разработчика представлено достаточно большое количество расширений.</p>
+<p>Все файлы - скрипты и стили библиотеки находятся в папке&nbsp;<br><br><code>/bitrix/js/main/core/&nbsp;</code></p>
+<p>Файл core.js - это ядро самой библиотеки. Ядро определяет глобальный объект BX, который содержит статические методы для работы с событиями, DOM и др. По сути это аналог &nbsp;"$" в jquery. С него начинаются все действия и манипуляции с объектами страницы.&nbsp;</p>
+<p>&nbsp;</p>
+<p>Из папки <code>/bitrix/js/main/core/</code> в большинстве нужны следующие файлы:&nbsp;</p>
+<ul>
+  <li><code>core_ajax.js</code> - ajax функции;&nbsp;</li>
+  <li><code>core_date.js</code> - функции для работы с датами и календарями;&nbsp;</li>
+  <li><code>core_popup.js</code> - функции для создания всплывающих окон;&nbsp;</li>
+  <li><code>core_window.js</code> - для создания диалоговых окон таких, как при редактировании контента в публичной части. С помощью этой библиотеки удобно загружать во всплывающие окна админские страницы и части админки.&nbsp;</li>
+</ul>
 <p>&nbsp;</p>
 <h2>Использование библиотеки в своем коде</h2>
 <p>Чтобы ваш код смог запуститься только когда DOM-структура будет полностью загружена и сформирована, необходимо использовать внутри метода <strong>BX.ready():</strong></p>
@@ -33,5 +40,4 @@ dateCreated: 2021-12-15T16:21:32.610Z
         BX(element).remove();
     }); 
 });</code></pre>
-<p>&nbsp;</p>
-<p>Далее: <a href="/home/dev-1c-bitrix/js-library">Сторонние библиотеки</a></p>
+<p><a href="https://dev.1c-bitrix.ru/api_help/js_lib/introduction.php">Документация Битрикс</a></p>
