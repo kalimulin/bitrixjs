@@ -2,7 +2,7 @@
 title: Вывод «событий» Битрикс24 в консоль браузера
 description: 
 published: true
-date: 2021-12-17T14:01:02.674Z
+date: 2021-12-17T14:06:13.279Z
 tags: 
 editor: ckeditor
 dateCreated: 2021-12-17T13:57:08.706Z
@@ -10,16 +10,27 @@ dateCreated: 2021-12-17T13:57:08.706Z
 
 <p>Вставляем в консоль браузера:</p>
 <pre><code class="language-javascript">const originalBxOnCustomEvent = BX.onCustomEvent;
-BX.onCustomEvent = function (eventObject, eventName, eventParams, secureParams) {
-    const logData = {
+
+BX.onCustomEvent = function (eventObject, eventName, eventParams, secureParams)
+{
+    // onMenuItemHover например выбрасывает в другом порядке
+    let realEventName = BX.type.isString(eventName) ?
+        eventName : BX.type.isString(eventObject) ? eventObject : null;
+
+    if (realEventName) {
+        console.log(
+            '%c' + realEventName, 
+            'background: #222; color: #bada55; font-weight: bold; padding: 3px 4px;'
+        );
+    }
+
+    console.dir({
         eventObject: eventObject,
-        eventName: eventName,
         eventParams: eventParams,
         secureParams: secureParams
-    };
-    if (eventObject !== null &amp;&amp; typeof eventObject == 'object' &amp;&amp; eventObject.constructor) {
-        logData['eventObjectClassName'] = eventObject.constructor.name;
-    }
-    console.log(logData);
-    originalBxOnCustomEvent.apply(null, [eventObject, eventName, eventParams, secureParams]);
+    });
+
+    originalBxOnCustomEvent.apply(
+        null, arguments
+    );
 };</code></pre>
