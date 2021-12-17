@@ -1,0 +1,90 @@
+<!--
+title: BX.proxy / BX.delegate
+description: 
+published: true
+date: 2021-12-17T07:21:31.181Z
+tags: 
+editor: ckeditor
+dateCreated: 2021-12-17T07:21:31.181Z
+-->
+
+<h2>Описание</h2>
+<pre><code class="language-plaintext">Function 
+BX.proxy(
+&nbsp;Function func,
+&nbsp;Object context
+); Function 
+BX.delegate(
+&nbsp;Function func,
+&nbsp;Object context
+);</code></pre>
+<p>Две родственных функции, генерирующих «функцию-делегата», которая будет вызывать требуемую функцию в нужном контексте. Это может использоваться, например, для назначения метода какого-либо объекта в качестве обработчика события с сохранением контекста объекта.</p>
+<p>Отличие между функциями в том, что <strong>BX.proxy</strong> при повторном вызове с теми же параметрами вернет не новую функцию-делегата, а ссылку на сгенерированную до этого функцию, что может быть полезно, например, если требуется отменить конкретный обработчик события.</p>
+<blockquote>
+  <p><strong>Примечание</strong>: BX.delegate - аналог <a href="http://api.jquery.com/jQuery.proxy/">jQuery.proxy</a>.</p>
+</blockquote>
+<p>&nbsp;</p>
+<h2>Примеры использования</h2>
+<p>Код для получения элемента, по которому был произведен клик:</p>
+<pre><code class="language-javascript">_hadleMoreButtonClickHandler: function(e)
+{
+   alert(BX.proxy_context.innerHTML);
+}
+
+BX.bind(BX('test'), 'click', BX.delegate(this._hadleMoreButtonClickHandler, this));</code></pre>
+<pre><code class="language-html"> &lt;script type="text/javascript"&gt;
+function MyClass()
+{
+    this.prop = 1;
+    BX.bind(BX('link'), 'click', BX.proxy(this.handler, this));
+}
+
+MyClass.prototype.handler = function()
+{
+    alert(this.prop);
+    BX.unbind(BX('link'), 'click', BX.proxy(this.handler, this));
+}
+
+BX.ready(function(){ new MyClass(); });
+&lt;/script&gt;
+ 
+&lt;a href="javascript:void(0)" id="link"&gt;Click Me&lt;/a&gt;
+</code></pre>
+<pre><code class="language-javascript">function MyClass(){}
+MyClass.prototype.handler = function(){}
+
+var ob = new MyClass();
+alert(BX.delegate(ob.handler, ob) == BX.delegate(ob.handler, ob)); // false
+alert(BX.proxy(ob.handler, ob) == BX.proxy(ob.handler, ob)); // true</code></pre>
+<p>Также приведем более практический пример, демонстрирующий передачу контекста исполнения при делегировании. Представим, что вызывается анонимная функция в следующем контексте:</p>
+<pre><code class="language-javascript">My.prototype.test = function(d)
+{
+    console.log(d);
+};
+
+My.prototype.send = function()
+{
+    BX.ajax.get(this._ajaxPage, post, function(data){
+        this.test(data);
+    });
+};
+</code></pre>
+<p>Достаточно стандартная ситуация, когда после ajax-запроса мы совершаем какие-то действия с данными. Однако при исполнении приведенного кода строка <strong>this.test(data);</strong> приведет к ошибке (т.к. в данном контексте <strong>this</strong> будет ссылаться на саму анонимную функцию). Для сохранения прозрачности кода достаточно обернуть вызов анонимной функции в <strong>BX.delegate</strong>:</p>
+<pre><code class="language-javascript">My.prototype.test = function(d)
+{
+    console.log(d);
+};
+
+My.prototype.send = function()
+{
+    BX.ajax.get(this._ajaxPage, post, BX.delegate(function(data){
+        this.test(data);
+    }, this));
+};
+</code></pre>
+<p>На этот раз строка <strong>this.test(data)</strong> выполнится без ошибок и обратится к методу вашего класса <strong>My</strong>.</p>
+<p>Если возникнет необходимость передать в функцию обработчик события <i>this.handler</i> некоторые дополнительные параметры, это можно сделать так:</p>
+<pre><code class="language-javascript">BX.bind(BX('link'), 'click', BX.proxy(function(){this.handler(arg);}, this));
+BX.bind(BX('link'), 'click', BX.proxy(this.handler.bind(this, arg), this));</code></pre>
+<p>&nbsp;</p>
+<p><a href="https://dev.1c-bitrix.ru/api_help/js_lib/kernel/events/bx_proxy.php">Документация Битрикс</a></p>
