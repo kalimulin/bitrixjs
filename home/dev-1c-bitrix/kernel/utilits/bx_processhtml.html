@@ -1,0 +1,30 @@
+<!--
+title: BX.processHTML
+description: 
+published: true
+date: 2021-12-17T19:44:46.732Z
+tags: 
+editor: ckeditor
+dateCreated: 2021-12-17T19:44:46.732Z
+-->
+
+<pre><code class="language-plaintext">object 
+BX.processHTML(
+&nbsp;string HTML
+);</code></pre>
+<p>Разбор строки HTML с вставками js. Результат будет представлять собой объект:</p>
+<pre><code class="language-javascript">{
+   HTML: очищенный HTML,
+   SCRIPT: [
+      {
+         JS: строка скрипта или имя внешнего файла,
+         isInternal: true|false – является ли запись готовым скриптом или внешним файлом
+      }
+    ],
+   STYLE: [
+    массив подключаемых в коде внешних стилей.
+   ]
+}</code></pre>
+<p>Необходим для работы аяксового расширения.</p>
+<p>&nbsp;</p>
+<p><a href="https://dev.1c-bitrix.ru/api_help/js_lib/kernel/utilits/processhtml.php">Документация битрикс</a></p>
