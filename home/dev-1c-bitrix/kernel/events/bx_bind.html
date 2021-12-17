@@ -1,0 +1,72 @@
+<!--
+title: BX.bind / BX.unbind / BX.unbindAll
+description: 
+published: true
+date: 2021-12-17T06:51:55.624Z
+tags: 
+editor: ckeditor
+dateCreated: 2021-12-17T06:51:55.624Z
+-->
+
+<h2>BX.bind</h2>
+<pre><code class="language-plaintext">void 
+BX.bind(
+Object|DOMNode el, 
+String event,
+Function handler
+);</code></pre>
+<p>Функция устанавливает функцию <strong>handler</strong> в качестве обработчика события <strong>event</strong> элемента <strong>el</strong>.</p>
+<h3>Примечание</h3>
+<p>Использование BX.delegate (или BX.proxy) предпочтительнее. Это позволит:</p>
+<ol>
+  <li>делать BX.unbind</li>
+  <li>не плодить код, а вешать один и тот же обработчик на несколько элементов.</li>
+</ol>
+<h3>Примеры использования</h3>
+<pre><code class="language-javascript">BX.bind(BX('test'), 'click', function() {alert('click!')})</code></pre>
+<p>Получить непосредственно элемент, по которому кликнули.</p>
+<pre><code class="language-javascript">_hadleMoreButtonClickHandler: function(e)
+{
+   alert(BX.proxy_context.innerHTML);
+}
+
+BX.bind(BX('test'), 'click', BX.delegate(this._hadleMoreButtonClickHandler, this));</code></pre>
+<p>&nbsp;</p>
+<h2>BX.unbind</h2>
+<pre><code class="language-plaintext">void
+BX.unbind(
+    DOMNode node, 
+    string eventName,
+    Function callback
+);</code></pre>
+<p>Функция снимает обработчик <strong>handler</strong> события <strong>event</strong> элемента <strong>el</strong>.</p>
+<h3>Параметры функции</h3>
+<figure class="table">
+  <table>
+    <tbody>
+      <tr>
+        <th>Параметр</th>
+        <th>Описание</th>
+      </tr>
+      <tr>
+        <th>node</th>
+        <th>Целевой узел события.</th>
+      </tr>
+      <tr>
+        <th>eventName</th>
+        <th>Имя события, например, <strong>click</strong>.</th>
+      </tr>
+      <tr>
+        <th>callback</th>
+        <th>обработчик события.</th>
+      </tr>
+    </tbody>
+  </table>
+</figure>
+<h2><br>BX.unbindAll</h2>
+<pre><code class="language-plaintext">void 
+BX.unbindAll(
+    DOMNode node, 
+);</code></pre>
+<p>Функция снимает все зарегистрированные обработчики событий с элемента (или вообще все зарегистрированные обработчики событий, если параметр отсутствует).</p>
+<p>&nbsp;</p>
