@@ -2,14 +2,13 @@
 title: Вывод «событий» Битрикс24 в консоль браузера
 description: 
 published: true
-date: 2021-12-17T13:57:08.706Z
+date: 2021-12-17T14:00:30.540Z
 tags: 
 editor: ckeditor
 dateCreated: 2021-12-17T13:57:08.706Z
 -->
 
 <p><code>/bitrix/js/main/core/core.js</code></p>
-<p>&nbsp;</p>
 <pre><code class="language-javascript">const originalBxOnCustomEvent = BX.onCustomEvent;
 BX.onCustomEvent = function (eventObject, eventName, eventParams, secureParams) {
     const logData = {
