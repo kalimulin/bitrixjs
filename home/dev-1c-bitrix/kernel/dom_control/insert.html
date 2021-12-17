@@ -1,0 +1,140 @@
+<!--
+title: Вставка и перемещение элемента
+description: 
+published: true
+date: 2021-12-17T06:07:54.217Z
+tags: 
+editor: ckeditor
+dateCreated: 2021-12-17T06:07:54.217Z
+-->
+
+<figure class="table">
+  <table>
+    <tbody>
+      <tr>
+        <td>BX.insertAfter(node, dstNode)&nbsp;</td>
+        <td>
+          <p>Вставляет ноду сразу после целевой.&nbsp;<br>Параметры:&nbsp;</p>
+          <ul>
+            <li><strong>node</strong> - новая нода</li>
+            <li><strong>dstNode</strong> - целевая нода</li>
+          </ul>
+        </td>
+      </tr>
+      <tr>
+        <td>BX.prepend(node, dstNode)&nbsp;</td>
+        <td>
+          <p>Помещает ноду в начало содержимого целевой.<br>Параметры:&nbsp;</p>
+          <ul>
+            <li><strong>node</strong> - новая нода</li>
+            <li><strong>dstNode</strong> - целевая нода</li>
+          </ul>
+        </td>
+      </tr>
+      <tr>
+        <td>BX.append(node, dstNode)</td>
+        <td>
+          <p>Помещает ноду в конец содержимого целевой.<br>Параметры:&nbsp;</p>
+          <ul>
+            <li><strong>node</strong> - новая нода</li>
+            <li><strong>dstNode</strong> - целевая нода</li>
+          </ul>
+        </td>
+      </tr>
+      <tr>
+        <td>BX.insertBefore(node, dstNode)</td>
+        <td>Для вставки до соответствующей ноды.</td>
+      </tr>
+    </tbody>
+  </table>
+</figure>
+<p>&nbsp;</p>
+<h2>Примеры:</h2>
+<pre><code class="language-javascript">const errorNode = document.querySelector('.alert.alert-danger');
+const warningNode = BX.create('DIV', {
+					props: {className: 'alert alert-warning'},
+					html: '&lt;span&gt;Error&lt;/span&gt;'
+				});
+BX.prepend(warningNode, errorNode);</code></pre>
+<pre><code class="language-javascript">function (tabManager) {
+            // Сформируем параметры вкладки
+            var tabData = {};
+
+            // Идентификатор вкладки
+            tabData.id = 'tab_foo';
+
+            // Наименование вкладки
+            tabData.name = 'Foo tab';
+
+            // Контент вкладки, если мы хотим чтобы во вкладке был статичный контент передаем его сюда, можно через параметры функции, в противном случае данный параметр можно опустить
+            tabData.html = '&lt;div style="color: green"&gt;Foo tab content&lt;/div&gt;';
+
+            // Создадим html узел отвечающий за контент вкладки
+            var tabContainer = BX.create(
+                'div',
+                {
+                    attrs: {
+                        className: 'crm-entity-section crm-entity-section-info crm-entity-section-above-overlay crm-entity-section-tab-content-hide',
+                    },
+                    dataset: {
+                        'tabId': tabData.id,
+                    },
+                    html: tabData.html,
+                }
+            );
+
+            // Добавим созданный контейнер к остальным контейнерам вкладок
+            BX.append(
+                tabContainer,
+                tabManager._container
+            );
+
+            // Создадим html узел отвечающий за кнопку вкладки в меню навигации карточки
+            var tabMenuContainer = BX.create(
+                'div',
+                {
+                    attrs: {
+                        className: 'crm-entity-section-tab',
+                    },
+                    dataset: {
+                        tabId: tabData.id,
+                    },
+                    html: '&lt;a class="crm-entity-section-tab-link" href="#"&gt;' + tabData.name + '&lt;/a&gt;',
+                }
+            );
+
+            // Добавим созданный пункт меню к остальным пунктам меню
+            BX.append(
+                tabMenuContainer,
+                tabManager._menuContainer
+            );
+
+            // Если мы хотим подгружать контент вкладки динамически то опишем как надо это делать
+            tabData.loader = {};
+
+            // Адрес на который будет делаться запрос при первом показе вкладки
+            tabData.loader.serviceUrl = '/foo.php?sessid=' + BX.bitrix_sessid();
+
+            // Параметры которые будут отправлены в ajax запросе, параметры передаются в массиве PARAMS
+            tabData.loader.componentData = {foo: 'bar'};
+
+            // Контейнер в который будет вставлен ответ сервера
+            tabData.loader.container = tabContainer;
+
+            // Идентификатор вкладки, так же попадет в массив PARAMS
+            tabData.loader.tabId = tabData.id;
+
+            // Добавим новую вкладку в менеджер вкладок
+            tabManager._items.push(
+                BX.Crm.EntityDetailTab.create(
+                    tabData.id,
+                    {
+                        manager: tabManager,
+                        data: tabData,
+                        container: tabContainer,
+                        menuContainer: tabMenuContainer,
+                    }
+                )
+            );
+        },</code></pre>
+<p><a href="https://dev.1c-bitrix.ru/api_help/js_lib/kernel/dom_control/index.php">Документация Битрикс</a></p>
