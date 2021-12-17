@@ -1,0 +1,47 @@
+<!--
+title: Ширина и высота элемента
+description: 
+published: true
+date: 2021-12-17T04:17:10.893Z
+tags: 
+editor: ckeditor
+dateCreated: 2021-12-17T04:17:10.893Z
+-->
+
+<h2>BX.width/BX.height</h2>
+<p>Возвращает (или задает) ширину, высоту элемента DOM. Первым параметром передаётся элемент DOM. Если не передавать второй параметр (целое число), то вернется значение ширины или высоты. Если передать - значение задается.&nbsp;</p>
+<p>&nbsp;</p>
+<h2>Примеры использования</h2>
+<pre><code class="language-javascript">BX.height(BX('adm-title'));
+
+BX.height(BX('adm-title'), 1000);</code></pre>
+<p>&nbsp;</p>
+<pre><code class="language-html">&lt;script&gt;
+BX.ready(function() {
+	BX.bind(BX('buttonDivId'), 'click', function() {
+		//задает) ширину
+		BX.width(this, 300); //BX.width(BX('buttonDivId'), 300);
+		this.innerHTML = "now width " + BX.width(this) + "px";
+	});
+});
+&lt;/script&gt;
+
+&lt;div id="buttonDivId" class="buttonDiv"&gt;set width 300&lt;/div&gt;
+
+&lt;style&gt;
+.buttonDiv {
+	cursor: pointer;
+	margin: 12px auto;
+	vertical-align: middle;
+	text-align: center;
+	width: 150px;
+	/* padding:5px; */
+	background-color: #c5c5c5;
+	border-radius: 5px;
+	box-shadow: 0px 0px 10px #333;
+	color: #000;
+	font-size: 17px;
+}
+&lt;/style&gt;</code></pre>
+<p><a href="https://bxas.ru/classbx/width/">Пример в действии</a></p>
+<p><a href="https://dev.1c-bitrix.ru/api_help/js_lib/kernel/dom_control/bx_height.php">Документация Битрикс</a></p>
