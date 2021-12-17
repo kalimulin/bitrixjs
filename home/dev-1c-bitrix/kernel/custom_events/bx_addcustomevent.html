@@ -2,7 +2,7 @@
 title: BX.addCustomEvent
 description: 
 published: true
-date: 2021-12-17T10:31:14.415Z
+date: 2021-12-17T10:36:13.099Z
 tags: 
 editor: ckeditor
 dateCreated: 2021-12-17T10:27:36.430Z
@@ -27,12 +27,14 @@ BX.addCustomEvent(
 <p>&nbsp;</p>
 <h2>Получение списка всех событий в системе</h2>
 <p>При работе с кастомными событиями возникает резонный вопрос - как получить полный список событий, который присутствует в системе (актуально для готовых шаблонов, административной части, и Битрикс24-коробки) ?</p>
-<p>Данную задачу можно решить следующим образом - в файле <code>/bitrix/js/main/core/core.js</code> находим:</p>
-<pre><code class="language-javascript">BX.onCustomEvent(eventObject, eventName, arEventParams, secureParams);
-</code></pre>
-<p>Вставим в его исполнение логирование:</p>
-<pre><code class="language-javascript">console.log(eventName, arEventParams);
-</code></pre>
+<p>Данную задачу можно решить следующим образом - в файле <code>/bitrix/js/main/core/core.js</code> находим объявление функции <code>onCustomEvent</code> и вставим в его исполнение логирование:</p>
+<pre><code class="language-javascript">function onCustomEvent(eventObject, eventName, eventParams, secureParams) {
+
+	...
+	console.log(eventName);
+	console.log(eventObject);
+	...
+}</code></pre>
 <p>После этого при совершении различных действий на клиенте (клики, push-информации, открытии popup) в лог будут писаться коды событий. Вам останется подобрать нужное.</p>
 <blockquote>
   <p><strong>Примечание</strong>: не забудьте удалить в ядре строчку логирования после сбора необходимой информации.</p>
