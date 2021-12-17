@@ -1,0 +1,150 @@
+<!--
+title: Работа с выпадающими списками (select)
+description: 
+published: true
+date: 2021-12-17T04:38:49.426Z
+tags: 
+editor: ckeditor
+dateCreated: 2021-12-17T04:38:49.426Z
+-->
+
+<h2>BX.selectUtils.addNewOption</h2>
+<p>Добавляет в существующий список новое значение. Параметры:&nbsp;</p>
+<figure class="table">
+  <table>
+    <tbody>
+      <tr>
+        <th>Параметр</th>
+        <th>Описание</th>
+      </tr>
+      <tr>
+        <th>DOMNode node</th>
+        <th>элемент DOM</th>
+      </tr>
+      <tr>
+        <th>string value</th>
+        <th>значение элемента</th>
+      </tr>
+      <tr>
+        <th>string name</th>
+        <th>название элемента</th>
+      </tr>
+      <tr>
+        <th>boolean sort</th>
+        <th>сортировать после добавления (по умолчанию false)</th>
+      </tr>
+      <tr>
+        <th>boolean unique</th>
+        <th>проверять на уникальность (по умолчанию true)</th>
+      </tr>
+    </tbody>
+  </table>
+</figure>
+<pre><code class="language-javascript">//Добавить option  в select
+BX.selectUtils.addNewOption(BX('id_select'), 'NAME', 'По наименованию');
+BX.selectUtils.addNewOption(BX('id_select'), 'PRICE', 'По цене');</code></pre>
+<p>&nbsp;</p>
+<h2>BX.selectUtils.selectOption(DOMNode node, string value)</h2>
+<p>Выделяет указанное значение указанного списка.</p>
+<pre><code class="language-javascript">//Выделить option с значением NAME
+BX.selectUtils.selectOption(createSelect, 'PRICE');</code></pre>
+<p>&nbsp;</p>
+<h2>BX.selectUtils.selectAllOptions(DOMNode node)</h2>
+<p>Выделяет все значения указанного списка.</p>
+<p>&nbsp;</p>
+<h2>BX.selectUtils.deleteOption(DOMNode node, string value)</h2>
+<p>Удаляет из указанного списка значение с указанным значением.&nbsp;</p>
+<pre><code class="language-javascript">//Удаляет option с значением DATE
+BX.selectUtils.deleteOption(BX('id_select'), 'DATE');</code></pre>
+<p>&nbsp;</p>
+<h2>BX.selectUtils.deleteSelectedOptions(DOMNode node)</h2>
+<p>Удаляет из указанного списка все выделенные значения.</p>
+<p>&nbsp;</p>
+<h2>BX.selectUtils.deleteAllOptions(DOMNode node)</h2>
+<p>Удаляет из указанного списка все значения.</p>
+<pre><code class="language-javascript">//Удаляет все options
+BX.selectUtils.deleteAllOptions(BX('id_select'));</code></pre>
+<p>&nbsp;</p>
+<h2>BX.selectUtils.sortSelect(DOMNode node)</h2>
+<p>Сортирует указанный список.</p>
+<p>&nbsp;</p>
+<h2>BX.selectUtils.moveOptionsUp(DOMNode node)</h2>
+<p>Перемещает выделенные значения указанного списка на одну позицию вверх.</p>
+<p>&nbsp;</p>
+<h2>BX.selectUtils.moveOptionsDown(DOMNode node)</h2>
+<p>Перемещает выделенные значения указанного списка на одну позицию вниз.</p>
+<p>&nbsp;</p>
+<h2>Примеры</h2>
+<pre><code class="language-javascript">//Создать узел
+var selecList = BX.create('select');
+//Добавить option  в select
+BX.selectUtils.addNewOption(selectProject, 'По наименованию', 'NAME');
+BX.selectUtils.addNewOption(selectProject, 'По цене', 'PRICE');
+//Выделить option с значением NAME
+BX.selectUtils.selectOption(selecList, 'NAME');
+//Выставить в дом собранный узел select
+BX('sort-panel').append(selecList);</code></pre>
+<p>&nbsp;</p>
+<pre><code class="language-html">&lt;script&gt;
+BX.ready(function() {
+	BX.bind(BX('togglediv'), 'click', function() {
+		//Создать узел
+		var createSelect = BX.create('select', {
+			props: {
+				id: "id_select",
+				size: 5
+			}
+		});
+		//Добавить option  в select
+		BX.selectUtils.addNewOption(createSelect, 'NAME', 'По наименованию');
+		BX.selectUtils.addNewOption(createSelect, 'PRICE', 'По цене');
+		//Выделить option с значением NAME
+		BX.selectUtils.selectOption(createSelect, 'PRICE');
+		//Выставить в дом собранный узел select
+		BX('result').append(createSelect);
+		BX('optn_result').style.display = "block";
+		BX('togglediv').style.display = "none";
+	});
+	BX.bind(BX('addNewOptn'), 'click', function() {
+		//Добавить option  в select
+		BX.selectUtils.addNewOption(BX('id_select'), 'DATE', 'По дате');
+		//Выделить option с значением DATE
+		BX.selectUtils.selectOption(BX('id_select'), 'DATE');
+		BX('deleteOptn').style.display = "block";
+	});
+	BX.bind(BX('deleteOptn'), 'click', function() {
+		//Удаляет option с значением DATE
+		BX.selectUtils.deleteOption(BX('id_select'), 'DATE');
+	});
+	BX.bind(BX('deleteAllOptn'), 'click', function() {
+		//Удаляет все options
+		BX.selectUtils.deleteAllOptions(BX('id_select'));
+	});
+});
+&lt;/script&gt;
+
+&lt;div id="togglediv" class="arrowUp"&gt;selectUtils create&lt;/div&gt;
+&lt;div id="optn_result" style="display:none"&gt;
+	&lt;div id="result" class="arrowUp"&gt;&lt;/div&gt;
+	&lt;div id="addNewOptn" class="arrowUp"&gt;addNewOption 'По дате'&lt;/div&gt;
+	&lt;div id="deleteOptn" class="arrowUp" style="display:none"&gt;deleteOption 'По дате'&lt;/div&gt;
+	&lt;div id="deleteAllOptn" class="arrowUp"&gt;deleteAllOptions&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;style&gt;
+.arrowUp {
+	cursor: pointer;
+	margin: 12px auto;
+	vertical-align: middle;
+	text-align: center;
+	width: 277px;
+	padding: 5px;
+	background-color: #c5c5c5;
+	border-radius: 5px;
+	box-shadow: 0px 0px 10px #333;
+	color: #000;
+	font-size: 17px;
+}
+&lt;/style&gt;</code></pre>
+<p><a href="https://bxas.ru/classbx/selectUtils/">Пример в действии</a></p>
+<p><a href="https://dev.1c-bitrix.ru/api_help/js_lib/kernel/dom_control/bx_selectutils.php">Документация Битрикс</a></p>
