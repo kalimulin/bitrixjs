@@ -1,0 +1,39 @@
+<!--
+title: BX.fireEvent
+description: 
+published: true
+date: 2021-12-17T09:10:44.826Z
+tags: 
+editor: ckeditor
+dateCreated: 2021-12-17T09:10:44.826Z
+-->
+
+<pre><code class="language-plaintext">BX.fireEvent(
+&nbsp;DOMNode node,
+&nbsp;string event
+);</code></pre>
+<p>Метод эмулирует событие на элементе DOM.</p>
+<blockquote>
+  <p><strong>Примечание</strong>: Использование метода специфическое и требуется только в некоторых случаях. К примеру, есть метод обработки события "клик" в сторонней библиотеке, но подвешен на другой обработчик. Можно уже в своем коде сделать вызов этого метода, чтобы сэмулировать клик по элементу, который "слушает" сторонний метод.</p>
+</blockquote>
+<p>&nbsp;</p>
+<h2>Параметры функции</h2>
+<figure class="table">
+  <table>
+    <tbody>
+      <tr>
+        <th>Параметр</th>
+        <th>Описание</th>
+      </tr>
+      <tr>
+        <th>DOMNode node</th>
+        <th>Нода</th>
+      </tr>
+      <tr>
+        <th>string event</th>
+        <th>Событие.</th>
+      </tr>
+    </tbody>
+  </table>
+</figure>
+<p>&nbsp;</p>
