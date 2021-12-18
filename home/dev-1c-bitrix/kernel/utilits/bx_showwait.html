@@ -1,0 +1,297 @@
+<!--
+title: BX.showWait / BX.closeWait
+description: 
+published: true
+date: 2021-12-18T18:24:27.104Z
+tags: 
+editor: ckeditor
+dateCreated: 2021-12-18T18:24:27.104Z
+-->
+
+<pre><code class="language-plaintext">void
+BX.showWait(
+&nbsp;[DOMNode node|string node]
+); 
+
+void
+BX.closeWait(
+&nbsp;[DOMNode node|string node]
+);</code></pre>
+<p>Функции отображает или скрывает визуализатор загрузки. Если указан параметр <strong>node</strong>, то визуализатор будет спозиционирован по правому верхнему углу указанного элемента. В качестве значения параметра можно передать как ссылку на элемент, так и его id.</p>
+<p><a href="https://dev.1c-bitrix.ru/api_help/js_lib/kernel/utilits/bx_showwait.php">Документация Битрикс</a></p>
+<p>&nbsp;</p>
+<h2>Замена стандартного битриксового прелоадера</h2>
+<p>Возьмем для примера простейший прелоадер</p>
+<pre><code class="language-javascript">BX.showWait = function () {
+    var loader = '&lt;div class="loader"&gt;&lt;div class="cssload-clock"&gt;&lt;/div&gt;&lt;/div&gt;';
+    $('body').append(loader);
+};
+
+BX.closeWait = function () {
+    $('body').find('.loader').remove();
+};</code></pre>
+<p>Так, при показе прелоадера, в body будет добавляться текст прелоадера с контейнером, а при скрытии данный элемент будет удаляться. В примере функции реализованы с помощью JQUERY для большей наглядности, но тоже самое можно реализовать и через BX.js.</p>
+<p>Далее добавим стили</p>
+<pre><code class="language-css">.loader {
+    position: fixed;
+    width: 100%;
+    min-width: 100%;
+    height: 100%;
+    min-height: 100%;
+    top: 0;
+    left: 0;
+    z-index: 10000 !important;
+    background-color: rgba(255, 255, 255, 0.75);
+}
+
+.cssload-clock {
+    border-radius: 58px;
+    border: 3px solid #122072;
+    height: 78px;
+    width: 78px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-top: -39px;
+    margin-left: -39px;
+}
+
+.cssload-clock:after {
+    content: "";
+    position: absolute;
+    background-color: #122072;
+    top: 2px;
+    left: 48%;
+    height: 37px;
+    width: 4px;
+    border-radius: 5px;
+    transform-origin: 50% 97%;
+    -o-transform-origin: 50% 97%;
+    -ms-transform-origin: 50% 97%;
+    -webkit-transform-origin: 50% 97%;
+    -moz-transform-origin: 50% 97%;
+    animation: grdAiguille 0.8s linear infinite;
+    -o-animation: grdAiguille 0.8s linear infinite;
+    -ms-animation: grdAiguille 0.8s linear infinite;
+    -webkit-animation: grdAiguille 0.8s linear infinite;
+    -moz-animation: grdAiguille 0.8s linear infinite;
+}
+
+.cssload-clock:before {
+    content: "";
+    position: absolute;
+    background-color: #122072;
+    top: 6px;
+    left: 48%;
+    height: 34px;
+    width: 4px;
+    border-radius: 5px;
+    transform-origin: 50% 94%;
+    -o-transform-origin: 50% 94%;
+    -ms-transform-origin: 50% 94%;
+    -webkit-transform-origin: 50% 94%;
+    -moz-transform-origin: 50% 94%;
+    animation: ptAiguille 4.8s linear infinite;
+    -o-animation: ptAiguille 4.8s linear infinite;
+    -ms-animation: ptAiguille 4.8s linear infinite;
+    -webkit-animation: ptAiguille 4.8s linear infinite;
+    -moz-animation: ptAiguille 4.8s linear infinite;
+}
+
+@keyframes grdAiguille {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+@-o-keyframes grdAiguille {
+    0% {
+        -o-transform: rotate(0deg);
+    }
+    100% {
+        -o-transform: rotate(360deg);
+    }
+}
+
+@-ms-keyframes grdAiguille {
+    0% {
+        -ms-transform: rotate(0deg);
+    }
+    100% {
+        -ms-transform: rotate(360deg);
+    }
+}
+
+@-webkit-keyframes grdAiguille {
+    0% {
+        -webkit-transform: rotate(0deg);
+    }
+    100% {
+        -webkit-transform: rotate(360deg);
+    }
+}
+
+@-moz-keyframes grdAiguille {
+    0% {
+        -moz-transform: rotate(0deg);
+    }
+    100% {
+        -moz-transform: rotate(360deg);
+    }
+}
+
+@keyframes ptAiguille {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+@-o-keyframes ptAiguille {
+    0% {
+        -o-transform: rotate(0deg);
+    }
+    100% {
+        -o-transform: rotate(360deg);
+    }
+}
+
+@-ms-keyframes ptAiguille {
+    0% {
+        -ms-transform: rotate(0deg);
+    }
+    100% {
+        -ms-transform: rotate(360deg);
+    }
+}
+
+@-webkit-keyframes ptAiguille {
+    0% {
+        -webkit-transform: rotate(0deg);
+    }
+    100% {
+        -webkit-transform: rotate(360deg);
+    }
+}
+
+@-moz-keyframes ptAiguille {
+    0% {
+        -moz-transform: rotate(0deg);
+    }
+    100% {
+        -moz-transform: rotate(360deg);
+    }
+}</code></pre>
+<p>Таким образом получим крутящиеся по центру экрана синие часы. Взято <a href="https://pai-bx.com/wiki/1c-bitrix/2381-replace-the-standard-bx-preloader/">отсюда</a></p>
+<p>&nbsp;</p>
+<h2>Пример кода с позиционированием&nbsp;</h2>
+<pre><code class="language-javascript">var wait = BX.showWait('available_action_wrapper');
+...
+BX.closeWait('available_action_wrapper', wait);//вторым параметром надо передать результат вызова show</code></pre>
+<p>&nbsp;</p>
+<h2>Как легко и быстро поставить свой прелоадер на стандартный AJAX Битрикса</h2>
+<p>Суть проста — у стандартного аякса есть две функции <strong>BX.showWait</strong> и <strong>BX.closeWait</strong> которые отвечают за действия на странице в момент ожидания ответа от аякса. Используем их чтобы подгрузить вместо дефолтного прелоадера, свой.</p>
+<p>Для начала найдём сам прелоадер. Мне например, понравился на чистом HTML/CSS в стиле Windows 8:</p>
+<pre><code class="language-css">&lt;div id="win8_wrapper"&gt;
+	&lt;div class="windows8"&gt;
+		&lt;div class="wBall" id="wBall_1"&gt;
+			&lt;div class="wInnerBall"&gt;&lt;/div&gt;
+		&lt;/div&gt;
+		&lt;div class="wBall" id="wBall_2"&gt;
+			&lt;div class="wInnerBall"&gt;&lt;/div&gt;
+		&lt;/div&gt;
+		&lt;div class="wBall" id="wBall_3"&gt;
+			&lt;div class="wInnerBall"&gt;&lt;/div&gt;
+		&lt;/div&gt;
+		&lt;div class="wBall" id="wBall_4"&gt;
+			&lt;div class="wInnerBall"&gt;&lt;/div&gt;
+		&lt;/div&gt;
+		&lt;div class="wBall" id="wBall_5"&gt;
+			&lt;div class="wInnerBall"&gt;&lt;/div&gt;
+		&lt;/div&gt;
+	&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+<p>CSS можно посмотреть в исходниках <a href="https://gist.github.com/Itachi261092/1755635003c8fe5c16e4">тут</a> или <a href="https://gist.github.com/kalimulin/cfb88cb96b8b3f107b693a805da3928c">тут</a></p>
+<p>Далее вставляем скрипт с вызовом функций, которые подгрузят наш прелоадер вместо стандартного:</p>
+<pre><code class="language-javascript">var lastWait = [];
+	/* non-xhr loadings */
+	BX.showWait = function (node, msg)
+	{
+		node = BX(node) || document.body || document.documentElement;
+		msg = msg || BX.message('JS_CORE_LOADING');
+
+		var container_id = node.id || Math.random();
+
+		var obMsg = node.bxmsg = document.body.appendChild(BX.create('DIV', {
+			props: {
+				id: 'wait_' + container_id,
+				className: 'bx-core-waitwindow'
+			},
+			text: msg
+		}));
+
+		setTimeout(BX.delegate(_adjustWait, node), 10);
+
+		$('#win8_wrapper').show();
+		lastWait[lastWait.length] = obMsg;
+		return obMsg;
+	};
+
+	BX.closeWait = function (node, obMsg)
+	{
+		$('#win8_wrapper').hide();
+		if (node &amp;&amp; !obMsg)
+			obMsg = node.bxmsg;
+		if (node &amp;&amp; !obMsg &amp;&amp; BX.hasClass(node, 'bx-core-waitwindow'))
+			obMsg = node;
+		if (node &amp;&amp; !obMsg)
+			obMsg = BX('wait_' + node.id);
+		if (!obMsg)
+			obMsg = lastWait.pop();
+
+		if (obMsg &amp;&amp; obMsg.parentNode)
+		{
+			for (var i = 0, len = lastWait.length; i &lt; len; i++)
+			{
+				if (obMsg == lastWait[i])
+				{
+					lastWait = BX.util.deleteFromArray(lastWait, i);
+					break;
+				}
+			}
+
+			obMsg.parentNode.removeChild(obMsg);
+			if (node)
+				node.bxmsg = null;
+			BX.cleanNode(obMsg, true);
+		}
+	};
+
+	function _adjustWait()
+	{
+		if (!this.bxmsg)
+			return;
+
+		var arContainerPos = BX.pos(this),
+			div_top = arContainerPos.top;
+
+		if (div_top &lt; BX.GetDocElement().scrollTop)
+			div_top = BX.GetDocElement().scrollTop + 5;
+
+		this.bxmsg.style.top = (div_top + 5) + 'px';
+
+		if (this == BX.GetDocElement())
+		{
+			this.bxmsg.style.right = '5px';
+		}
+		else
+		{
+			this.bxmsg.style.left = (arContainerPos.right - this.bxmsg.offsetWidth - 5) + 'px';
+		}
+	}</code></pre>
+<p>Взято <a href="https://habr.com/ru/post/268221/">отсюда.</a></p>
