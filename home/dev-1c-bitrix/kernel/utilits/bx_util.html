@@ -2,7 +2,7 @@
 title: BX.util
 description: 
 published: true
-date: 2021-12-18T20:39:09.114Z
+date: 2021-12-18T20:45:24.569Z
 tags: 
 editor: ckeditor
 dateCreated: 2021-12-18T20:21:48.502Z
@@ -40,6 +40,14 @@ console.log(keys);   // ['key1', 'key2', 'key3']</code></pre>
 
 console.log(arr);   // ['a', 'b', 'c', 'd', 'e', 'f']</code></pre>
 <p>&nbsp;</p>
+<h2>BX.util.array_unique</h2>
+<p>Убирает повторяющиеся значения из массива</p>
+<pre><code class="language-javascript">const arr = BX.util.array_unique(
+  ['a', 'b', 'c', 'd', 'e', 'f', 'a', 'c', 'g']
+)
+
+console.log(arr);   // ['a', 'b', 'c', 'd', 'e', 'f', 'g']</code></pre>
+<p>&nbsp;</p>
 <p>&nbsp;</p>
 <figure class="table">
   <table>
@@ -49,7 +57,7 @@ console.log(arr);   // ['a', 'b', 'c', 'd', 'e', 'f']</code></pre>
         <th>Описание</th>
       </tr>
       <tr>
-        <th>BX.util.array_unique()<br>BX.util.in_array()<br>BX.util.array_search()<br>BX.util.trim()<br>BX.util.htmlspecialchars()<br>BX.util.htmlspecialcharsback()<br>BX.utill.preg_quote()<br>BX.util.str_pad()<br>BX.util.strip_tags()<br>&nbsp;</th>
+        <th>BX.util.in_array()<br>BX.util.array_search()<br>BX.util.trim()<br>BX.util.htmlspecialchars()<br>BX.util.htmlspecialcharsback()<br>BX.utill.preg_quote()<br>BX.util.str_pad()<br>BX.util.strip_tags()<br>&nbsp;</th>
         <th>Аналоги функций PHP.</th>
       </tr>
       <tr>
