@@ -1,0 +1,80 @@
+<!--
+title: BX.util
+description: 
+published: true
+date: 2021-12-18T20:21:48.502Z
+tags: 
+editor: ckeditor
+dateCreated: 2021-12-18T20:21:48.502Z
+-->
+
+<p>Сборник функций-утилит.</p>
+<h2>BX.util.array_values</h2>
+<p>Возвращает массив со всеми значениями переданного массива. Функция заново индексирует возвращаемый массив числовыми индексами.</p>
+<pre><code class="language-javascript">const arr = BX.util.array_values(
+  {
+    'key1': 'value1',
+    'key2': 'value2',
+    'key3': 'value3',
+  }
+)
+console.log(arr);   // ['value1', 'value2', 'value3']</code></pre>
+<p>&nbsp;</p>
+<h2>BX.util.array_keys</h2>
+<p>Возвращает числовые и строковые ключи, содержащиеся в переданном массиве.</p>
+<pre><code class="language-javascript">const keys = BX.util.array_keys(
+  {
+    'key1': 'value1',
+    'key2': 'value2',
+    'key3': 'value3',
+  }
+)
+console.log(keys);   // ['key1', 'key2', 'key3']</code></pre>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<figure class="table">
+  <table>
+    <tbody>
+      <tr>
+        <th>Функция</th>
+        <th>Описание</th>
+      </tr>
+      <tr>
+        <th>BX.util.array_merge()<br>BX.util.array_unique()<br>BX.util.in_array()<br>BX.util.array_search()<br>BX.util.trim()<br>BX.util.htmlspecialchars()<br>BX.util.htmlspecialcharsback()<br>BX.utill.preg_quote()<br>BX.util.str_pad()<br>BX.util.strip_tags()<br>&nbsp;</th>
+        <th>Аналоги функций PHP.</th>
+      </tr>
+      <tr>
+        <th>BX.util.urlencode()</th>
+        <th>Кодирует посредством encodeURIComponent, что приводит к некорректной декодировке на сайтах не в UTF. Для корректного приема закодированных таким образом данных на сервере можно выполнить функцию CUtil::JSPostUnescape, которая декодирует глобальные массивы $_GET, $_POST и $_REQUEST.</th>
+      </tr>
+      <tr>
+        <th>Array
+          <strong>BX.util.deleteFromArray</strong>(
+          array arr,
+          int index
+          );
+        </th>
+        <th>Удаление элемента из массива с последующим сдвигом ключей.</th>
+      </tr>
+      <tr>
+        <th>Array
+          <strong>BX.util.insertIntoArray</strong>(
+          array arr,
+          int index
+          );
+        </th>
+        <th>Вставка элемента в массив с последующим сдвигом ключей.</th>
+      </tr>
+      <tr>
+        <th><strong>BX.util.popup</strong>(
+          string url,
+          int width,
+          int height
+          );</th>
+        <th>Показ попапа, спозиционированного по центру.</th>
+      </tr>
+    </tbody>
+  </table>
+</figure>
+<p>&nbsp;</p>
+<p><a href="https://dev.1c-bitrix.ru/api_help/js_lib/kernel/utilits/bx_util.php">Документация Битрикс</a></p>
