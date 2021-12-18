@@ -1,0 +1,43 @@
+<!--
+title: BX.namespace
+description: 
+published: true
+date: 2021-12-18T17:50:11.079Z
+tags: 
+editor: ckeditor
+dateCreated: 2021-12-18T17:50:11.079Z
+-->
+
+<pre><code class="language-plaintext">object BX.namespace(
+&nbsp;string namespace
+)
+</code></pre>
+<p>Создает пространство имен в глобальной объекте BX. Если пространство имен уже существует функция ничего не делает.</p>
+<h2>Параметры функции</h2>
+<figure class="table">
+  <table>
+    <tbody>
+      <tr>
+        <th>Параметр</th>
+        <th>Описание</th>
+      </tr>
+      <tr>
+        <th>namespace</th>
+        <th>Название создаваемого пространства имён.</th>
+      </tr>
+    </tbody>
+  </table>
+</figure>
+<h2>Возвращаемое значение</h2>
+<p>Возвращает ссылку на последний элемент цепочки имен.</p>
+<h2>Примеры использования</h2>
+<pre><code class="language-javascript">BX.namespace("MyCompany.Module.NewsForm");</code></pre>
+<p>
+  Создаст объект MyCompany в глобальном объекте BX следующего вида:</p>
+<pre><code class="language-javascript">BX.MyCompany = {
+    Module: {
+        NewsForm: {
+        }
+    }
+}</code></pre>
+<p>&nbsp;</p>
