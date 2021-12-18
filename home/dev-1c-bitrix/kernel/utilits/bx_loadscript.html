@@ -1,0 +1,56 @@
+<!--
+title: BX.loadScript
+description: 
+published: true
+date: 2021-12-18T19:09:48.892Z
+tags: 
+editor: ckeditor
+dateCreated: 2021-12-18T19:09:48.892Z
+-->
+
+<p>Загрузить и выполнить скрипт или серию скриптов. Скрипты будут загружены средствами DOM, без XMLHttpRequest.</p>
+<pre><code class="language-plaintext">void 
+BX.loadScript(
+&nbsp;string|array script[,
+&nbsp;function callback[
+&nbsp;DOMDocument doc]]
+);</code></pre>
+<p>Функция загрузит и выполнит скрипт или серию скриптов. Скрипты будут загружены средствами <strong>DOM</strong>, без <strong>XMLHttpRequest</strong>. Если передан массив скриптов и обработчик, то обработчик будет вызван после загрузки всех скриптов</p>
+<p>&nbsp;</p>
+<h2>Параметры функции</h2>
+<figure class="table">
+  <table>
+    <tbody>
+      <tr>
+        <th>Параметр</th>
+        <th>Описание</th>
+      </tr>
+      <tr>
+        <th>script</th>
+        <th>Исполняемый скрипт</th>
+      </tr>
+      <tr>
+        <th><i>callback</i></th>
+        <th>Обработчик</th>
+      </tr>
+      <tr>
+        <th><i>DOMDocument doc</i></th>
+        <th>&nbsp;</th>
+      </tr>
+    </tbody>
+  </table>
+</figure>
+<p>&nbsp;</p>
+<h2>Пример</h2>
+<pre><code class="language-javascript">BX.loadScript('/bitrix/components/bitrix/main.colorpicker/templates/.default/script.js', function() {
+  ...
+});</code></pre>
+<pre><code class="language-javascript">BX.loadScript([
+  "/bitrix/js/fileman/medialib/common.js?v=&lt;?=@filemtime($_SERVER['DOCUMENT_ROOT'].'/bitrix/js/fileman/medialib/common.js')?&gt;",
+  "/bitrix/js/fileman/medialib/core_admin.js?v=&lt;?=@filemtime($_SERVER['DOCUMENT_ROOT'].'/bitrix/js/fileman/medialib/core_admin.js')?&gt;"
+],
+function() {
+  ...
+});</code></pre>
+<p>&nbsp;</p>
+<p><a href="https://dev.1c-bitrix.ru/api_help/js_lib/kernel/utilits/bx_loadscript.php">Документация Битрикс</a></p>
