@@ -1,0 +1,46 @@
+<!--
+title: BX.loadCSS
+description: 
+published: true
+date: 2021-12-18T18:58:27.378Z
+tags: 
+editor: ckeditor
+dateCreated: 2021-12-18T18:58:27.378Z
+-->
+
+<pre><code class="language-plaintext">DOMNode|array
+BX.loadCSS(
+&nbsp;string|array css[,
+&nbsp;DOMDocument document]
+);</code></pre>
+<p>Функция загружает CSS-файл (или массив CSS-файлов) и применяет их к текущему или указанному документу.</p>
+<p>&nbsp;</p>
+<h2>Параметры функции</h2>
+<figure class="table">
+  <table>
+    <tbody>
+      <tr>
+        <th>Параметр</th>
+        <th>Описание</th>
+      </tr>
+      <tr>
+        <th>css</th>
+        <th>css-файл или массив css-файлов.</th>
+      </tr>
+      <tr>
+        <th><i>DOMDocument document</i></th>
+        <th>Документ, к которому нужно применить выбранный файл.</th>
+      </tr>
+    </tbody>
+  </table>
+</figure>
+<p>&nbsp;</p>
+<h2>Возвращаемое значение</h2>
+<p>Функция вернет ссылку на ссылку на объект LINK(или массив ссылок).</p>
+<p>&nbsp;</p>
+<h2>Примеры</h2>
+<pre><code class="language-javascript">BX.loadCSS('/bitrix/admin/htmleditor2/editor.css');</code></pre>
+<pre><code class="language-javascript">BX.loadCSS([
+  '/bitrix/components/bitrix/map.yandex.system/templates/.default/style.css',
+  '/bitrix/components/bitrix/map.yandex.view/settings/settings_iframe.css'
+]);</code></pre>
