@@ -2,7 +2,7 @@
 title: BX.util
 description: 
 published: true
-date: 2021-12-19T16:46:54.718Z
+date: 2021-12-19T17:12:50.219Z
 tags: 
 editor: ckeditor
 dateCreated: 2021-12-18T20:21:48.502Z
@@ -142,32 +142,30 @@ BX.util.str_pad(input, 3, "*") // 'Alien'</code></pre>
 </blockquote>
 <pre><code class="language-javascript">BX.util.strip_tags('&lt;p&gt;Параграф.&lt;/p&gt;&lt;!-- Комментарий --&gt; &lt;a href="#fragment"&gt;Ещё текст&lt;/a&gt;') // 'Параграф. Ещё текст'</code></pre>
 <p>&nbsp;</p>
+<h2>BX.util.urlencode()</h2>
+<p>Кодирует строку посредством <a href="https://developer.mozilla.org/ru/docs/Web/JavaScript/Reference/Global_Objects/encodeURIComponent">encodeURIComponent</a>, что приводит к некорректной декодировке на сайтах не в UTF. Для корректного приема закодированных таким образом данных на сервере можно выполнить функцию CUtil::JSPostUnescape, которая декодирует глобальные массивы $_GET, $_POST и $_REQUEST.</p>
 <p>&nbsp;</p>
-<figure class="table">
-  <table>
-    <tbody>
-      <tr>
-        <th>Функция</th>
-        <th>Описание</th>
-      </tr>
-      <tr>
-        <th>BX.util.urlencode()</th>
-        <th>Кодирует посредством encodeURIComponent, что приводит к некорректной декодировке на сайтах не в UTF. Для корректного приема закодированных таким образом данных на сервере можно выполнить функцию CUtil::JSPostUnescape, которая декодирует глобальные массивы $_GET, $_POST и $_REQUEST.</th>
-      </tr>
-      <tr>
-        <th>Array <strong>BX.util.deleteFromArray</strong>( array arr, int index );&nbsp;</th>
-        <th>Удаление элемента из массива с последующим сдвигом ключей.</th>
-      </tr>
-      <tr>
-        <th>Array <strong>BX.util.insertIntoArray</strong>( array arr, int index );&nbsp;</th>
-        <th>Вставка элемента в массив с последующим сдвигом ключей.</th>
-      </tr>
-      <tr>
-        <th><strong>BX.util.popup</strong>( string url, int width, int height );</th>
-        <th>Показ попапа, спозиционированного по центру.</th>
-      </tr>
-    </tbody>
-  </table>
-</figure>
+<h2><strong>BX.util.deleteFromArray</strong></h2>
+<pre><code class="language-plaintext">Array
+BX.util.deleteFromArray(
+  array arr,
+  int index
+);</code></pre>
+<p>Удаление элемента из массива с последующим сдвигом ключей.</p>
+<pre><code class="language-javascript">BX.util.deleteFromArray(['a', 'b', 'c', 'd', 'e'], 3) // ['a', 'b', 'c', 'e']</code></pre>
+<p>&nbsp;</p>
+<h2><strong>BX.util.insertIntoArray</strong></h2>
+<pre><code class="language-plaintext">Array
+BX.util.insertIntoArray(
+  array arr,
+  int index, element
+);&nbsp;</code></pre>
+<p>Вставка элемента в массив с последующим сдвигом ключей.</p>
+<pre><code class="language-javascript">BX.util.insertIntoArray(['a', 'b', 'c', 'd', 'e'], 3, 'x') // ['a', 'b', 'c', 'x', 'd', 'e']</code></pre>
+<p>&nbsp;</p>
+<h2><strong>BX.util.popup(</strong>string url, int width, int height )</h2>
+<p>Показ попапа, спозиционированного по центру с контентом по адресу, указанным в параметре <code>url</code> .</p>
+<pre><code class="language-javascript">BX.util.popup('https://ya.ru', 800, 600)  // показ страницы по адресу https://ya.ru
+BX.util.popup('signin', 1200, 600) // можно указывать относительные url</code></pre>
 <p>&nbsp;</p>
 <p><a href="https://dev.1c-bitrix.ru/api_help/js_lib/kernel/utilits/bx_util.php">Документация Битрикс</a></p>
