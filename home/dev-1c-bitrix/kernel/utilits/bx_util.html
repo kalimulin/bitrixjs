@@ -2,7 +2,7 @@
 title: BX.util
 description: 
 published: true
-date: 2021-12-19T08:31:59.826Z
+date: 2021-12-19T16:46:27.512Z
 tags: 
 editor: ckeditor
 dateCreated: 2021-12-18T20:21:48.502Z
@@ -135,6 +135,12 @@ BX.util.str_pad(input, 10, "-=", 'left') // '-=-=-Alien'
 BX.util.str_pad(input, 6, "___") // 'Alien_'
 BX.util.str_pad(input, 3, "*") // 'Alien'</code></pre>
 <p>&nbsp;</p>
+<h2>BX.util.strip_tags(<strong>string</strong>, <strong>allowed_tags</strong>)</h2>
+<p>Удаляет теги HTML из строки.</p>
+<blockquote>
+  <p><strong>Замечание</strong>: Комментарии HTML также будут удалены.&nbsp;</p>
+</blockquote>
+<pre><code class="language-javascript">BX.util.strip_tags('&lt;p&gt;Параграф.&lt;/p&gt;&lt;!-- Комментарий --&gt; &lt;a href="#fragment"&gt;Ещё текст&lt;/a&gt;') // 'Параграф. Ещё текст'</code></pre>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
 <figure class="table">
@@ -143,10 +149,6 @@ BX.util.str_pad(input, 3, "*") // 'Alien'</code></pre>
       <tr>
         <th>Функция</th>
         <th>Описание</th>
-      </tr>
-      <tr>
-        <th>BX.util.strip_tags()<br>&nbsp;</th>
-        <th>Аналоги функций PHP.</th>
       </tr>
       <tr>
         <th>BX.util.urlencode()</th>
