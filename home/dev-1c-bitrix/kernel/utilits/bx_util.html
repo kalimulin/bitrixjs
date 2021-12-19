@@ -2,7 +2,7 @@
 title: BX.util
 description: 
 published: true
-date: 2021-12-19T06:26:57.640Z
+date: 2021-12-19T07:54:24.868Z
 tags: 
 editor: ckeditor
 dateCreated: 2021-12-18T20:21:48.502Z
@@ -116,7 +116,7 @@ BX.util.htmlspecialcharsback('&amp;#39;') // "'"
 BX.util.htmlspecialcharsback('&amp;lt;') // '&lt;'
 BX.util.htmlspecialcharsback('&amp;gt;') // '&gt;'</code></pre>
 <p>&nbsp;</p>
-<h2>BX.utill.preg_quote(str, delimeter)</h2>
+<h2>BX.util.preg_quote(str, delimeter)</h2>
 <p>Функция <code>BX.utill.preg_quote</code> принимает строку <code>str</code> и добавляет обратный слеш перед каждым служебным символом. Это бывает полезно, если в составлении шаблона участвуют строковые переменные, значение которых в процессе работы скрипта может меняться. В случае, если указан необязательный параметр <code>delimiter</code>, он будет также экранироваться.&nbsp;</p>
 <p>В регулярных выражениях служебными считаются следующие символы: <code>. \ + * ? [ ^ ] $ ( ) { } = ! &lt; &gt; | : - #</code></p>
 <pre><code class="language-javascript">BX.util.preg_quote('$40 за g3/400', '/') // '\\$40 за g3\\/400'
