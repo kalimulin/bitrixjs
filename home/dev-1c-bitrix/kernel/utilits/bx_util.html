@@ -2,7 +2,7 @@
 title: BX.util
 description: 
 published: true
-date: 2021-12-19T17:12:50.219Z
+date: 2021-12-19T17:19:54.493Z
 tags: 
 editor: ckeditor
 dateCreated: 2021-12-18T20:21:48.502Z
@@ -167,5 +167,14 @@ BX.util.insertIntoArray(
 <p>Показ попапа, спозиционированного по центру с контентом по адресу, указанным в параметре <code>url</code> .</p>
 <pre><code class="language-javascript">BX.util.popup('https://ya.ru', 800, 600)  // показ страницы по адресу https://ya.ru
 BX.util.popup('signin', 1200, 600) // можно указывать относительные url</code></pre>
+<p>&nbsp;</p>
+<h2>BX.util.getCssName(string)</h2>
+<p>Преобразует стиль написания строки из camel case в kebab case</p>
+<pre><code class="language-javascript">BX.util.getCssName('isEqual') // 'is-equal'</code></pre>
+<p>&nbsp;</p>
+<h2>BX.util.getJsName(string)</h2>
+<p>Преобразует стиль написания строки из kebab case в &nbsp;camel case</p>
+<pre><code class="language-javascript">BX.util.getJsName('user-login-count') // 'userLoginCount'</code></pre>
+<p>&nbsp;</p>
 <p>&nbsp;</p>
 <p><a href="https://dev.1c-bitrix.ru/api_help/js_lib/kernel/utilits/bx_util.php">Документация Битрикс</a></p>
