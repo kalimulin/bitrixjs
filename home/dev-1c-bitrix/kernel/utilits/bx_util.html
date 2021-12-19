@@ -2,14 +2,14 @@
 title: BX.util
 description: 
 published: true
-date: 2021-12-18T20:45:24.569Z
+date: 2021-12-19T06:26:57.640Z
 tags: 
 editor: ckeditor
 dateCreated: 2021-12-18T20:21:48.502Z
 -->
 
 <p>Сборник функций-утилит.</p>
-<h2>BX.util.array_values</h2>
+<h2>BX.util.array_values(object)</h2>
 <p>Возвращает массив со всеми значениями переданного массива. Функция заново индексирует возвращаемый массив числовыми индексами.</p>
 <pre><code class="language-javascript">const arr = BX.util.array_values(
   {
@@ -20,7 +20,7 @@ dateCreated: 2021-12-18T20:21:48.502Z
 )
 console.log(arr);   // ['value1', 'value2', 'value3']</code></pre>
 <p>&nbsp;</p>
-<h2>BX.util.array_keys</h2>
+<h2>BX.util.array_keys(object)</h2>
 <p>Возвращает числовые и строковые ключи, содержащиеся в переданном массиве.</p>
 <pre><code class="language-javascript">const keys = BX.util.array_keys(
   {
@@ -31,7 +31,7 @@ console.log(arr);   // ['value1', 'value2', 'value3']</code></pre>
 )
 console.log(keys);   // ['key1', 'key2', 'key3']</code></pre>
 <p>&nbsp;</p>
-<h2>BX.util.array_merge</h2>
+<h2>BX.util.array_merge(array ...arrays)</h2>
 <p>Сливает один или большее количество массивов.</p>
 <pre><code class="language-javascript">const arr = BX.util.array_merge(
   ['a', 'b', 'c'],
@@ -40,13 +40,87 @@ console.log(keys);   // ['key1', 'key2', 'key3']</code></pre>
 
 console.log(arr);   // ['a', 'b', 'c', 'd', 'e', 'f']</code></pre>
 <p>&nbsp;</p>
-<h2>BX.util.array_unique</h2>
+<h2>BX.util.array_unique()</h2>
 <p>Убирает повторяющиеся значения из массива</p>
 <pre><code class="language-javascript">const arr = BX.util.array_unique(
   ['a', 'b', 'c', 'd', 'e', 'f', 'a', 'c', 'g']
 )
 
 console.log(arr);   // ['a', 'b', 'c', 'd', 'e', 'f', 'g']</code></pre>
+<p>&nbsp;</p>
+<h2>BX.util.in_array(value, array)</h2>
+<p>Проверяет, присутствует ли в массиве значение</p>
+<pre><code class="language-javascript">console.log(BX.util.in_array('a', ['a', 'b', 'c'])) //true
+
+console.log(BX.util.in_array('d', ['a', 'b', 'c'])) //false</code></pre>
+<p>&nbsp;</p>
+<h2>BX.util.array_search(str)</h2>
+<p>Осуществляет поиск данного значения в массиве и возвращает ключ первого найденного элемента в случае успешного выполнения. В случае отсутствия значение в массиве возвращается -1</p>
+<pre><code class="language-javascript">console.log(BX.util.array_search('a', ['a', 'b', 'c'])) // 0
+
+console.log(BX.util.array_search('c', ['a', 'b', 'c'])) // 2
+
+console.log(BX.util.array_search('d', ['a', 'b', 'c'])) // -1</code></pre>
+<p>&nbsp;</p>
+<h2>BX.util.trim(str)</h2>
+<p>Удаляет пробелы (или другие символы) из начала и конца строки. Работает только со строками, применяется стандартная функция trim(). Если передавать другой тип данных, функция возвращает переданное.</p>
+<pre><code class="language-javascript">BX.util.trim('   abcd   '); // 'abcd'</code></pre>
+<p>&nbsp;</p>
+<h2>BX.util.htmlspecialchars(str)</h2>
+<p>Преобразует специальные символы в HTML-сущности. В HTML некоторые символы имеют особый смысл и должны быть представлены в виде HTML-сущностей, чтобы сохранить их значение. Эта функция возвращает строку, над которой проведены эти преобразования.</p>
+<p>Производятся следующие преобразования:</p>
+<figure class="table">
+  <table>
+    <thead>
+      <tr>
+        <th>Символ</th>
+        <th>Замена</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><code>&amp;</code> (амперсанд)</td>
+        <td><code>&amp;amp;</code></td>
+      </tr>
+      <tr>
+        <td><code>"</code> (двойные кавычки)</td>
+        <td><code>&amp;quot;</code></td>
+      </tr>
+      <tr>
+        <td><code>'</code> (одинарные кавычки)</td>
+        <td><code>&amp;#039;</code></td>
+      </tr>
+      <tr>
+        <td><code>&lt;</code> (меньше)</td>
+        <td><code>&amp;lt;</code></td>
+      </tr>
+      <tr>
+        <td><code>&gt;</code> (больше)</td>
+        <td><code>&amp;gt;</code></td>
+      </tr>
+    </tbody>
+  </table>
+</figure>
+<p>&nbsp;</p>
+<pre><code class="language-javascript">BX.util.htmlspecialchars('&amp;') // '&amp;amp;'
+BX.util.htmlspecialchars('"') // '&amp;quot;'
+BX.util.htmlspecialchars('\'') // '&amp;#39;'
+BX.util.htmlspecialchars('&lt;') // '&amp;lt;'
+BX.util.htmlspecialchars('&gt;') // '&amp;gt;'</code></pre>
+<p>&nbsp;</p>
+<h2>BX.util.htmlspecialcharsback(str)</h2>
+<p>Производит преобразование строки, обратное тому, что делает функция <code>BX.util.htmlspecialchars</code> .</p>
+<pre><code class="language-javascript">BX.util.htmlspecialcharsback('&amp;amp;') // '&amp;'
+BX.util.htmlspecialcharsback('&amp;quot;') // '"'
+BX.util.htmlspecialcharsback('&amp;#39;') // "'"
+BX.util.htmlspecialcharsback('&amp;lt;') // '&lt;'
+BX.util.htmlspecialcharsback('&amp;gt;') // '&gt;'</code></pre>
+<p>&nbsp;</p>
+<h2>BX.utill.preg_quote(str, delimeter)</h2>
+<p>Функция <code>BX.utill.preg_quote</code> принимает строку <code>str</code> и добавляет обратный слеш перед каждым служебным символом. Это бывает полезно, если в составлении шаблона участвуют строковые переменные, значение которых в процессе работы скрипта может меняться. В случае, если указан необязательный параметр <code>delimiter</code>, он будет также экранироваться.&nbsp;</p>
+<p>В регулярных выражениях служебными считаются следующие символы: <code>. \ + * ? [ ^ ] $ ( ) { } = ! &lt; &gt; | : - #</code></p>
+<pre><code class="language-javascript">BX.util.preg_quote('$40 за g3/400', '/') // '\\$40 за g3\\/400'
+BX.util.preg_quote('*очень*') // '\\*очень\\*'</code></pre>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
 <figure class="table">
@@ -57,7 +131,7 @@ console.log(arr);   // ['a', 'b', 'c', 'd', 'e', 'f', 'g']</code></pre>
         <th>Описание</th>
       </tr>
       <tr>
-        <th>BX.util.in_array()<br>BX.util.array_search()<br>BX.util.trim()<br>BX.util.htmlspecialchars()<br>BX.util.htmlspecialcharsback()<br>BX.utill.preg_quote()<br>BX.util.str_pad()<br>BX.util.strip_tags()<br>&nbsp;</th>
+        <th>BX.util.str_pad()<br>BX.util.strip_tags()<br>&nbsp;</th>
         <th>Аналоги функций PHP.</th>
       </tr>
       <tr>
