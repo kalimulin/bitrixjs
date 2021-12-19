@@ -2,7 +2,7 @@
 title: BX.util
 description: 
 published: true
-date: 2021-12-19T08:25:39.928Z
+date: 2021-12-19T08:31:59.826Z
 tags: 
 editor: ckeditor
 dateCreated: 2021-12-18T20:21:48.502Z
@@ -124,7 +124,10 @@ BX.util.preg_quote('*очень*') // '\\*очень\\*'</code></pre>
 <p>&nbsp;</p>
 <h2>BX.util.str_pad(string, length, pad_string, pad_type)</h2>
 <p>Эта функция возвращает строку <code>string</code>, дополненную слева, справа до заданной длины. Если необязательный аргумент <code>pad_string</code> не передан, то <code>string</code> будет дополнен пробелами, иначе он будет дополнен символами из <code>pad_string</code> до нужной длины. &nbsp;Необязательный аргумент <code>pad_type</code> указывает, с какой стороны дополнять строку и может иметь значение <code>'right’</code> &nbsp;или <code>'left’</code>. Если не указан, то по умолчанию используется <code>'right’</code>. &nbsp;</p>
-<p>&nbsp;</p>
+<blockquote>
+  <p><strong>Замечание</strong>:</p>
+  <p><code>pad_string</code> может быть урезана, если необходимое количество дополняемых символов не делится нацело на длину строки <code>pad_string</code>.</p>
+</blockquote>
 <pre><code class="language-javascript">const input = 'Alien'
 BX.util.str_pad(input, 10) // 'Alien     '
 BX.util.str_pad(input, 10, "-=", 'right') // 'Alien-=-=-'
