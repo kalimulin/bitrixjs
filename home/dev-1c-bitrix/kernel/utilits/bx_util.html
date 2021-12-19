@@ -2,7 +2,7 @@
 title: BX.util
 description: 
 published: true
-date: 2021-12-19T17:33:42.968Z
+date: 2021-12-19T17:54:26.439Z
 tags: 
 editor: ckeditor
 dateCreated: 2021-12-18T20:21:48.502Z
@@ -187,5 +187,16 @@ BX.util.popup('signin', 1200, 600) // можно указывать относи
 <p>Перемешивает элементы массива в случайном порядке</p>
 <pre><code class="language-javascript">BX.util.shuffle(['a', 'b', 'c', 'd', 'e']) // ['d', 'a', 'c', 'b', 'e']
 BX.util.shuffle(['a', 'b', 'c', 'd', 'e']) // ['e', 'a', 'd', 'c', 'b']</code></pre>
+<p>&nbsp;</p>
+<h2>BX.util.objectSort(object, sortBy, sortDir)</h2>
+<p>Преобразование значений объекта в виде объектов в массив объектов с сортировкой по указанному ключу. Параметр <code>sortDir</code> необязательный и может принимать значения <code>'asc'</code> или <code>'desc'</code>, по умолчанию устанавливается в <code>'desc'</code>.&nbsp;</p>
+<pre><code class="language-javascript">BX.util.objectSort(
+  {
+    'L1': {'name': 'Last'},
+    'F1': {'name': 'First'}
+  },
+  'name',
+  'asc'
+); // return: [{'name' : 'First'}, {'name' : 'Last'}]</code></pre>
 <p>&nbsp;</p>
 <p><a href="https://dev.1c-bitrix.ru/api_help/js_lib/kernel/utilits/bx_util.php">Документация Битрикс</a></p>
