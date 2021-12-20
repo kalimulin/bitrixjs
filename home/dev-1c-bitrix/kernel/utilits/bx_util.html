@@ -2,7 +2,7 @@
 title: BX.util
 description: 
 published: true
-date: 2021-12-20T15:47:47.734Z
+date: 2021-12-20T16:00:47.610Z
 tags: 
 editor: ckeditor
 dateCreated: 2021-12-18T20:21:48.502Z
@@ -49,12 +49,18 @@ console.log(arr);   // ['a', 'b', 'c', 'd', 'e', 'f']</code></pre>
   }) // {value1: 'key1', value2: 'key2', value3: 'key3'}</code></pre>
 <p>&nbsp;</p>
 <h2>BX.util.array_diff(ar1, ar2, hash)</h2>
-<p>Меняет местами ключи и значения у объекта</p>
-<pre><code class="language-javascript">BX.util.array_flip({
-    'key1': 'value1',
-    'key2': 'value2',
-    'key3': 'value3',
-  }) // {value1: 'key1', value2: 'key2', value3: 'key3'}</code></pre>
+<p>Сравнивает два массива. Возвращает все значения из <code>ar1</code>, которых нет в <code>ar2</code>. Если передать третьим параметром имя функции, то сравниваются результаты выполнения этой функции с аргументом-значением.</p>
+<pre><code class="language-javascript">BX.util.array_diff(
+  ['key1', 'key2', 'KEY3'],
+  ['key1', 'key2', 'key3']
+)  // ['KEY3']
+
+const lowerCase = function(str) { return str.toLowerCase() }
+BX.util.array_diff(
+  ['key1', 'key2', 'KEY3'],
+  ['key1', 'key2', 'key3'],
+  lowerCase
+)  // []</code></pre>
 <p>&nbsp;</p>
 <h2>BX.util.array_unique()</h2>
 <p>Убирает повторяющиеся значения из массива</p>
