@@ -2,7 +2,7 @@
 title: BX.util
 description: 
 published: true
-date: 2021-12-20T18:14:23.927Z
+date: 2021-12-20T18:30:37.167Z
 tags: 
 editor: ckeditor
 dateCreated: 2021-12-18T20:21:48.502Z
@@ -34,7 +34,11 @@ console.log(arr);   // ['value1', 'value2', 'value3']</code></pre>
 )
 console.log(keys);   // ['key1', 'key2', 'key3']</code></pre>
 <p>&nbsp;</p>
-<h2>BX.util.array_merge(first, second)</h2>
+<h2>BX.util.array_merge(<i>firstArr</i>, <i>secondArr</i>)</h2>
+<blockquote>
+  <p>&nbsp;Функция устарела, используйте <a href="https://developer.mozilla.org/ru/docs/Web/JavaScript/Reference/Global_Objects/Array/concat">.concat()</a>:</p>
+  <p><code><i>firstArr.concat(secondArr)</i></code></p>
+</blockquote>
 <p>Сливает два массива в один.</p>
 <pre><code class="language-javascript">const arr = BX.util.array_merge(
   ['a', 'b', 'c'],
@@ -77,12 +81,20 @@ BX.util.array_diff(
 console.log(arr);   // ['a', 'b', 'c', 'd', 'e', 'f', 'g']</code></pre>
 <p>&nbsp;</p>
 <h2>BX.util.in_array(value, array)</h2>
+<blockquote>
+  <p>&nbsp;Функция устарела, используйте <a href="https://developer.mozilla.org/ru/docs/Web/JavaScript/Reference/Global_Objects/Array/includes">.includes()</a>:</p>
+  <p><code><i>myArr.includes(needle)</i></code></p>
+</blockquote>
 <p>Проверяет, присутствует ли в массиве значение</p>
 <pre><code class="language-javascript">console.log(BX.util.in_array('a', ['a', 'b', 'c'])) //true
 
 console.log(BX.util.in_array('d', ['a', 'b', 'c'])) //false</code></pre>
 <p>&nbsp;</p>
 <h2>BX.util.array_search(str)</h2>
+<blockquote>
+  <p>Функция устарела, используйте <a href="https://developer.mozilla.org/ru/docs/Web/JavaScript/Reference/Global_Objects/Array/findIndex">.findIndex()</a>:</p>
+  <p><code><i>myArr.findIndex(item =&gt; item === needle);</i></code></p>
+</blockquote>
 <p>Осуществляет поиск данного значения в массиве и возвращает ключ первого найденного элемента в случае успешного выполнения. В случае отсутствия значение в массиве возвращается -1</p>
 <pre><code class="language-javascript">console.log(BX.util.array_search('a', ['a', 'b', 'c'])) // 0
 
