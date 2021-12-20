@@ -2,7 +2,7 @@
 title: BX.util
 description: 
 published: true
-date: 2021-12-20T16:17:44.876Z
+date: 2021-12-20T18:14:23.927Z
 tags: 
 editor: ckeditor
 dateCreated: 2021-12-18T20:21:48.502Z
@@ -10,6 +10,9 @@ dateCreated: 2021-12-18T20:21:48.502Z
 
 <p>Сборник функций-утилит.</p>
 <h2>BX.util.array_values(object)</h2>
+<blockquote>
+  <p>&nbsp;Функция устарела, используйте <code><i>[].filter(value =&gt; !BX.Type.isNil(value))</i></code></p>
+</blockquote>
 <p>Возвращает массив со всеми значениями переданного массива. Функция заново индексирует возвращаемый массив числовыми индексами.</p>
 <pre><code class="language-javascript">const arr = BX.util.array_values(
   {
@@ -63,6 +66,9 @@ BX.util.array_diff(
 )  // []</code></pre>
 <p>&nbsp;</p>
 <h2>BX.util.array_unique()</h2>
+<blockquote>
+  <p>&nbsp;Функция устарела, используйте <a href="https://developer.mozilla.org/ru/docs/Web/JavaScript/Reference/Global_Objects/Set">Set</a></p>
+</blockquote>
 <p>Убирает повторяющиеся значения из массива</p>
 <pre><code class="language-javascript">const arr = BX.util.array_unique(
   ['a', 'b', 'c', 'd', 'e', 'f', 'a', 'c', 'g']
