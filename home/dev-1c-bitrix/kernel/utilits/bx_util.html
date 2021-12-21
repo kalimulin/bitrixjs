@@ -2,7 +2,7 @@
 title: BX.util
 description: 
 published: true
-date: 2021-12-21T17:23:38.264Z
+date: 2021-12-21T17:41:54.112Z
 tags: 
 editor: ckeditor
 dateCreated: 2021-12-18T20:21:48.502Z
@@ -326,5 +326,12 @@ BX.Text.getRandom(20) // 'c4tvungeyu48ixoeqc8d'</code></pre>
 <p><code>dec_point</code> - символ десятичной запятой</p>
 <p><code>thousands_sep</code> - символ разделителя тысяч</p>
 <pre><code class="language-javascript">BX.util.number_format(1100234423.435, 2, ',', '`') // '1`100`234`423,43'</code></pre>
+<p>&nbsp;</p>
+<h2>BX.util.addObjectToForm(object, form, prefix)</h2>
+<p>Добавляет к переданной форме объект. Префикс необязателен.</p>
+<p>&nbsp;</p>
+<h2>BX.util.escapeRegExp(str)</h2>
+<p>Экранирует спецсимволы в переданной строке. Экранируются: <code>- &nbsp;- [ ] / { } ( ) * + ? . \ ^ $ |</code></p>
+<pre><code class="language-javascript">BX.util.escapeRegExp('test[string]') // 'test\\[string\\]'</code></pre>
 <p>&nbsp;</p>
 <p><a href="https://dev.1c-bitrix.ru/api_help/js_lib/kernel/utilits/bx_util.php">Документация Битрикс</a></p>
