@@ -2,7 +2,7 @@
 title: BX.util
 description: 
 published: true
-date: 2021-12-21T16:32:54.740Z
+date: 2021-12-21T16:40:26.786Z
 tags: 
 editor: ckeditor
 dateCreated: 2021-12-18T20:21:48.502Z
@@ -285,9 +285,15 @@ BX.util.shuffle(['a', 'b', 'c', 'd', 'e']) // ['e', 'a', 'd', 'c', 'b']</code></
 <blockquote>
   <p>&nbsp;Функция устарела, используйте <code>BX.Uri.addParam(url, params)</code></p>
 </blockquote>
-<p>Добавляет в <code>url</code> указанные параметры из объекта <code>params</code></p>
+<p>Добавляет в <code>url</code> указанные параметры из объекта <code>params</code> &nbsp;в формате<code><i>{'param1': 'value1', 'param2': 'value2'}</i></code></p>
 <pre><code class="language-javascript">BX.util.add_url_param('http://bitrix.loc/bitrix/admin/sprint_migrations.php', {config: 'cfg', lang: 'ru'})
 
 // 'http://bitrix.loc/bitrix/admin/sprint_migrations.php?config=cfg&amp;lang=ru'</code></pre>
+<p>&nbsp;</p>
+<h2>BX.util.buildQueryString(params)</h2>
+<p>Преобразует объект в набор параметров для GET запроса</p>
+<pre><code class="language-javascript">BX.util.buildQueryString({'param1': 'value1', 'param2': 'value2'})
+
+// 'param1=value1&amp;param2=value2'</code></pre>
 <p>&nbsp;</p>
 <p><a href="https://dev.1c-bitrix.ru/api_help/js_lib/kernel/utilits/bx_util.php">Документация Битрикс</a></p>
