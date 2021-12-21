@@ -2,7 +2,7 @@
 title: BX.util
 description: 
 published: true
-date: 2021-12-21T16:49:16.477Z
+date: 2021-12-21T17:13:32.024Z
 tags: 
 editor: ckeditor
 dateCreated: 2021-12-18T20:21:48.502Z
@@ -305,5 +305,19 @@ BX.util.even('sfsdf') // false
 BX.util.even(null) // false
 BX.util.even(2.1) // true
 BX.util.even(1.1) // false</code></pre>
+<p>&nbsp;</p>
+<h2>BX.util.hashCode(str)</h2>
+<p>Преобразует входящую строку в код hash</p>
+<pre><code class="language-javascript">BX.util.hashCode('string') // -891985903
+BX.util.hashCode('newstring') // 320426417</code></pre>
+<p>&nbsp;</p>
+<h2>BX.util.getRandomString(length)</h2>
+<blockquote>
+  <p><code>BX.util.getRandomString(length)</code> &nbsp;- это обёртка функции <code>BX.Text.getRandom(length)</code></p>
+</blockquote>
+<p>Генерирует случайную строку указанной длины</p>
+<pre><code class="language-javascript">BX.util.getRandomString(20) // '2m4gumjtrgi34ufbvw53'
+BX.Text.getRandom(20) // 'c4tvungeyu48ixoeqc8d'</code></pre>
+<p>&nbsp;</p>
 <p>&nbsp;</p>
 <p><a href="https://dev.1c-bitrix.ru/api_help/js_lib/kernel/utilits/bx_util.php">Документация Битрикс</a></p>
