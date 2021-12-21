@@ -2,7 +2,7 @@
 title: BX.util
 description: 
 published: true
-date: 2021-12-21T02:58:32.030Z
+date: 2021-12-21T04:31:56.724Z
 tags: 
 editor: ckeditor
 dateCreated: 2021-12-18T20:21:48.502Z
@@ -182,6 +182,10 @@ BX.util.htmlspecialcharsback('&amp;gt;') // '&gt;'</code></pre>
 <pre><code class="language-javascript">BX.util.preg_quote('$40 за g3/400', '/') // '\\$40 за g3\\/400'
 BX.util.preg_quote('*очень*') // '\\*очень\\*'</code></pre>
 <p>&nbsp;</p>
+<h2>BX.util.jsencode(str)</h2>
+<p>Функция кодирует текстовые строки для использования в JavaScript, вставляя экранирующие символы <code>\</code>, перед небезопасными символами JavaScript:&nbsp;</p>
+<p><code>\\ \t \n \r " ' &lt; &gt; \u2028 \u2029</code></p>
+<p>&nbsp;</p>
 <h2>BX.util.str_pad(string, length, pad_string, pad_type)</h2>
 <blockquote>
   <p>Функция устарела, используйте вместо нее <a href="https://developer.mozilla.org/ru/docs/Web/JavaScript/Reference/Global_Objects/String/padStart"><i>.padStart()</i></a><i> и </i><a href="https://developer.mozilla.org/ru/docs/Web/JavaScript/Reference/Global_Objects/String/padEnd"><i>.padEnd()</i></a></p>
@@ -204,6 +208,11 @@ BX.util.str_pad(input, 3, "*") // 'Alien'</code></pre>
   <p><strong>Замечание</strong>: Комментарии HTML также будут удалены.&nbsp;</p>
 </blockquote>
 <pre><code class="language-javascript">BX.util.strip_tags('&lt;p&gt;Параграф.&lt;/p&gt;&lt;!-- Комментарий --&gt; &lt;a href="#fragment"&gt;Ещё текст&lt;/a&gt;') // 'Параграф. Ещё текст'</code></pre>
+<p>&nbsp;</p>
+<h2>BX.util.strip_php_tags(<strong>string</strong>)</h2>
+<p>Удаляет PHP вставки в из строки. Теги HTML не будут удалены.</p>
+<pre><code class="language-javascript">BX.util.strip_php_tags('&lt;td&gt;&lt;?echo GetMessage("interface_grid_checked")?&gt;0&lt;/td&gt;') // '&lt;td&gt;0&lt;/td&gt;'
+BX.util.strip_php_tags('&lt;span id="&lt;?=$ar["ID"]?&gt;selected"&gt;0&lt;/span&gt;') // '&lt;span id="selected"&gt;0&lt;/span&gt;'</code></pre>
 <p>&nbsp;</p>
 <h2>BX.util.urlencode()</h2>
 <p>Кодирует строку посредством <a href="https://developer.mozilla.org/ru/docs/Web/JavaScript/Reference/Global_Objects/encodeURIComponent">encodeURIComponent</a>, что приводит к некорректной декодировке на сайтах не в UTF. Для корректного приема закодированных таким образом данных на сервере можно выполнить функцию CUtil::JSPostUnescape, которая декодирует глобальные массивы $_GET, $_POST и $_REQUEST.</p>
