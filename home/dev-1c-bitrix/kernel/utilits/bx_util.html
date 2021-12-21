@@ -2,7 +2,7 @@
 title: BX.util
 description: 
 published: true
-date: 2021-12-21T17:13:32.024Z
+date: 2021-12-21T17:23:38.264Z
 tags: 
 editor: ckeditor
 dateCreated: 2021-12-18T20:21:48.502Z
@@ -319,5 +319,12 @@ BX.util.hashCode('newstring') // 320426417</code></pre>
 <pre><code class="language-javascript">BX.util.getRandomString(20) // '2m4gumjtrgi34ufbvw53'
 BX.Text.getRandom(20) // 'c4tvungeyu48ixoeqc8d'</code></pre>
 <p>&nbsp;</p>
+<h2>BX.util.number_format(number, decimals, dec_point, thousands_sep)</h2>
+<p>Форматирует переданное число.</p>
+<p><code>number</code> - число для форматирования</p>
+<p><code>decimals</code> - количество символов после десятичной запятой</p>
+<p><code>dec_point</code> - символ десятичной запятой</p>
+<p><code>thousands_sep</code> - символ разделителя тысяч</p>
+<pre><code class="language-javascript">BX.util.number_format(1100234423.435, 2, ',', '`') // '1`100`234`423,43'</code></pre>
 <p>&nbsp;</p>
 <p><a href="https://dev.1c-bitrix.ru/api_help/js_lib/kernel/utilits/bx_util.php">Документация Битрикс</a></p>
