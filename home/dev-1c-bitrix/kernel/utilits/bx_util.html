@@ -2,7 +2,7 @@
 title: BX.util
 description: 
 published: true
-date: 2021-12-21T05:13:34.858Z
+date: 2021-12-21T16:32:54.740Z
 tags: 
 editor: ckeditor
 dateCreated: 2021-12-18T20:21:48.502Z
@@ -86,9 +86,9 @@ console.log(arr);   // ['a', 'b', 'c', 'd', 'e', 'f', 'g']</code></pre>
   <p><code><i>myArr.includes(needle)</i></code></p>
 </blockquote>
 <p>Проверяет, присутствует ли в массиве значение</p>
-<pre><code class="language-javascript">console.log(BX.util.in_array('a', ['a', 'b', 'c'])) //true
+<pre><code class="language-javascript">BX.util.in_array('a', ['a', 'b', 'c']) //true
 
-console.log(BX.util.in_array('d', ['a', 'b', 'c'])) //false</code></pre>
+BX.util.in_array('d', ['a', 'b', 'c']) //false</code></pre>
 <p>&nbsp;</p>
 <h2>BX.util.array_search(str)</h2>
 <blockquote>
@@ -96,11 +96,11 @@ console.log(BX.util.in_array('d', ['a', 'b', 'c'])) //false</code></pre>
   <p><code><i>myArr.findIndex(item =&gt; item === needle);</i></code></p>
 </blockquote>
 <p>Осуществляет поиск данного значения в массиве и возвращает ключ первого найденного элемента в случае успешного выполнения. В случае отсутствия значение в массиве возвращается -1</p>
-<pre><code class="language-javascript">console.log(BX.util.array_search('a', ['a', 'b', 'c'])) // 0
+<pre><code class="language-javascript">BX.util.array_search('a', ['a', 'b', 'c']) // 0
 
-console.log(BX.util.array_search('c', ['a', 'b', 'c'])) // 2
+BX.util.array_search('c', ['a', 'b', 'c']) // 2
 
-console.log(BX.util.array_search('d', ['a', 'b', 'c'])) // -1</code></pre>
+BX.util.array_search('d', ['a', 'b', 'c']) // -1</code></pre>
 <p>&nbsp;</p>
 <h2>BX.util.object_search_key(needle, haystack)</h2>
 <p>Осуществляет рекурсивный поиск ключа <code>needle</code> по объекту <code>haystack</code> и возвращает его значение. Если ключ не найден, возвращается <code>false</code></p>
@@ -273,9 +273,21 @@ BX.util.shuffle(['a', 'b', 'c', 'd', 'e']) // ['e', 'a', 'd', 'c', 'b']</code></
 <pre><code class="language-javascript">BX.util.hex2rgb('#fdf9e5') // {r: 253, g: 249, b: 229}</code></pre>
 <p>&nbsp;</p>
 <h2>BX.util.remove_url_param(url, param)</h2>
-<p>Удаляет из url указанный параметр</p>
+<blockquote>
+  <p>&nbsp;Функция устарела, используйте <code>BX.Uri.removeParam(url, param)</code></p>
+</blockquote>
+<p>Удаляет из <code>url</code> указанный параметр <code>param</code></p>
 <pre><code class="language-javascript">BX.util.remove_url_param('http://bitrix.loc/bitrix/admin/sprint_migrations.php?config=cfg&amp;lang=ru', 'config')
 
 // 'http://bitrix.loc/bitrix/admin/sprint_migrations.php?lang=ru'</code></pre>
+<p>&nbsp;</p>
+<h2>BX.util.add_url_param(url, params)</h2>
+<blockquote>
+  <p>&nbsp;Функция устарела, используйте <code>BX.Uri.addParam(url, params)</code></p>
+</blockquote>
+<p>Добавляет в <code>url</code> указанные параметры из объекта <code>params</code></p>
+<pre><code class="language-javascript">BX.util.add_url_param('http://bitrix.loc/bitrix/admin/sprint_migrations.php', {config: 'cfg', lang: 'ru'})
+
+// 'http://bitrix.loc/bitrix/admin/sprint_migrations.php?config=cfg&amp;lang=ru'</code></pre>
 <p>&nbsp;</p>
 <p><a href="https://dev.1c-bitrix.ru/api_help/js_lib/kernel/utilits/bx_util.php">Документация Битрикс</a></p>
