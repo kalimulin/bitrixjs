@@ -2,7 +2,7 @@
 title: BX.util
 description: 
 published: true
-date: 2021-12-20T18:30:37.167Z
+date: 2021-12-21T02:58:32.030Z
 tags: 
 editor: ckeditor
 dateCreated: 2021-12-18T20:21:48.502Z
@@ -101,6 +101,26 @@ console.log(BX.util.in_array('d', ['a', 'b', 'c'])) //false</code></pre>
 console.log(BX.util.array_search('c', ['a', 'b', 'c'])) // 2
 
 console.log(BX.util.array_search('d', ['a', 'b', 'c'])) // -1</code></pre>
+<p>&nbsp;</p>
+<h2>BX.util.object_search_key(needle, haystack)</h2>
+<p>Осуществляет рекурсивный поиск ключа <code>needle</code> по объекту <code>haystack</code> и возвращает его значение. Если ключ не найден, возвращается <code>false</code></p>
+<pre><code class="language-javascript">BX.util.object_search_key('key1',{
+    'key1': 'value1',
+    'key2': 'value2',
+    'key3': 'value3',
+  })  // 'value1'
+  
+BX.util.object_search_key('key4',{
+    'key1': 'value1',
+    'key2': 'value2',
+    'key3': 'value3',
+  })  // false
+  
+BX.util.object_search_key('key4',{
+    'key1': 'value1',
+    'key2': 'value2',
+    'key3': {'key4': 'value4'},
+}) // 'value4'</code></pre>
 <p>&nbsp;</p>
 <h2>BX.util.trim(str)</h2>
 <p>Удаляет пробелы (или другие символы) из начала и конца строки. Работает только со строками, применяется стандартная функция trim(). Если передавать другой тип данных, функция возвращает переданное.</p>
