@@ -2,7 +2,7 @@
 title: BX.ajax
 description: 
 published: true
-date: 2021-12-22T16:31:11.250Z
+date: 2021-12-22T16:33:56.184Z
 tags: 
 editor: ckeditor
 dateCreated: 2021-12-22T16:31:11.250Z
@@ -88,36 +88,36 @@ dateCreated: 2021-12-22T16:31:11.250Z
                 BX.closeWait('xls_container',wait); // прячем прелоадер
             });
         });
-    &lt;/script&gt;</code></pre>
+&lt;/script&gt;</code></pre>
 <p>***</p>
 <pre><code class="language-javascript">BX.ajax({
-           url: '&lt;?=urlencode($templateFolder.'/ajax.php');?&gt;',
-           data: {'val1':'value', 'val2':'value2'},
-           method: 'POST',
-           dataType: 'json',
-           timeout: 30,
-           async: true,
-           processData: true,
-           scriptsRunFirst: true,
-           emulateOnload: true,
-           start: true,
-           cache: false,
-           onsuccess: function(data){
-            console.log(data);
-           },
-           onfailure: function(){
-           }
-          }); </code></pre>
+  url: '&lt;?=urlencode($templateFolder.'/ajax.php');?&gt;',
+  data: {'val1':'value', 'val2':'value2'},
+  method: 'POST',
+  dataType: 'json',
+  timeout: 30,
+  async: true,
+  processData: true,
+  scriptsRunFirst: true,
+  emulateOnload: true,
+  start: true,
+  cache: false,
+  onsuccess: function(data){
+    console.log(data);
+  },
+  onfailure: function(){
+  }
+}); </code></pre>
 <p>Обратите внимание на параметр data, в него можно установить не только строку, но и объект с нужными вам параметрами. Причем предварительно объект можно сформировать отдельно и подставить его в это значение, например:</p>
 <pre><code class="language-javascript">var objTest = { 
-   test    : 5,  
-   bla     : true , 
-   some : false
-}   
+  test: 5,
+  bla: true,
+  some : false
+}
  
 BX.ajax({
-           url: '&lt;?=urlencode($templateFolder.'/ajax.php');?&gt;',
-           data: objTest,  
+  url: '&lt;?=urlencode($templateFolder.'/ajax.php');?&gt;',
+  data: objTest,  
 });</code></pre>
 <p>Т.е. нет необходимости формировать строку URL а передавать все в data в виде осмысленных переменных.</p>
 <p>***</p>
@@ -140,4 +140,6 @@ BX.ajax({
   }
 });</code></pre>
 <p>скрипт лежит в файле template.php какого-нибудь шаблона компонента. файл для обработки аякс-запросов, ajax.php лежит в папке с данным шаблоном</p>
+<p>&nbsp;</p>
+<p><a href="https://dev.1c-bitrix.ru/api_help/js_lib/ajax/bx_ajax.php">Документация Битрикс</a></p>
 <p>&nbsp;</p>
