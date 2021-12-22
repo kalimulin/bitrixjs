@@ -1,0 +1,143 @@
+<!--
+title: BX.ajax
+description: 
+published: true
+date: 2021-12-22T16:31:11.250Z
+tags: 
+editor: ckeditor
+dateCreated: 2021-12-22T16:31:11.250Z
+-->
+
+<pre><code class="language-plaintext">XMLHttpRequest BX.ajax(
+     object params
+);</code></pre>
+<p>Низкоуровневая функция для отправки аяксовых запросов. Формат объекта <strong>params:</strong></p>
+<pre><code class="language-javascript">{
+      url: URL запроса
+      method: GET|POST
+      data: POST-данные для отправки (строка или объект)
+      dataType: html|json|script – данные какого типа предполагаются в ответе
+      timeout: 60 – таймаут запроса в секундах
+      async: true|false – должен ли запрос быть асинхронным или нет
+      processData: true|false – нужно ли сразу обрабатывать данные?
+      scriptsRunFirst: false|true – нужно ли выполнять все найденные скрипты перед тем, как отдавать сожеримое обработчику или только те, в тэге которых присутствует атрибут bxrunfirst
+      emulateOnload: true|false – нужно ли эмулировать событие window.onload для загруженных скриптов
+      start: true|false – отправить ли запрос сразу или он будет запущен вручную
+      cache: true|false – в случае значения false к параметру URL будет добавляться случайный кусок, чтобы избежать браузерного кэширования
+      onsuccess: функция-обработчик результата
+      onfailure: функция-обработчик ошибки
+}
+</code></pre>
+<p>Функция возвращает ссылку на объект XMLHttpRequest, при помощи которого осуществляется запрос. В случае успеха запроса будет вызван обработчик <strong>onsuccess</strong>. В качестве параметра будет результат запроса. Если параметр <strong>processData</strong> установлен в <i>true</i>, то обработка будет в зависимости от типа данных:</p>
+<ul>
+  <li><strong>html</strong>: результат будет очищен от js-кода. Код будет выполнен после передачи данных обработчику. Перед передачей будут выполнены все скрипты с атрибутом bxrunfirst, или все скрипты, если параметр scriptsRunFirst установлен в true;</li>
+  <li><strong>script</strong>: полученный результат будет передан обработчику и выполнен. Что раньше – определяется параметром scriptsRunFirst</li>
+  <li><strong>json</strong>: результат будет интерпретирован как описание объекта в формате json. Обработчик получит объект.</li>
+</ul>
+<p>Если подключена библиотека для работы с <strong>localStorage</strong> (<strong>core_ls</strong>), то помимо перечисленных параметров можно использовать указать параметры:</p>
+<ul>
+  <li><strong>lsId</strong> – строковой идентификатор для передачи данных запроса между различными вкладками;</li>
+  <li><strong>lsTimeout</strong> – время жизни данных запроса</li>
+  <li><strong>lsForce</strong> - <i>false|true</i></li>
+</ul>
+<p>Эти параметры предназначены для интерфейсов, постоянно опрашивающих сервер с целью получения каких-либо данных. В этом случае данные запроса будут сохраняться в localStorage, и если в любой вкладке текущего браузера будет сделан запрос с тем же самым <strong>lsId</strong>, то вместо совершения запроса обработчик получит данные, сохраненные в localStorage. Соответственно, <strong>lsTimeout</strong> должен быть чуть меньше интервала отправки запросов. Параметр <strong>lsForce</strong> позволяет принудительно отправить запрос в обход проверки наличия данных в localStorage и обновить это данные.</p>
+<h2>Примеры использования</h2>
+<p>Пример скрипт обработки php-массива<br>Имеем php-массив с какими-то данными ($PRICE_LIST_DATA). каждую строку массива нужно отправлять ajax-ом в файл на обработку и при это публиковать пользователю результат работы каждого шага. В файле с php после получения массива выводим скрипт:<br>(простите за смесь BX и jquery).</p>
+<pre><code class="language-javascript">&lt;script type="text/javascript"&gt;
+        function work_with_row(index,value,d){
+            BX('notes').html('&lt;p&gt;Идет обработка. Строка №'+index+'&lt;/p&gt;');
+            BX.ajax({   
+                url: '/ajax.php',
+                data: {
+                    &lt;перечисление всех ключей и значений данных для передачи на сервер&gt;
+                },
+                method: 'POST',
+                dataType: 'json',
+                timeout: 30,
+                async: true,
+                processData: true,
+                scriptsRunFirst: true,
+                emulateOnload: true,
+                start: true,
+                cache: false,
+                onsuccess: function(data){
+                    if(parseInt(data.ID)&gt;0){
+                        BX('results').append(&lt;результат обработки&gt;);                     
+                    } else {
+                        $('#errors').append(&lt;результат обработки, если вернулись какие-то не верные данные&gt;);
+                    }
+                    d &amp;&amp; d.resolve();  // добавляем результат обработки в вывод на очередь вывода на экран
+                },
+                onfailure: function(){
+                    d &amp;&amp; d.resolve();
+                }
+            });
+        }
+
+        BX.ready(function(){
+            var wait = BX.showWait('xls_container');  // показываем прелоадер в правом верхнем углу контейнер
+            var PRICE_LIST_DATA = &lt;?=json_encode($PRICE_LIST_DATA);?&gt;;
+            var deferreds = [];
+            $.each(PRICE_LIST_DATA,function(index,value){  // не знаю, есть ли такой аналог в BX - не разбирался. в АПИ не описано
+                var d = new $.Deferred();
+                work_with_row(index,value, d);
+                deferreds.push(d);
+            });
+            $.when.apply($, deferreds).done(function () {  // не знаю, есть ли такой аналог в BX - не разбирался. в АПИ не описано
+                BX('notes').append('Обработка завершена');
+                BX.closeWait('xls_container',wait); // прячем прелоадер
+            });
+        });
+    &lt;/script&gt;</code></pre>
+<p>***</p>
+<pre><code class="language-javascript">BX.ajax({
+           url: '&lt;?=urlencode($templateFolder.'/ajax.php');?&gt;',
+           data: {'val1':'value', 'val2':'value2'},
+           method: 'POST',
+           dataType: 'json',
+           timeout: 30,
+           async: true,
+           processData: true,
+           scriptsRunFirst: true,
+           emulateOnload: true,
+           start: true,
+           cache: false,
+           onsuccess: function(data){
+            console.log(data);
+           },
+           onfailure: function(){
+           }
+          }); </code></pre>
+<p>Обратите внимание на параметр data, в него можно установить не только строку, но и объект с нужными вам параметрами. Причем предварительно объект можно сформировать отдельно и подставить его в это значение, например:</p>
+<pre><code class="language-javascript">var objTest = { 
+   test    : 5,  
+   bla     : true , 
+   some : false
+}   
+ 
+BX.ajax({
+           url: '&lt;?=urlencode($templateFolder.'/ajax.php');?&gt;',
+           data: objTest,  
+});</code></pre>
+<p>Т.е. нет необходимости формировать строку URL а передавать все в data в виде осмысленных переменных.</p>
+<p>***</p>
+<pre><code class="language-javascript">BX.ajax({
+  url: '&lt;?=urlencode($templateFolder.'/ajax.php');?&gt;' + '?action=PRODUCT_UPDATE&amp;PRODUCT_ID='+PRODUCT_ID+'quantity='+quantity,
+  data: объект или строка с данными запроса,
+  method: 'POST',
+  dataType: 'json',
+  timeout: 30,
+  async: true,
+  processData: true,
+  scriptsRunFirst: true,
+  emulateOnload: true,
+  start: true,
+  cache: false,
+  onsuccess: function(data){
+    console.log(data);
+  },
+  onfailure: function(){
+  }
+});</code></pre>
+<p>скрипт лежит в файле template.php какого-нибудь шаблона компонента. файл для обработки аякс-запросов, ajax.php лежит в папке с данным шаблоном</p>
+<p>&nbsp;</p>
