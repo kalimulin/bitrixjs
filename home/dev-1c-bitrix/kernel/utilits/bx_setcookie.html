@@ -1,0 +1,52 @@
+<!--
+title: BX.setCookie
+description: 
+published: true
+date: 2021-12-22T05:26:18.941Z
+tags: 
+editor: ckeditor
+dateCreated: 2021-12-22T05:26:18.941Z
+-->
+
+<pre><code class="language-plaintext">result_type
+BX.setCookie(
+&nbsp;name,
+&nbsp;value,
+&nbsp;array options
+);</code></pre>
+<p>Установка Cookie.</p>
+<p>&nbsp;</p>
+<h2>Параметры функции</h2>
+<figure class="table">
+  <table>
+    <tbody>
+      <tr>
+        <th>Параметр</th>
+        <th>Описание</th>
+      </tr>
+      <tr>
+        <th>name</th>
+        <th>Имя</th>
+      </tr>
+      <tr>
+        <th>value</th>
+        <th>Значение (строка)</th>
+      </tr>
+      <tr>
+        <th><i>options</i></th>
+        <th>
+          <p>Ключи&nbsp;</p>
+          <ul>
+            <li><strong>expires</strong> - основной, указывается в секундах (через сколько запись cookie будет удалена). Если указать любое отрицательно число, то запись будет удалена сразу.</li>
+            <li><strong>path</strong> - путь в домена сайта, для которых будет работать данная запись cookie.</li>
+            <li><strong>secure</strong> - если передать <i>true</i>, то cookie будет работать только на https сайте.</li>
+          </ul>
+        </th>
+      </tr>
+    </tbody>
+  </table>
+</figure>
+<p>&nbsp;</p>
+<h2>Примеры использования</h2>
+<p>Установка куки на сутки:</p>
+<pre><code class="language-plaintext">BX.setCookie('test', '123456', {expires: 86400}); </code></pre>

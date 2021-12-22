@@ -1,0 +1,70 @@
+<!--
+title: BX.Recorder
+description: 
+published: true
+date: 2021-12-22T05:33:32.876Z
+tags: 
+editor: ckeditor
+dateCreated: 2021-12-22T05:33:32.876Z
+-->
+
+<pre><code class="language-plaintext">BX.Recorder(
+&nbsp; stream,
+&nbsp; options
+);</code></pre>
+<p>Класс для записи и кодирования звука.</p>
+<p>&nbsp;</p>
+<h2>Параметры конструктора</h2>
+<figure class="table">
+  <table>
+    <tbody>
+      <tr>
+        <th>Параметр</th>
+        <th>Описание</th>
+      </tr>
+      <tr>
+        <th>stream</th>
+        <th>Объект типа MediaStream. Поток, звук из которого будет записан.</th>
+      </tr>
+      <tr>
+        <th>options</th>
+        <th>Объект с параметрами кодирования. Поля объекта: <strong>type</strong> - mime-тип формата, в который должна быть кодирована запись. список допустимых параметров можно получить вызовом BX.Recorder.isTypeSupported.</th>
+      </tr>
+    </tbody>
+  </table>
+</figure>
+<p>&nbsp;</p>
+<figure class="table">
+  <table>
+    <tbody>
+      <tr>
+        <th>Методы</th>
+        <th>Описание</th>
+      </tr>
+      <tr>
+        <th><strong>BX.Recorder.isSupported</strong></th>
+        <th>Возвращает <i>true</i>, если запись звука поддерживается в браузере.</th>
+      </tr>
+      <tr>
+        <th><strong>BX.Recorder.isTypeSupported(type)</strong></th>
+        <th>Параметр <strong>type</strong> - string. Возвращает <i>true</i>, если класс поддерживает запись звука в формате type. На текущий момент поддерживается только формат audio/mp3</th>
+      </tr>
+      <tr>
+        <th><strong>BX.Recorder.prototype.start()</strong></th>
+        <th>Начать запись и кодирование звука.</th>
+      </tr>
+      <tr>
+        <th><strong>BX.Recorder.prototype.stop()</strong></th>
+        <th>Остановить запись и кодирование звука</th>
+      </tr>
+      <tr>
+        <th><strong>BX.Recorder.prototype.dispose()</strong></th>
+        <th>Деструктор объекта</th>
+      </tr>
+    </tbody>
+  </table>
+</figure>
+<blockquote>
+  <p><strong>Примечание</strong>. Для получения результатов записи и кодирование приложение скрипт должен подписаться на событие <strong>stop</strong>. В данном событии будет возвращен объект <strong>Blob</strong> с записью.</p>
+</blockquote>
+<p><a href="https://dev.1c-bitrix.ru/api_help/js_lib/kernel/utilits/bx_recorder.php">Документация Битрикс</a></p>

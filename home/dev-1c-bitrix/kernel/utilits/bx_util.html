@@ -2,7 +2,7 @@
 title: BX.util
 description: 
 published: true
-date: 2021-12-19T17:54:26.439Z
+date: 2021-12-21T17:41:54.112Z
 tags: 
 editor: ckeditor
 dateCreated: 2021-12-18T20:21:48.502Z
@@ -10,6 +10,9 @@ dateCreated: 2021-12-18T20:21:48.502Z
 
 <p>Сборник функций-утилит.</p>
 <h2>BX.util.array_values(object)</h2>
+<blockquote>
+  <p>&nbsp;Функция устарела, используйте <code><i>[].filter(value =&gt; !BX.Type.isNil(value))</i></code></p>
+</blockquote>
 <p>Возвращает массив со всеми значениями переданного массива. Функция заново индексирует возвращаемый массив числовыми индексами.</p>
 <pre><code class="language-javascript">const arr = BX.util.array_values(
   {
@@ -31,8 +34,12 @@ console.log(arr);   // ['value1', 'value2', 'value3']</code></pre>
 )
 console.log(keys);   // ['key1', 'key2', 'key3']</code></pre>
 <p>&nbsp;</p>
-<h2>BX.util.array_merge(array ...arrays)</h2>
-<p>Сливает один или большее количество массивов.</p>
+<h2>BX.util.array_merge(<i>firstArr</i>, <i>secondArr</i>)</h2>
+<blockquote>
+  <p>&nbsp;Функция устарела, используйте <a href="https://developer.mozilla.org/ru/docs/Web/JavaScript/Reference/Global_Objects/Array/concat">.concat()</a>:</p>
+  <p><code><i>firstArr.concat(secondArr)</i></code></p>
+</blockquote>
+<p>Сливает два массива в один.</p>
 <pre><code class="language-javascript">const arr = BX.util.array_merge(
   ['a', 'b', 'c'],
   ['d', 'e', 'f']
@@ -40,7 +47,32 @@ console.log(keys);   // ['key1', 'key2', 'key3']</code></pre>
 
 console.log(arr);   // ['a', 'b', 'c', 'd', 'e', 'f']</code></pre>
 <p>&nbsp;</p>
+<h2>BX.util.array_flip(object)</h2>
+<p>Меняет местами ключи и значения у объекта</p>
+<pre><code class="language-javascript">BX.util.array_flip({
+    'key1': 'value1',
+    'key2': 'value2',
+    'key3': 'value3',
+  }) // {value1: 'key1', value2: 'key2', value3: 'key3'}</code></pre>
+<p>&nbsp;</p>
+<h2>BX.util.array_diff(ar1, ar2, hash)</h2>
+<p>Сравнивает два массива. Возвращает все значения из <code>ar1</code>, которых нет в <code>ar2</code>. Если передать третьим параметром <code>hash</code> имя функции, то сравниваются результаты выполнения этой функции с аргументом-значением.</p>
+<pre><code class="language-javascript">BX.util.array_diff(
+  ['key1', 'key2', 'KEY3'],
+  ['key1', 'key2', 'key3']
+)  // ['KEY3']
+
+const lowerCase = function(str) { return str.toLowerCase() }
+BX.util.array_diff(
+  ['key1', 'key2', 'KEY3'],
+  ['key1', 'key2', 'key3'],
+  lowerCase
+)  // []</code></pre>
+<p>&nbsp;</p>
 <h2>BX.util.array_unique()</h2>
+<blockquote>
+  <p>&nbsp;Функция устарела, используйте <a href="https://developer.mozilla.org/ru/docs/Web/JavaScript/Reference/Global_Objects/Set">Set</a></p>
+</blockquote>
 <p>Убирает повторяющиеся значения из массива</p>
 <pre><code class="language-javascript">const arr = BX.util.array_unique(
   ['a', 'b', 'c', 'd', 'e', 'f', 'a', 'c', 'g']
@@ -49,18 +81,46 @@ console.log(arr);   // ['a', 'b', 'c', 'd', 'e', 'f']</code></pre>
 console.log(arr);   // ['a', 'b', 'c', 'd', 'e', 'f', 'g']</code></pre>
 <p>&nbsp;</p>
 <h2>BX.util.in_array(value, array)</h2>
+<blockquote>
+  <p>&nbsp;Функция устарела, используйте <a href="https://developer.mozilla.org/ru/docs/Web/JavaScript/Reference/Global_Objects/Array/includes">.includes()</a>:</p>
+  <p><code><i>myArr.includes(needle)</i></code></p>
+</blockquote>
 <p>Проверяет, присутствует ли в массиве значение</p>
-<pre><code class="language-javascript">console.log(BX.util.in_array('a', ['a', 'b', 'c'])) //true
+<pre><code class="language-javascript">BX.util.in_array('a', ['a', 'b', 'c']) //true
 
-console.log(BX.util.in_array('d', ['a', 'b', 'c'])) //false</code></pre>
+BX.util.in_array('d', ['a', 'b', 'c']) //false</code></pre>
 <p>&nbsp;</p>
 <h2>BX.util.array_search(str)</h2>
+<blockquote>
+  <p>Функция устарела, используйте <a href="https://developer.mozilla.org/ru/docs/Web/JavaScript/Reference/Global_Objects/Array/findIndex">.findIndex()</a>:</p>
+  <p><code><i>myArr.findIndex(item =&gt; item === needle);</i></code></p>
+</blockquote>
 <p>Осуществляет поиск данного значения в массиве и возвращает ключ первого найденного элемента в случае успешного выполнения. В случае отсутствия значение в массиве возвращается -1</p>
-<pre><code class="language-javascript">console.log(BX.util.array_search('a', ['a', 'b', 'c'])) // 0
+<pre><code class="language-javascript">BX.util.array_search('a', ['a', 'b', 'c']) // 0
 
-console.log(BX.util.array_search('c', ['a', 'b', 'c'])) // 2
+BX.util.array_search('c', ['a', 'b', 'c']) // 2
 
-console.log(BX.util.array_search('d', ['a', 'b', 'c'])) // -1</code></pre>
+BX.util.array_search('d', ['a', 'b', 'c']) // -1</code></pre>
+<p>&nbsp;</p>
+<h2>BX.util.object_search_key(needle, haystack)</h2>
+<p>Осуществляет рекурсивный поиск ключа <code>needle</code> по объекту <code>haystack</code> и возвращает его значение. Если ключ не найден, возвращается <code>false</code></p>
+<pre><code class="language-javascript">BX.util.object_search_key('key1',{
+    'key1': 'value1',
+    'key2': 'value2',
+    'key3': 'value3',
+  })  // 'value1'
+  
+BX.util.object_search_key('key4',{
+    'key1': 'value1',
+    'key2': 'value2',
+    'key3': 'value3',
+  })  // false
+  
+BX.util.object_search_key('key4',{
+    'key1': 'value1',
+    'key2': 'value2',
+    'key3': {'key4': 'value4'},
+}) // 'value4'</code></pre>
 <p>&nbsp;</p>
 <h2>BX.util.trim(str)</h2>
 <p>Удаляет пробелы (или другие символы) из начала и конца строки. Работает только со строками, применяется стандартная функция trim(). Если передавать другой тип данных, функция возвращает переданное.</p>
@@ -122,6 +182,10 @@ BX.util.htmlspecialcharsback('&amp;gt;') // '&gt;'</code></pre>
 <pre><code class="language-javascript">BX.util.preg_quote('$40 за g3/400', '/') // '\\$40 за g3\\/400'
 BX.util.preg_quote('*очень*') // '\\*очень\\*'</code></pre>
 <p>&nbsp;</p>
+<h2>BX.util.jsencode(str)</h2>
+<p>Функция кодирует текстовые строки для использования в JavaScript, вставляя экранирующие символы <code>\</code>, перед небезопасными символами JavaScript:&nbsp;</p>
+<p><code>\\ \t \n \r " ' &lt; &gt; \u2028 \u2029</code></p>
+<p>&nbsp;</p>
 <h2>BX.util.str_pad(string, length, pad_string, pad_type)</h2>
 <blockquote>
   <p>Функция устарела, используйте вместо нее <a href="https://developer.mozilla.org/ru/docs/Web/JavaScript/Reference/Global_Objects/String/padStart"><i>.padStart()</i></a><i> и </i><a href="https://developer.mozilla.org/ru/docs/Web/JavaScript/Reference/Global_Objects/String/padEnd"><i>.padEnd()</i></a></p>
@@ -144,6 +208,11 @@ BX.util.str_pad(input, 3, "*") // 'Alien'</code></pre>
   <p><strong>Замечание</strong>: Комментарии HTML также будут удалены.&nbsp;</p>
 </blockquote>
 <pre><code class="language-javascript">BX.util.strip_tags('&lt;p&gt;Параграф.&lt;/p&gt;&lt;!-- Комментарий --&gt; &lt;a href="#fragment"&gt;Ещё текст&lt;/a&gt;') // 'Параграф. Ещё текст'</code></pre>
+<p>&nbsp;</p>
+<h2>BX.util.strip_php_tags(<strong>string</strong>)</h2>
+<p>Удаляет PHP вставки в из строки. Теги HTML не будут удалены.</p>
+<pre><code class="language-javascript">BX.util.strip_php_tags('&lt;td&gt;&lt;?echo GetMessage("interface_grid_checked")?&gt;0&lt;/td&gt;') // '&lt;td&gt;0&lt;/td&gt;'
+BX.util.strip_php_tags('&lt;span id="&lt;?=$ar["ID"]?&gt;selected"&gt;0&lt;/span&gt;') // '&lt;span id="selected"&gt;0&lt;/span&gt;'</code></pre>
 <p>&nbsp;</p>
 <h2>BX.util.urlencode()</h2>
 <p>Кодирует строку посредством <a href="https://developer.mozilla.org/ru/docs/Web/JavaScript/Reference/Global_Objects/encodeURIComponent">encodeURIComponent</a>, что приводит к некорректной декодировке на сайтах не в UTF. Для корректного приема закодированных таким образом данных на сервере можно выполнить функцию CUtil::JSPostUnescape, которая декодирует глобальные массивы $_GET, $_POST и $_REQUEST.</p>
@@ -198,5 +267,71 @@ BX.util.shuffle(['a', 'b', 'c', 'd', 'e']) // ['e', 'a', 'd', 'c', 'b']</code></
   'name',
   'asc'
 ); // return: [{'name' : 'First'}, {'name' : 'Last'}]</code></pre>
+<p>&nbsp;</p>
+<h2>BX.util.hex2rgb(color)</h2>
+<p>Преобразует значение цвета и HEX-формата в RGB. Возвращает объект с соответствующими значениями RGB.</p>
+<pre><code class="language-javascript">BX.util.hex2rgb('#fdf9e5') // {r: 253, g: 249, b: 229}</code></pre>
+<p>&nbsp;</p>
+<h2>BX.util.remove_url_param(url, param)</h2>
+<blockquote>
+  <p>&nbsp;Функция устарела, используйте <code>BX.Uri.removeParam(url, param)</code></p>
+</blockquote>
+<p>Удаляет из <code>url</code> указанный параметр <code>param</code></p>
+<pre><code class="language-javascript">BX.util.remove_url_param('http://bitrix.loc/bitrix/admin/sprint_migrations.php?config=cfg&amp;lang=ru', 'config')
+
+// 'http://bitrix.loc/bitrix/admin/sprint_migrations.php?lang=ru'</code></pre>
+<p>&nbsp;</p>
+<h2>BX.util.add_url_param(url, params)</h2>
+<blockquote>
+  <p>&nbsp;Функция устарела, используйте <code>BX.Uri.addParam(url, params)</code></p>
+</blockquote>
+<p>Добавляет в <code>url</code> указанные параметры из объекта <code>params</code> &nbsp;в формате<code><i>{'param1': 'value1', 'param2': 'value2'}</i></code></p>
+<pre><code class="language-javascript">BX.util.add_url_param('http://bitrix.loc/bitrix/admin/sprint_migrations.php', {config: 'cfg', lang: 'ru'})
+
+// 'http://bitrix.loc/bitrix/admin/sprint_migrations.php?config=cfg&amp;lang=ru'</code></pre>
+<p>&nbsp;</p>
+<h2>BX.util.buildQueryString(params)</h2>
+<p>Преобразует объект в набор параметров для GET запроса</p>
+<pre><code class="language-javascript">BX.util.buildQueryString({'param1': 'value1', 'param2': 'value2'})
+
+// 'param1=value1&amp;param2=value2'</code></pre>
+<p>&nbsp;</p>
+<h2>BX.util.even(digit)</h2>
+<p>Возвращает <code>true</code>, если переданный аргумент можно преобразовать в целое число (используется <code>parseInt()</code>) и это число будет чётным, иначе возвращается <code>false</code>.&nbsp;</p>
+<pre><code class="language-javascript">BX.util.even(2) // true
+BX.util.even(1) // false
+BX.util.even('2') // true
+BX.util.even('sfsdf') // false
+BX.util.even(null) // false
+BX.util.even(2.1) // true
+BX.util.even(1.1) // false</code></pre>
+<p>&nbsp;</p>
+<h2>BX.util.hashCode(str)</h2>
+<p>Преобразует входящую строку в код hash</p>
+<pre><code class="language-javascript">BX.util.hashCode('string') // -891985903
+BX.util.hashCode('newstring') // 320426417</code></pre>
+<p>&nbsp;</p>
+<h2>BX.util.getRandomString(length)</h2>
+<blockquote>
+  <p><code>BX.util.getRandomString(length)</code> &nbsp;- это обёртка функции <code>BX.Text.getRandom(length)</code></p>
+</blockquote>
+<p>Генерирует случайную строку указанной длины</p>
+<pre><code class="language-javascript">BX.util.getRandomString(20) // '2m4gumjtrgi34ufbvw53'
+BX.Text.getRandom(20) // 'c4tvungeyu48ixoeqc8d'</code></pre>
+<p>&nbsp;</p>
+<h2>BX.util.number_format(number, decimals, dec_point, thousands_sep)</h2>
+<p>Форматирует переданное число.</p>
+<p><code>number</code> - число для форматирования</p>
+<p><code>decimals</code> - количество символов после десятичной запятой</p>
+<p><code>dec_point</code> - символ десятичной запятой</p>
+<p><code>thousands_sep</code> - символ разделителя тысяч</p>
+<pre><code class="language-javascript">BX.util.number_format(1100234423.435, 2, ',', '`') // '1`100`234`423,43'</code></pre>
+<p>&nbsp;</p>
+<h2>BX.util.addObjectToForm(object, form, prefix)</h2>
+<p>Добавляет к переданной форме объект. Префикс необязателен.</p>
+<p>&nbsp;</p>
+<h2>BX.util.escapeRegExp(str)</h2>
+<p>Экранирует спецсимволы в переданной строке. Экранируются: <code>- &nbsp;- [ ] / { } ( ) * + ? . \ ^ $ |</code></p>
+<pre><code class="language-javascript">BX.util.escapeRegExp('test[string]') // 'test\\[string\\]'</code></pre>
 <p>&nbsp;</p>
 <p><a href="https://dev.1c-bitrix.ru/api_help/js_lib/kernel/utilits/bx_util.php">Документация Битрикс</a></p>

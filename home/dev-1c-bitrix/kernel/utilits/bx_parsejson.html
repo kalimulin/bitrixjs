@@ -1,0 +1,43 @@
+<!--
+title: BX.parseJSON
+description: 
+published: true
+date: 2021-12-22T05:44:28.160Z
+tags: 
+editor: ckeditor
+dateCreated: 2021-12-22T05:42:21.405Z
+-->
+
+<pre><code class="language-plaintext">BX.parseJSON(
+&nbsp;string data,
+&nbsp;context
+);</code></pre>
+<p>Возвращает переданную строку как JSON-объект.</p>
+<blockquote>
+  <p><strong>Примечание</strong>: В случае ошибки парсинга строки будет вызвано событие <strong>onParseJSONFailure</strong>.</p>
+</blockquote>
+<p>&nbsp;</p>
+<h2>Параметры функции</h2>
+<figure class="table">
+  <table>
+    <tbody>
+      <tr>
+        <th>Параметр</th>
+        <th>Описание</th>
+      </tr>
+      <tr>
+        <th>string data</th>
+        <th>Строка</th>
+      </tr>
+      <tr>
+        <th>context</th>
+        <th>Необязательный. В случае ошибки (и вызова onParseJSONFailure) вторым параметром обработчику будет передан данный контекст.</th>
+      </tr>
+    </tbody>
+  </table>
+</figure>
+<p>&nbsp;</p>
+<h2>Примеры использования</h2>
+<pre><code class="language-javascript">BX.parseJSON('{test: 123}'); // {test: 123} </code></pre>
+<p>&nbsp;</p>
+<p><a href="https://dev.1c-bitrix.ru/api_help/js_lib/kernel/utilits/bx_parsejson.php">Документация Битрикс</a></p>
