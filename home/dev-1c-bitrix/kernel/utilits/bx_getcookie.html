@@ -1,0 +1,57 @@
+<!--
+title: BX.getCookie
+description: 
+published: true
+date: 2021-12-22T05:19:35.000Z
+tags: 
+editor: ckeditor
+dateCreated: 2021-12-22T05:19:35.000Z
+-->
+
+<pre><code class="language-plaintext">result_type
+BX.getCookie(
+&nbsp;name
+);</code></pre>
+<p>Возвращает значение cookie с именем name.</p>
+<p>&nbsp;</p>
+<h2>Параметры функции</h2>
+<figure class="table">
+  <table>
+    <tbody>
+      <tr>
+        <th>Параметр</th>
+        <th>Описание</th>
+      </tr>
+      <tr>
+        <th>name</th>
+        <th>Имя</th>
+      </tr>
+    </tbody>
+  </table>
+</figure>
+<p>&nbsp;</p>
+<h2>Примеры использования</h2>
+<pre><code class="language-javascript">document.cookie = 'test=123456';
+BX.getCookie('test'); // вернет - 123456 </code></pre>
+<pre><code class="language-javascript">//отслеживание входа в личный кабинет (авторизация)
+if (BX.getCookie('BITRIX_SM_USER_AUTH')) {
+  if (typeof dataLayer == 'undefined') {
+    dataLayer = [{
+      'event' : 'GAEvent',
+      'eventCategory' : 'form',
+      'eventAction' : 'success',
+      'eventLabel' : 'log_in'
+    }];
+  } else {
+    dataLayer.push({
+      'event' : 'GAEvent',
+      'eventCategory' : 'form',
+      'eventAction' : 'success',
+      'eventLabel' : 'log_in'
+    });
+  }   
+	
+  // после выполнения удаляем куку
+  BX.setCookie('BITRIX_SM_USER_AUTH', '', {path: '/', expires: -100});
+}
+</code></pre>
