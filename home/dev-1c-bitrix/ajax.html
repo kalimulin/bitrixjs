@@ -2,7 +2,7 @@
 title: Расширение AJAX
 description: 
 published: true
-date: 2021-12-22T17:13:47.078Z
+date: 2021-12-22T17:37:14.963Z
 tags: 
 editor: ckeditor
 dateCreated: 2021-12-22T16:22:38.850Z
@@ -17,7 +17,7 @@ dateCreated: 2021-12-22T16:22:38.850Z
         <th>Описание</th>
       </tr>
       <tr>
-        <th><a href="/home/dev-1c-bitrix/ajax/bx_ajax">BX.ajax</a></th>
+        <th><a href="/home/dev-1c-bitrix/ajax/bx_ajax">BX.ajax(params)</a></th>
         <th>Низкоуровневая функция для отправки ajax запросов.&nbsp;</th>
       </tr>
       <tr>
@@ -29,40 +29,132 @@ dateCreated: 2021-12-22T16:22:38.850Z
         <th>Проверяет, является ли переданный <code>url</code> кроссдоменным для <code>location</code></th>
       </tr>
       <tr>
-        <th><a href="https://dev.1c-bitrix.ru/api_help/js_lib/ajax/bx_ajax_setup.php">BX.ajax.Setup</a></th>
+        <th>BX.ajax.processRequestData(data, config)</th>
+        <th>&nbsp;</th>
+      </tr>
+      <tr>
+        <th>BX.ajax.processScripts(scripts, bRunFirst, cb)</th>
+        <th>&nbsp;</th>
+      </tr>
+      <tr>
+        <th>BX.ajax.prepareData(arData, prefix)</th>
+        <th>&nbsp;</th>
+      </tr>
+      <tr>
+        <th>BX.ajax.xhrSuccess(xhr)</th>
+        <th>&nbsp;</th>
+      </tr>
+      <tr>
+        <th><a href="https://dev.1c-bitrix.ru/api_help/js_lib/ajax/bx_ajax_setup.php">BX.ajax.Setup</a>(config, bTemp)</th>
         <th>Устанавливает значения по умолчанию для параметров <a href="/home/dev-1c-bitrix/ajax">ajax&nbsp;запросов</a>.</th>
       </tr>
       <tr>
-        <th><a href="https://dev.1c-bitrix.ru/api_help/js_lib/ajax/bx_ajax_get.php">BX.ajax.get</a></th>
+        <th>BX.ajax.replaceLocalStorageValue(lsId, data, ttl)</th>
+        <th>&nbsp;</th>
+      </tr>
+      <tr>
+        <th><a href="https://dev.1c-bitrix.ru/api_help/js_lib/ajax/bx_ajax_get.php">BX.ajax.get</a>(url, data, callback)</th>
         <th>Простая отправка GET-запроса и передача результата обработчику.</th>
       </tr>
       <tr>
-        <th><a href="https://dev.1c-bitrix.ru/api_help/js_lib/ajax/bx_ajax_post.php">BX.ajax.post</a></th>
+        <th>BX.ajax.getCaptcha(callback)</th>
+        <th>&nbsp;</th>
+      </tr>
+      <tr>
+        <th>BX.ajax.insertToNode(url, node)</th>
+        <th>&nbsp;</th>
+      </tr>
+      <tr>
+        <th><a href="https://dev.1c-bitrix.ru/api_help/js_lib/ajax/bx_ajax_post.php">BX.ajax.post</a>(url, data, callback)</th>
         <th>Простая отправка POST-запроса и передача результата обработчику.</th>
+      </tr>
+      <tr>
+        <th>BX.ajax.promise(config)</th>
+        <th>&nbsp;</th>
       </tr>
       <tr>
         <th><a href="https://dev.1c-bitrix.ru/api_help/js_lib/ajax/bx_ajax_inserttonode.php">BX.ajax.insertToNode</a></th>
         <th>Запрашивает данные по указанному адресу и вставляет ответ в указанный контейнер.</th>
       </tr>
       <tr>
-        <th><a href="https://dev.1c-bitrix.ru/api_help/js_lib/ajax/bx_ajax_load.php">BX.ajax.load</a></th>
+        <th><a href="https://dev.1c-bitrix.ru/api_help/js_lib/ajax/bx_ajax_load.php">BX.ajax.load</a>(arObs, callback)</th>
         <th>Загружает очередь ресурсов и вызывает обработчик.</th>
       </tr>
       <tr>
-        <th><a href="https://dev.1c-bitrix.ru/api_help/js_lib/ajax/bx_ajax_loadjson.php">BX.ajax.loadJSON</a></th>
+        <th><a href="https://dev.1c-bitrix.ru/api_help/js_lib/ajax/bx_ajax_loadjson.php">BX.ajax.loadJSON</a>(url, data, callback, callback_failure)</th>
         <th>Загружает json-объект из заданного url и передаёт его обработчику.</th>
       </tr>
       <tr>
-        <th><a href="https://dev.1c-bitrix.ru/api_help/js_lib/ajax/bx_ajax_loadscriptajax.php">BX.ajax.loadScriptAjax</a></th>
+        <th><a href="https://dev.1c-bitrix.ru/api_help/js_lib/ajax/bx_ajax_loadscriptajax.php">BX.ajax.loadScriptAjax</a>(script_src, callback, bPreload)</th>
         <th>Загружает и выполняет скрипт или серию скриптов.</th>
       </tr>
       <tr>
-        <th><a href="https://dev.1c-bitrix.ru/api_help/js_lib/ajax/bx_ajax_runaction.php">BX.ajax.runAction</a></th>
+        <th><a href="https://dev.1c-bitrix.ru/api_help/js_lib/ajax/bx_ajax_runaction.php">BX.ajax.runAction</a>(action, config)</th>
         <th>Метод для запуска аякс-действий в модуле.</th>
       </tr>
       <tr>
-        <th><a href="https://dev.1c-bitrix.ru/api_help/js_lib/ajax/bx_ajax_runcomponentaction.php">BX.ajax.runComponentAction</a></th>
+        <th><a href="https://dev.1c-bitrix.ru/api_help/js_lib/ajax/bx_ajax_runcomponentaction.php">BX.ajax.runComponentAction</a>(component, action, config)</th>
         <th>Метод для запуска аякс-действий в компоненте.</th>
+      </tr>
+      <tr>
+        <th>BX.ajax.submit(obForm, callback)</th>
+        <th>&nbsp;</th>
+      </tr>
+      <tr>
+        <th>BX.ajax.submitComponentForm(obForm, container, bWait)</th>
+        <th>&nbsp;</th>
+      </tr>
+      <tr>
+        <th>BX.ajax.prepareForm(obForm, data)</th>
+        <th>&nbsp;</th>
+      </tr>
+      <tr>
+        <th>BX.ajax.submitAjax(obForm, config)</th>
+        <th>&nbsp;</th>
+      </tr>
+      <tr>
+        <th>BX.ajax.UpdatePageData(arData)</th>
+        <th>&nbsp;</th>
+      </tr>
+      <tr>
+        <th>BX.ajax.UpdatePageTitle(title)</th>
+        <th>&nbsp;</th>
+      </tr>
+      <tr>
+        <th>BX.ajax.UpdateWindowTitle(title)</th>
+        <th>&nbsp;</th>
+      </tr>
+      <tr>
+        <th>BX.ajax.UpdatePageNavChain(nav_chain)</th>
+        <th>&nbsp;</th>
+      </tr>
+      <tr>
+        <th>BX.userOptions.setAjaxPath(url)</th>
+        <th>&nbsp;</th>
+      </tr>
+      <tr>
+        <th>BX.userOptions.save(sCategory, sName, sValName, sVal, bCommon)</th>
+        <th>&nbsp;</th>
+      </tr>
+      <tr>
+        <th>BX.userOptions.send(callback)</th>
+        <th>&nbsp;</th>
+      </tr>
+      <tr>
+        <th>BX.userOptions.del</th>
+        <th>&nbsp;</th>
+      </tr>
+      <tr>
+        <th>BX.ajax.component(node)</th>
+        <th>&nbsp;</th>
+      </tr>
+      <tr>
+        <th>BX.ajax.FormData()</th>
+        <th>&nbsp;</th>
+      </tr>
+      <tr>
+        <th>BX.ajax.FormData.isSupported()</th>
+        <th>&nbsp;</th>
       </tr>
     </tbody>
   </table>
