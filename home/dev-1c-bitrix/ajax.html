@@ -2,7 +2,7 @@
 title: Расширение AJAX
 description: 
 published: true
-date: 2021-12-23T05:42:30.922Z
+date: 2021-12-23T05:46:27.975Z
 tags: 
 editor: ckeditor
 dateCreated: 2021-12-22T16:22:38.850Z
@@ -67,71 +67,3 @@ dateCreated: 2021-12-22T16:22:38.850Z
     </tbody>
   </table>
 </figure>
-<h2>Примеры</h2>
-<pre><code class="language-php">&lt;?
-require($_SERVER["DOCUMENT_ROOT"]."/bitrix/header.php");
-$APPLICATION-&gt;SetTitle("AJAX");
-   CJSCore::Init(array('ajax'));
-   $sidAjax = 'testAjax';
-if(isset($_REQUEST['ajax_form']) &amp;&amp; $_REQUEST['ajax_form'] == $sidAjax){
-   $GLOBALS['APPLICATION']-&gt;RestartBuffer();
-   echo CUtil::PhpToJSObject(array(
-            'RESULT' =&gt; 'HELLO',
-            'ERROR' =&gt; ''
-   ));
-   die();
-}
-?&gt;
-
-&lt;div class="group"&gt;
-   &lt;div id="block"&gt;&lt;/div &gt;
-   &lt;div id="process"&gt;wait ... &lt;/div &gt;
-&lt;/div&gt;
-&lt;script&gt;
-   window.BXDEBUG = true;
-function DEMOLoad(){
-   BX.hide(BX("block"));
-   BX.show(BX("process"));
-   BX.ajax.loadJSON(
-      '&lt;?=$APPLICATION-&gt;GetCurPage()?&gt;?ajax_form=&lt;?=$sidAjax?&gt;',
-      DEMOResponse
-   );
-}
-function DEMOResponse (data){
-   BX.debug('AJAX-DEMOResponse ', data);
-   BX("block").innerHTML = data.RESULT;
-   BX.show(BX("block"));
-   BX.hide(BX("process"));
-
-   BX.onCustomEvent(
-      BX(BX("block")),
-      'DEMOUpdate'
-   );
-}
-
-BX.ready(function(){
-   /*
-   BX.addCustomEvent(BX("block"), 'DEMOUpdate', function(){
-      window.location.href = window.location.href;
-   });
-   */
-   BX.hide(BX("block"));
-   BX.hide(BX("process"));
-   
-    BX.bindDelegate(
-      document.body, 'click', {className: 'css_ajax' },
-      function(e){
-         if(!e)
-            e = window.event;
-         
-         DEMOLoad();
-         return BX.PreventDefault(e);
-      }
-   );
-   
-});
-&lt;/script&gt;
-
-&lt;div class="css_ajax"&gt;click Me&lt;/div&gt;
-
-&lt;?require($_SERVER["DOCUMENT_ROOT"]."/bitrix/footer.php");?&gt;</code></pre>
