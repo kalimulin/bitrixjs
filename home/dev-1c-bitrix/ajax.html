@@ -2,7 +2,7 @@
 title: Расширение AJAX
 description: 
 published: true
-date: 2021-12-23T05:38:38.699Z
+date: 2021-12-23T05:42:30.922Z
 tags: 
 editor: ckeditor
 dateCreated: 2021-12-22T16:22:38.850Z
@@ -17,19 +17,19 @@ dateCreated: 2021-12-22T16:22:38.850Z
         <th>Описание</th>
       </tr>
       <tr>
-        <th><a href="/home/dev-1c-bitrix/ajax/bx_ajax">BX.ajax(params)</a></th>
+        <th><a href="/home/dev-1c-bitrix/ajax/bx_ajax">BX.ajax (params)</a></th>
         <th>Низкоуровневая функция для отправки ajax запросов.&nbsp;</th>
       </tr>
       <tr>
-        <th><a href="/home/dev-1c-bitrix/ajax/bx_ajax_xhr">BX.ajax.xhr()</a></th>
+        <th><a href="/home/dev-1c-bitrix/ajax/bx_ajax_xhr">BX.ajax.xhr ()</a></th>
         <th>Возвращает конструктор <a href="https://learn.javascript.ru/xmlhttprequest">XMLHttpRequest()</a></th>
       </tr>
       <tr>
-        <th><a href="/home/dev-1c-bitrix/ajax/bx_ajax_iscrossdomain">BX.ajax.isCrossDomain(url, location)</a></th>
+        <th><a href="/home/dev-1c-bitrix/ajax/bx_ajax_iscrossdomain">BX.ajax.isCrossDomain (url, location)</a></th>
         <th>Проверяет, является ли переданный <code>url</code> кроссдоменным для <code>location</code></th>
       </tr>
       <tr>
-        <th><a href="https://dev.1c-bitrix.ru/api_help/js_lib/ajax/bx_ajax_setup.php">BX.ajax.Setup</a>(config, bTemp)</th>
+        <th><a href="/home/dev-1c-bitrix/ajax/bx_ajax_setup">BX.ajax.Setup (config, bTemp)</a></th>
         <th>Устанавливает значения по умолчанию для параметров <a href="/home/dev-1c-bitrix/ajax">ajax&nbsp;запросов</a>.</th>
       </tr>
       <tr>
@@ -68,7 +68,7 @@ dateCreated: 2021-12-22T16:22:38.850Z
   </table>
 </figure>
 <h2>Примеры</h2>
-<pre><code class="language-html">&lt;?
+<pre><code class="language-php">&lt;?
 require($_SERVER["DOCUMENT_ROOT"]."/bitrix/header.php");
 $APPLICATION-&gt;SetTitle("AJAX");
    CJSCore::Init(array('ajax'));
@@ -81,8 +81,8 @@ if(isset($_REQUEST['ajax_form']) &amp;&amp; $_REQUEST['ajax_form'] == $sidAjax){
    ));
    die();
 }
-
 ?&gt;
+
 &lt;div class="group"&gt;
    &lt;div id="block"&gt;&lt;/div &gt;
    &lt;div id="process"&gt;wait ... &lt;/div &gt;
@@ -130,7 +130,8 @@ BX.ready(function(){
    );
    
 });
-
 &lt;/script&gt;
+
 &lt;div class="css_ajax"&gt;click Me&lt;/div&gt;
+
 &lt;?require($_SERVER["DOCUMENT_ROOT"]."/bitrix/footer.php");?&gt;</code></pre>
