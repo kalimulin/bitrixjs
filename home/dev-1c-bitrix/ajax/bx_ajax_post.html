@@ -2,7 +2,7 @@
 title: BX.ajax.post
 description: 
 published: true
-date: 2021-12-24T19:17:46.768Z
+date: 2021-12-24T19:20:46.927Z
 tags: 
 editor: ckeditor
 dateCreated: 2021-12-24T19:17:46.768Z
@@ -58,18 +58,18 @@ if (!!node) {
     );
 }</code></pre>
 <p>Еще пример</p>
-<pre><code class="language-javascript">BX.ready(function() {//Страница загружена
-    const products = BX('products');//Получаем родительский элемент по ID
-    const btn = BX.findChild(products, {tag: 'button'}, true, true);//Получаем все дочерние элементы
-    btn.forEach( function(element) {//Цикл по дочерним элементам (кнопкам), чтобы повесить обработчик
-        const id = element.id;//Получаем ID
-        BX.bind(element, 'click', function () {//Вешаем обработчик
-            BX.ajax.post (//Выполняем POST запрос
+<pre><code class="language-javascript">BX.ready(function() { //Страница загружена
+    const products = BX('products'); //Получаем родительский элемент по ID
+    const btn = BX.findChild(products, {tag: 'button'}, true, true); //Получаем все дочерние элементы
+    btn.forEach( function(element) { //Цикл по дочерним элементам (кнопкам), чтобы повесить обработчик
+        const id = element.id; //Получаем ID
+        BX.bind(element, 'click', function () { //Вешаем обработчик
+            BX.ajax.post ( //Выполняем POST запрос
                 '/startshop.ru/personal/cart/index.php',
                 {id:id, kol:1},
-                function (result) {//Функция при успешном выполнении
-                    var cart = BX('count-cart');//Получаем элемент корзины
-                    cart.innerText= result;//Присваиваем количество
+                function (result) { //Функция при успешном выполнении
+                    var cart = BX('count-cart'); //Получаем элемент корзины
+                    cart.innerText= result; //Присваиваем количество
                     alert('Товар добавлен в корзину');
                 });
         });
