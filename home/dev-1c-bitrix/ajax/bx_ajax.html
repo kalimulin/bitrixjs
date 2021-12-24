@@ -2,7 +2,7 @@
 title: BX.ajax
 description: 
 published: true
-date: 2021-12-22T16:46:04.363Z
+date: 2021-12-24T19:08:54.860Z
 tags: 
 editor: ckeditor
 dateCreated: 2021-12-22T16:31:11.250Z
@@ -44,6 +44,38 @@ dateCreated: 2021-12-22T16:31:11.250Z
 </ul>
 <p>Эти параметры предназначены для интерфейсов, постоянно опрашивающих сервер с целью получения каких-либо данных. В этом случае данные запроса будут сохраняться в localStorage, и если в любой вкладке текущего браузера будет сделан запрос с тем же самым <strong>lsId</strong>, то вместо совершения запроса обработчик получит данные, сохраненные в localStorage. Соответственно, <strong>lsTimeout</strong> должен быть чуть меньше интервала отправки запросов. Параметр <strong>lsForce</strong> позволяет принудительно отправить запрос в обход проверки наличия данных в localStorage и обновить это данные.</p>
 <h2>Примеры использования</h2>
+<p>простая страница сайта с формой /ajax.php</p>
+<pre><code class="language-html">&lt;div id="my-form"&gt;
+    &lt;input id="my-input"&gt;&lt;/div&gt;
+    &lt;button id="my-button"&gt;send ajax request&lt;/button&gt;
+    &lt;div id="my-result" style="margin:10px 0;padding:.5em;border:1px solid #ececec;"&gt;&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;script&gt;
+    const input = BX('my-input')
+    const button = BX('my-button')
+    const result = BX('my-result')
+    
+    BX.bind(button, 'click', () =&gt; {
+      BX.ajax({
+        url: '/ajaxhandler.php',
+        data: {
+          text: input.value,
+        },
+        method: 'POST',
+        dataType: 'json',
+        timeout: 10,
+        onsuccess: function( res ) {
+          console.log('res: ', res)
+          result.innerText = res.text;
+        },
+        onfailure: e =&gt; {
+          console.error( e )
+        }
+      })
+    })
+&lt;/script&gt;</code></pre>
+<p>&nbsp;</p>
 <p>Пример скрипт обработки php-массива<br>Имеем php-массив с какими-то данными ($PRICE_LIST_DATA). каждую строку массива нужно отправлять ajax-ом в файл на обработку и при это публиковать пользователю результат работы каждого шага. В файле с php после получения массива выводим скрипт:<br>(простите за смесь BX и jquery).</p>
 <pre><code class="language-javascript">&lt;script type="text/javascript"&gt;
         function work_with_row(index,value,d){
