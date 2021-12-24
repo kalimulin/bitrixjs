@@ -1,0 +1,65 @@
+<!--
+title: BX.ajax.insertToNode
+description: 
+published: true
+date: 2021-12-24T19:33:12.823Z
+tags: 
+editor: ckeditor
+dateCreated: 2021-12-24T19:33:12.823Z
+-->
+
+<pre><code class="language-plaintext">XMLHttpRequest 
+BX.ajax.insertToNode(
+&nbsp;string url,
+&nbsp;string|DOMNode node
+);</code></pre>
+<p>Функция запрашивает url и вставляет результат в контейнер node.</p>
+<h2>Параметры функции</h2>
+<figure class="table">
+  <table>
+    <tbody>
+      <tr>
+        <td>Параметр</td>
+        <td>Описание</td>
+      </tr>
+      <tr>
+        <td>url</td>
+        <td>Адрес</td>
+      </tr>
+      <tr>
+        <td>node</td>
+        <td>Если node – строка, то параметр будет интерпретирован как идентификатор контейнера.</td>
+      </tr>
+    </tbody>
+  </table>
+</figure>
+<p>&nbsp;</p>
+<p>Пример:</p>
+<pre><code class="language-javascript">if (BX.ajax) {
+  BX.ajax.insertToNode = function(url, node) {
+    var cid = '20f3a45f3ea80ebe1f458bac9365b56a';
+    if (cid.length &gt; 0) {
+      url = url.replace(node.replace("comp_", ""), cid);
+    }
+    nodeName = 'news_reload';
+    node = nodeName;
+    if (node = BX(node)) {
+      BX.onCustomEvent('onAjaxInsertToNode', [{
+        url: url,
+        node: node
+      }]);
+
+      var show = null;
+      $("#" + nodeName).fadeOut(300, function() {
+        $(this).empty().show();
+        show = BX.showWait(node);
+        return BX.ajax.get(url, f unction(data) {
+          BX.closeWait(node, show);
+          $("#" + nodeName).hide();
+          node.innerHTML = data;
+          $("#" + nodeName).fadeIn(300);
+        });
+      });
+    }
+  }
+}</code></pre>
