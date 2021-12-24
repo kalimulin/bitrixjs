@@ -1,0 +1,43 @@
+<!--
+title: BX.ajax.loadJSON
+description: 
+published: true
+date: 2021-12-24T19:50:24.028Z
+tags: 
+editor: ckeditor
+dateCreated: 2021-12-24T19:50:24.028Z
+-->
+
+<pre><code class="language-plaintext">XMLHttpRequest
+BX.ajax.loadJSON(
+&nbsp;string url,
+&nbsp;function callback[,
+&nbsp;function callback_failure]
+);</code></pre>
+<p>или:</p>
+<pre><code class="language-plaintext">XMLHttpRequest
+BX.ajax.loadJSON(
+&nbsp;string url,
+&nbsp;object data,
+&nbsp;function callback[,
+&nbsp;function callback_failure]
+);</code></pre>
+<p>Функция загружает json-объект из заданного <strong>url</strong> и передает его обработчику <strong>callback</strong>.</p>
+<p>&nbsp;</p>
+<h2>Примеры:</h2>
+<pre><code class="language-javascript">function() {
+  const target = BX.proxy_context;
+  const itemID;
+  const url;
+
+  if (!!target &amp;&amp; target.hasAttribute('data-id')) {
+    itemID = parseInt(target.getAttribute('data-id'), 10);
+    if (!isNaN(itemID)) {
+      BX.showWait(this.obCompare);
+      url = this.ajax.url + this.ajax.templates.delete + itemID.toString();
+      BX.ajax.loadJSON(url, this.ajax.params, BX.proxy(this.deleteCompareResult, this));
+    }
+  }
+}</code></pre>
+<p>&nbsp;</p>
+<p><a href="https://dev.1c-bitrix.ru/api_help/js_lib/ajax/bx_ajax_loadjson.php">Документация Битрикс</a></p>
