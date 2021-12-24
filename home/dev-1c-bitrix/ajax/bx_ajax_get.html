@@ -1,0 +1,64 @@
+<!--
+title: BX.ajax.get
+description: 
+published: true
+date: 2021-12-24T16:47:34.271Z
+tags: 
+editor: ckeditor
+dateCreated: 2021-12-24T16:47:34.271Z
+-->
+
+<p>Функция допускает два варианта входных параметров.</p>
+<pre><code class="language-plaintext">XMLHttpRequest 
+BX.ajax.get(
+&nbsp;string url,
+&nbsp;string|object data,
+&nbsp;function callback
+);
+
+XMLHttpRequest 
+BX.ajax.get(
+&nbsp;string url,
+&nbsp;function callback
+);</code></pre>
+<p>Отправка GET-запроса и передача результата обработчику <strong>callback</strong>.</p>
+<p>&nbsp;</p>
+<h2>Параметры функции</h2>
+<figure class="table">
+  <table>
+    <tbody>
+      <tr>
+        <td>Параметр</td>
+        <td>Описание</td>
+      </tr>
+      <tr>
+        <td>url</td>
+        <td>Адрес</td>
+      </tr>
+      <tr>
+        <td>data</td>
+        <td>Строка или ассоциативный массив GET-параметров запроса (которые можно просто указать в адресе)</td>
+      </tr>
+      <tr>
+        <td>callback</td>
+        <td>Обработчик</td>
+      </tr>
+    </tbody>
+  </table>
+</figure>
+<p>&nbsp;</p>
+<h2>Пример использования</h2>
+<pre><code class="language-javascript">function() {
+  this._saveVisibleFieldsTimeoutId = null;
+  BX.ajax.get(
+    this.getServiceUrl(),
+    {
+      "GRID_ID": this.getGridId(),
+      "action": "filterrows",
+      "filter_id": this._activeItemId !== this._defaultItemId ? this._activeItemId : "",
+      "rows": this.getVisibleFieldIds().join(",")
+    }
+  );
+}</code></pre>
+<p>&nbsp;</p>
+<p><a href="https://dev.1c-bitrix.ru/api_help/js_lib/ajax/bx_ajax_get.php">Документация Битрикс</a></p>
