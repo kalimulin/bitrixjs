@@ -2,7 +2,7 @@
 title: BX.ajax.load
 description: 
 published: true
-date: 2021-12-24T19:43:04.569Z
+date: 2021-12-24T19:44:03.041Z
 tags: 
 editor: ckeditor
 dateCreated: 2021-12-24T19:43:04.568Z
@@ -29,7 +29,7 @@ BX.ajax.load(
 
   if (!!target &amp;&amp; target.hasAttribute('data-id')) {
     itemID = parseInt(target.getAttribute('data-id'), 10);
-	if (!isNaN(itemID)) {
+    if (!isNaN(itemID)) {
       BX.showWait(this.obCompare);
       url = this.ajax.url + this.ajax.templates.delete + itemID.toString();
       BX.ajax.loadJSON(url, this.ajax.params, BX.proxy(this.deleteCompareResult, this));
