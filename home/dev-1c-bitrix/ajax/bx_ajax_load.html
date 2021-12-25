@@ -1,0 +1,37 @@
+<!--
+title: BX.ajax.load
+description: 
+published: true
+date: 2021-12-24T19:47:25.966Z
+tags: 
+editor: ckeditor
+dateCreated: 2021-12-24T19:43:04.568Z
+-->
+
+<pre><code class="language-plaintext">void 
+BX.ajax.load(
+&nbsp;array arObjects[,
+&nbsp;function finish_callback]
+);</code></pre>
+<p>Функция загружает очередь ресурсов и вызвает обработчик <strong>callback</strong>. Описание очереди представляет собой массив объектов такого вида:.</p>
+<pre><code class="language-javascript">{
+  url: URL ресурса
+  type: html|script|json|css – тип ресурса
+  callback: обработчик загрузки данного ресурса (не будет вызван для типа css)
+}</code></pre>
+<p>Для каждого ресурса (кроме <strong>css</strong>) будет вызван свой обработчик, если задан. По завершении всей очереди будет вызван обработчик <strong>finish_callback</strong> (без параметров)</p>
+<p>&nbsp;</p>
+<h2>Пример:</h2>
+<pre><code class="language-javascript">function(country) {
+  var page = (country ? 'country_' + country : 'countries') + '.json';
+  var _this = this;
+  BX.ajax.load({
+    'url': this.url + '/' + page,
+    'type': 'json',
+    'callback': function(data) {
+      _this.prepareDataCodes(data, country);
+    }
+  });
+}</code></pre>
+<p>&nbsp;</p>
+<p><a href="https://dev.1c-bitrix.ru/api_help/js_lib/ajax/bx_ajax_load.php">Документация Битрикс</a></p>

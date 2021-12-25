@@ -1,0 +1,36 @@
+<!--
+title: BX.ajax.xhr
+description: 
+published: true
+date: 2021-12-22T16:58:43.079Z
+tags: 
+editor: ckeditor
+dateCreated: 2021-12-22T16:58:43.079Z
+-->
+
+<p>Возвращает конструктор XMLHttpRequest(), если таковой поддерживается браузером. Если нет, используется подходящая версия Msxml2.XMLHTTP или Microsoft.XMLHTTP.&nbsp;</p>
+<p>&nbsp;</p>
+<h2>Пример использования:</h2>
+<pre><code class="language-javascript">const urlToBlob = function (url) {
+  // ...
+  return new Promise(function(resolve, reject) {
+    try {
+      const xhr = BX.ajax.xhr();
+      xhr.open("GET", url);
+      xhr.responseType = "blob";
+      xhr.onerror = function() {
+        reject("Network error.")
+      };
+      xhr.onload = function() {
+        if (xhr.status === 200) {
+          resolve(xhr.response);
+        } else {
+          reject("Loading error:" + xhr.statusText);
+        }
+      };
+      xhr.send();
+    } catch (err) {
+      reject(err.message);
+    }
+  });
+};</code></pre>

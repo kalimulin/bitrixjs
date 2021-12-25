@@ -1,0 +1,78 @@
+<!--
+title: BX.ajax.post
+description: 
+published: true
+date: 2021-12-24T19:35:12.459Z
+tags: 
+editor: ckeditor
+dateCreated: 2021-12-24T19:17:46.768Z
+-->
+
+<h1><strong>BX.ajax.post</strong></h1>
+<pre><code class="language-plaintext">XMLHttpRequest
+BX.ajax.post(
+&nbsp;string url,
+&nbsp;string|object data,
+&nbsp;function callback
+);</code></pre>
+<p>Простая отправка POST-запроса и передача результата обработчику <strong>callback</strong>.</p>
+<p>&nbsp;</p>
+<h2>Параметры функции</h2>
+<figure class="table">
+  <table>
+    <tbody>
+      <tr>
+        <td>Параметр</td>
+        <td>Описание</td>
+      </tr>
+      <tr>
+        <td>url</td>
+        <td>Адрес</td>
+      </tr>
+      <tr>
+        <td>data</td>
+        <td>Строка или ассоциативный массив POST-данных запроса</td>
+      </tr>
+      <tr>
+        <td>callback</td>
+        <td>Обработчик</td>
+      </tr>
+    </tbody>
+  </table>
+</figure>
+<h2><br>Примеры:</h2>
+<p>Простой пример, аналог <a href="/home/dev-1c-bitrix/ajax/bx_ajax_inserttonode">BX.ajax.insertToNode</a>, но с возможностью отправлять данные в post</p>
+<pre><code class="language-javascript">const post = {};
+post['id'] = id;
+post['ajax'] = 'y';
+
+const node = BX('container'); //сюда будем вставлять полученный html
+
+if (!!node) {
+    BX.ajax.post(
+        this.ajaxURL,
+        post,
+        function (data) {
+            node.innerHTML = data;
+        }
+    );
+}</code></pre>
+<p>Еще пример</p>
+<pre><code class="language-javascript">BX.ready(function() { //Страница загружена
+    const products = BX('products'); //Получаем родительский элемент по ID
+    const btn = BX.findChild(products, {tag: 'button'}, true, true); //Получаем все дочерние элементы
+    btn.forEach( function(element) { //Цикл по дочерним элементам (кнопкам), чтобы повесить обработчик
+        const id = element.id; //Получаем ID
+        BX.bind(element, 'click', function () { //Вешаем обработчик
+            BX.ajax.post ( //Выполняем POST запрос
+                '/startshop.ru/personal/cart/index.php',
+                {id:id, kol:1},
+                function (result) { //Функция при успешном выполнении
+                    var cart = BX('count-cart'); //Получаем элемент корзины
+                    cart.innerText= result; //Присваиваем количество
+                    alert('Товар добавлен в корзину');
+                });
+        });
+    });
+});</code></pre>
+<p><a href="https://dev.1c-bitrix.ru/api_help/js_lib/ajax/bx_ajax_post.php">Документация Битрикс</a></p>
